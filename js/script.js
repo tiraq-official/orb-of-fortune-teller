@@ -118,10 +118,10 @@ cards.forEach((card) => {
 
 
     const rotateX =
-        ((y - centerY) / centerY) * -2;
+        ((y - centerY) / centerY) * -1.2;
 
     const rotateY =
-        ((x - centerX) / centerX) * 2;
+        ((x - centerX) / centerX) * 1.2;
 
 
     const percentX =
