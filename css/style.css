@@ -1086,3 +1086,404 @@ footer {
     }
 
 }
+/* =========================================================
+   PHASE 2 — ADVANCED MOTION
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   HERO ENTRANCE
+   --------------------------------------------------------- */
+
+.hero-content > * {
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    animation:
+        heroReveal
+        0.9s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        forwards;
+
+}
+
+
+.hero-content .eyebrow {
+    animation-delay: 0.1s;
+}
+
+
+.hero-content h1 {
+    animation-delay: 0.2s;
+}
+
+
+.hero-content h2 {
+    animation-delay: 0.3s;
+}
+
+
+.hero-content .hero-description {
+    animation-delay: 0.4s;
+}
+
+
+.hero-content .hero-buttons {
+    animation-delay: 0.5s;
+}
+
+
+@keyframes heroReveal {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   REVEAL ON SCROLL
+   --------------------------------------------------------- */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity 0.9s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        transform 0.9s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
+
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ---------------------------------------------------------
+   STAGGER CARDS
+   --------------------------------------------------------- */
+
+.rom-card:nth-child(2),
+.interest-card:nth-child(2),
+.glass-card:nth-child(2) {
+
+    transition-delay:
+        0.05s;
+
+}
+
+
+.rom-card:nth-child(3),
+.interest-card:nth-child(3),
+.glass-card:nth-child(3) {
+
+    transition-delay:
+        0.1s;
+
+}
+
+
+.rom-card:nth-child(4),
+.interest-card:nth-child(4),
+.glass-card:nth-child(4) {
+
+    transition-delay:
+        0.15s;
+
+}
+
+
+.rom-card:nth-child(5),
+.interest-card:nth-child(5),
+.glass-card:nth-child(5) {
+
+    transition-delay:
+        0.2s;
+
+}
+
+
+.rom-card:nth-child(6),
+.interest-card:nth-child(6) {
+
+    transition-delay:
+        0.25s;
+
+}
+
+
+.rom-card:nth-child(7) {
+
+    transition-delay:
+        0.3s;
+
+}
+
+
+/* ---------------------------------------------------------
+   MOUSE GLOW
+   --------------------------------------------------------- */
+
+.mouse-glow {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 450px;
+    height: 450px;
+
+    margin-left: -225px;
+    margin-top: -225px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                150,
+                120,
+                255,
+                0.07
+            ) 0%,
+
+            rgba(
+                80,
+                180,
+                255,
+                0.025
+            ) 30%,
+
+            transparent 70%
+        );
+
+    filter:
+        blur(15px);
+
+}
+
+
+/* ---------------------------------------------------------
+   CARD HIGHLIGHT
+   --------------------------------------------------------- */
+
+.rom-card::before,
+.glass-card::before,
+.interest-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        radial-gradient(
+            circle at var(--mouse-x, 50%)
+            var(--mouse-y, 50%),
+
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            ),
+
+            transparent 35%
+        );
+
+    transition:
+        opacity 0.3s ease;
+
+}
+
+
+.rom-card:hover::before,
+.glass-card:hover::before,
+.interest-card:hover::before {
+
+    opacity: 1;
+
+}
+
+
+/* ---------------------------------------------------------
+   BETTER ROM CARDS
+   --------------------------------------------------------- */
+
+.rom-card {
+
+    transform-style:
+        preserve-3d;
+
+    will-change:
+        transform;
+
+}
+
+
+.rom-card h3 {
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+
+.rom-card:hover h3 {
+
+    transform:
+        translateX(3px);
+
+}
+
+
+/* ---------------------------------------------------------
+   DEVICE CARD
+   --------------------------------------------------------- */
+
+.device-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.device-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -150px;
+    bottom: -180px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                160,
+                120,
+                255,
+                0.18
+            ),
+
+            transparent 70%
+        );
+
+    filter:
+        blur(20px);
+
+    pointer-events: none;
+
+    animation:
+        deviceGlow
+        8s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes deviceGlow {
+
+    from {
+
+        transform:
+            translate(
+                -20px,
+                -10px
+            );
+
+    }
+
+    to {
+
+        transform:
+            translate(
+                20px,
+                10px
+            );
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------- */
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+
+    animation-duration:
+        0.01ms !important;
+
+    animation-iteration-count:
+        1 !important;
+
+    transition-duration:
+        0.01ms !important;
+
+    scroll-behavior:
+        auto !important;
+
+}
