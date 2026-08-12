@@ -177,3 +177,113 @@ if (prefersReducedMotion.matches) {
     );
 
 }
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+const menuToggle =
+    document.querySelector(".menu-toggle");
+
+const mobileMenu =
+    document.querySelector(".mobile-menu");
+
+const mobileLinks =
+    document.querySelectorAll(".mobile-menu nav a");
+
+
+function closeMobileMenu() {
+
+    document.body.classList.remove("menu-open");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    menuToggle.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+    );
+
+}
+
+
+function openMobileMenu() {
+
+    document.body.classList.add("menu-open");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    menuToggle.setAttribute(
+        "aria-label",
+        "Close navigation menu"
+    );
+
+}
+
+
+menuToggle.addEventListener(
+    "click",
+    () => {
+
+        const isOpen =
+            document.body.classList.contains(
+                "menu-open"
+            );
+
+        if (isOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+
+    }
+);
+
+
+/* Close after selecting a section */
+
+mobileLinks.forEach((link) => {
+
+    link.addEventListener(
+        "click",
+        closeMobileMenu
+    );
+
+});
+
+
+/* Close with Escape */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape" &&
+            document.body.classList.contains(
+                "menu-open"
+            )
+        ) {
+            closeMobileMenu();
+        }
+
+    }
+);
+
+
+/* Close if viewport becomes desktop */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (window.innerWidth > 850) {
+            closeMobileMenu();
+        }
+
+    }
+);
