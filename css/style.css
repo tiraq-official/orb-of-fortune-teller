@@ -2100,3 +2100,35 @@ body.menu-open .menu-toggle span:last-child {
     }
 
 }
+/* =====================================================
+   ROM NOTES
+   ===================================================== */
+
+.rom-notes {
+    margin-top: 28px;
+
+    padding: 20px 22px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    color: #777782;
+
+    font-size: 0.76rem;
+
+    line-height: 1.7;
+}
+
+.rom-notes p + p {
+    margin-top: 8px;
+}
+
+.rom-notes strong {
+    color: #bdbdc7;
+}
