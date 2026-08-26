@@ -70,6 +70,7 @@
     color: var(--muted);
 }
 
+/* --- FIXED BUTTON ALIGNMENT --- */
 .about-actions {
     display: flex;
     align-items: center;
@@ -77,17 +78,25 @@
     margin-top: 30px;
 }
 
-.github-button {
+.about-actions .button,
+.about-actions .github-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 51px;
+    height: 48px;
+    margin-top: 0; /* Clears margin-top: 30px from style.css */
     padding: 0 23px;
-    border: 1px solid rgba(23, 23, 23, 0.35);
-    color: var(--black);
+    box-sizing: border-box;
     font-size: 14px;
     font-weight: 700;
+    line-height: 1;
     border-radius: 3px;
+}
+
+.github-button {
+    min-height: 48px;
+    border: 1px solid rgba(23, 23, 23, 0.35);
+    color: var(--black);
     transition: 0.25s ease;
 }
 
@@ -96,6 +105,7 @@
     color: var(--red);
     transform: translateY(-2px);
 }
+/* ------------------------------ */
 
 .scroll-note {
     display: flex;
@@ -115,14 +125,21 @@
 }
 
 
-/* Image slot */
-
 .about-hero-image {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 480px;
     padding: 20px;
+}
+
+.about-hero-image img {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    display: block;
+    transform: translateX(35px) scale(1.25);
+    transform-origin: center center;
 }
 
 .image-placeholder {
@@ -184,11 +201,7 @@
 }
 
 .section-number {
-    color: var(--red);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
+    display: none;
 }
 
 .about-grid {
@@ -528,6 +541,11 @@
         flex-wrap: wrap;
     }
 
+    /* Reset button margins on mobile as well */
+    .about-actions .button {
+        margin-top: 0;
+    }
+
     .scroll-note {
         margin-top: 45px;
     }
@@ -614,4 +632,35 @@
         font-size: 12px;
         flex-wrap: wrap;
     }
+}
+/* -------------------------
+   ROUNDED CORNERS OVERRIDES
+------------------------- */
+
+/* Hero Image Placeholder Box */
+.image-placeholder {
+    border-radius: 12px;
+}
+
+/* Tech Stack Tags */
+.tag-row span {
+    border-radius: 6px;
+}
+
+/* Interest Cards */
+.interest-grid article {
+    border-radius: 10px;
+}
+
+/* Formula 1 Box & Driver Badges */
+.f1-section {
+    border-radius: 14px;
+}
+
+.f1-mark {
+    border-radius: 12px;
+}
+
+.driver-row span {
+    border-radius: 6px;
 }
