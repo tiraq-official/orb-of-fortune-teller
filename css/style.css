@@ -27,10 +27,11 @@ body {
         Arial,
         sans-serif;
 
-    background: #f4eadb;
+    background: var(--red);
     color: #171717;
 
     overflow-x: hidden;
+    position: relative;
 }
 
 
@@ -52,7 +53,7 @@ a {
 
 :root {
 
-    --cream: #f4eadb;
+    --cream: #ecdccc;
     --cream-light: #f8f0e5;
 
     --red: #e93622;
@@ -71,49 +72,51 @@ a {
    MAIN PAGE FRAME
 ------------------------- */
 
-body::before {
+body {
+    position: relative;
+}
 
+body::before {
     content: "";
 
-    position: fixed;
+    position: absolute;
 
-    inset: 18px;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 110px;
+
+    background: var(--cream);
 
     border: 1px solid var(--border);
-
     border-radius: 14px;
 
     pointer-events: none;
-
-    z-index: 100;
-
+    z-index: 0;
 }
 
+header,
+main {
+    position: relative;
+    z-index: 1;
+}
 
 /* -------------------------
    HEADER
 ------------------------- */
 
 header {
-
-    width: min(1200px, calc(100% - 80px));
-
+    width: min(1400px, calc(100% - 100px));
     margin: 0 auto;
-
     height: 110px;
 
     display: flex;
-
     align-items: center;
-
-    justify-content: space-between;
+    justify-content: flex-end;
 
     position: relative;
-
     z-index: 20;
-
 }
-
 
 /* Logo */
 
@@ -223,19 +226,15 @@ nav a.active::after {
 ------------------------- */
 
 main {
-
-    width: min(1200px, calc(100% - 80px));
-
+    width: min(1400px, calc(100% - 100px));
     margin: 0 auto;
-
 }
-
 
 section {
 
-    border: 1px solid var(--border);
+    border: 1none;
 
-    background: var(--cream);
+    background: transparent;
 
 }
 
@@ -245,28 +244,18 @@ section {
 ------------------------- */
 
 .hero {
-
-    min-height: 570px;
-
+    min-height: 600px;
     display: grid;
-
-    grid-template-columns: 0.95fr 1.05fr;
-
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-
     overflow: hidden;
-
-    border-radius: 8px 8px 0 0;
-
 }
 
 
 /* Hero text */
 
 .hero-text {
-
-    padding: 70px 30px 70px 60px;
-
+    padding: 70px 70px 70px 40px;
 }
 
 
@@ -361,17 +350,12 @@ section {
 /* Hero image */
 
 .hero-image {
-
     height: 100%;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     overflow: hidden;
-
+    padding: 30px;
 }
 
 
@@ -391,19 +375,12 @@ section {
 ------------------------- */
 
 .community {
-
-    min-height: 420px;
-
+    min-height: 480px;
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     align-items: center;
-
-    gap: 60px;
-
-    padding: 45px 60px;
-
+    gap: 80px;
+    padding: 60px 40px;
 }
 
 
@@ -436,11 +413,8 @@ section {
 /* Text */
 
 .community-text {
-
-    padding-right: 30px;
-
+    padding-right: 40px;
 }
-
 
 .community-text h2 {
 
@@ -551,9 +525,9 @@ section {
 
 .device-content img {
 
-    width: 150px;
+    width: px;
 
-    height: 210px;
+    height: 400px;
 
     object-fit: contain;
 
@@ -592,51 +566,6 @@ section {
     color: var(--red);
 
 }
-
-
-/* -------------------------
-   FOOTER
-------------------------- */
-
-footer {
-
-    min-height: 190px;
-
-    width: min(1200px, calc(100% - 80px));
-
-    margin: 0 auto;
-
-    background: var(--red);
-
-    color: white;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 18px;
-
-    text-align: center;
-
-    font-size: 14px;
-
-    letter-spacing: 6px;
-
-    border-radius: 0 0 8px 8px;
-
-}
-
-
-footer br + * {
-
-    letter-spacing: 2px;
-
-}
-
 
 /* -------------------------
    TABLET
@@ -1026,4 +955,39 @@ footer br + * {
         bottom: -5px;
     }
 
+}
+footer {
+    width: 100%;
+    text-align: center;
+    color: white;
+
+    margin-top: 25px;
+    padding: 20px 0;
+
+    font-size: 14px;
+    letter-spacing: 5px;
+}
+
+footer br + * {
+    letter-spacing: 2px;
+}
+footer {
+    width: 100%;
+    text-align: center;
+
+    background: var(--red);
+    color: white;
+
+    margin-top: 40px;
+    padding: 20px 0;
+
+    font-size: 14px;
+    letter-spacing: 5px;
+
+    position: relative;
+    z-index: 101;
+}
+
+footer br + * {
+    letter-spacing: 2px;
 }
