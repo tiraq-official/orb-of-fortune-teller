@@ -1,881 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Tiraq — Android ROM developer, device maintainer and open-source enthusiast."
-    >
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tiraq — Orb of Fortune Teller 🎐🔮</title>
+<title>Tiraq — Orb of Fortune Teller</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
+
 </head>
+
 
 <body>
 
-    <!-- Ambient background -->
-    <div class="background">
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
-        <div class="orb orb-three"></div>
 
-        <div class="stars">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
+<header>
+
+<div class="logo">
+    TIR<br>AQ
+</div>
 
 
-    <!-- Navigation -->
-    <header class="navbar">
+<nav>
 
-    <a href="#" class="brand">
-        <span class="brand-symbol">🔮</span>
-        <span>Orb of Fortune Teller</span>
-    </a>
+<a class="active" href="#">Home</a>
+<a href="roms.html">Roms</a>
+<a href="about.html">About</a>
+<a href="support.html">Support</a>
 
-    <!-- Desktop navigation -->
-    <nav class="desktop-nav">
-        <a href="#about">About</a>
-        <a href="#stack">Stack</a>
-        <a href="#device">Device</a>
-        <a href="#roms">ROMs</a>
-        <a href="#contact">Contact</a>
-    </nav>
+</nav>
 
-    <!-- Mobile menu button -->
-    <button
-        class="menu-toggle"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-    >
-        <span></span>
-        <span></span>
-    </button>
+
+<div class="menu">
+☰
+</div>
+
 
 </header>
 
 
-<!-- Mobile navigation -->
-<div class="mobile-menu">
-
-    <div class="mobile-menu-inner">
-
-        <nav>
-
-            <a href="#about">
-                <span>01</span>
-                About
-            </a>
-
-            <a href="#stack">
-                <span>02</span>
-                Stack
-            </a>
-
-            <a href="#device">
-                <span>03</span>
-                Device
-            </a>
-
-            <a href="#roms">
-                <span>04</span>
-                ROMs
-            </a>
-
-            <a href="#contact">
-                <span>05</span>
-                Contact
-            </a>
-
-        </nav>
 
 
-        <div class="mobile-menu-divider"></div>
+<main>
 
 
-        <div class="mobile-social">
+<!-- HERO -->
 
-            <a
-                href="https://github.com/tiraq-official"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                GitHub
-                <span>↗</span>
-            </a>
 
-            <a
-                href="https://t.me/lost_traveller"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Telegram
-                <span>↗</span>
-            </a>
+<section class="hero">
 
-            <a
-                href="https://t.me/Orb_of_Fortune_Teller"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Channel
-                <span>↗</span>
-            </a>
 
-        </div>
+<div class="hero-text">
 
-    </div>
+<span class="jp">
+ラーメン
+</span>
+
+
+<h1>
+CRAFTING SMOOTH,<br>
+RELIABLE <span>ANDROID</span><br>
+EXPERIENCES.
+</h1>
+
+
+<p>
+Android ROM Developer & Device Maintainer<br>
+Building with passion. For the community.
+</p>
+
+
+<a href="roms.html" class="button">
+Explore ROMs →
+</a>
+
 
 </div>
 
 
-    <main>
 
-        <!-- HERO -->
-        <section class="hero">
+<div class="hero-image">
 
-            <div class="hero-content">
-
-                <p class="eyebrow">
-                    OPEN SOURCE • ANDROID • LINUX
-                </p>
-
-                <h1>
-                    Hi, I'm
-                    <span class="gradient-text">Tiraq.</span>
-                </h1>
-
-                <h2>
-                    Android ROM Developer
-                    <span class="separator">/</span>
-                    Device Maintainer
-                </h2>
-
-                <p class="hero-description">
-                    Student and open-source enthusiast exploring Android,
-                    Linux, low-level system tweaking, and everything that
-                    makes an operating system tick.
-                </p>
-
-                <div class="hero-buttons">
-
-                    <a href="#roms" class="button primary">
-                        Explore My Work
-                        <span>↗</span>
-                    </a>
-
-                    <a
-                        href="https://github.com/tiraq-official"
-                        class="button secondary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        GitHub
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="hero-scroll">
-                <span></span>
-                Scroll to explore
-            </div>
-
-        </section>
-
-
-        <!-- ABOUT -->
-        <section id="about" class="section">
-
-            <div class="section-heading">
-                <span class="section-number">01</span>
-                <h2>About Me</h2>
-            </div>
-
-            <div class="about-grid">
-
-                <div class="about-main">
-
-                    <p class="large-text">
-                        Hi! I'm a student and open-source enthusiast
-                        passionate about
-                        <strong>Android ROM development</strong>,
-                        <strong>Linux customization</strong>, and
-                        low-level system tweaking.
-                    </p>
-
-                    <p>
-                        Most of my time is spent diving into the Android
-                        Open Source Project ecosystem — building device
-                        trees, customizing kernels, and learning the
-                        ins and outs of Android bring-up.
-                    </p>
-
-                    <p>
-                        When I'm not in the terminal or flashing builds,
-                        you'll probably find me tracking Formula 1 sector
-                        times, mastering games, or relaxing with good music.
-                    </p>
-
-                </div>
-
-                <div class="about-highlight">
-
-                    <span class="highlight-symbol">⌘</span>
-
-                    <p>
-                        Building things.<br>
-                        Breaking things.<br>
-                        <strong>Learning from both.</strong>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- TECH STACK -->
-        <section id="stack" class="section">
-
-            <div class="section-heading">
-                <span class="section-number">02</span>
-                <h2>Tech Stack</h2>
-            </div>
-
-            <div class="stack-grid">
-
-                <div class="glass-card">
-
-                    <span class="card-label">LANGUAGES & SHELL</span>
-
-                    <div class="tag-list">
-                        <span>Python</span>
-                        <span>Bash</span>
-                        <span>Shell</span>
-                        <span>Makefile</span>
-                    </div>
-
-                </div>
-
-
-                <div class="glass-card">
-
-                    <span class="card-label">VERSION CONTROL</span>
-
-                    <div class="tag-list">
-                        <span>Git</span>
-                        <span>GitHub</span>
-                    </div>
-
-                </div>
-
-
-                <div class="glass-card">
-
-                    <span class="card-label">CORE SYSTEMS</span>
-
-                    <div class="tag-list">
-                        <span>Arch Linux</span>
-                        <span>Hyprland</span>
-                        <span>AOSP</span>
-                    </div>
-
-                </div>
-
-
-                <div class="glass-card">
-
-                    <span class="card-label">ANDROID & MOBILE</span>
-
-                    <div class="tag-list">
-                        <span>Device Trees</span>
-                        <span>Kernel</span>
-                        <span>Magisk</span>
-                        <span>Termux</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- INTERESTS -->
-        <section class="section">
-
-            <div class="section-heading">
-                <span class="section-number">03</span>
-                <h2>Interests & Pursuits</h2>
-            </div>
-
-            <div class="interest-grid">
-
-                <article class="interest-card">
-                    <span class="interest-icon">⚙</span>
-                    <h3>System Engineering</h3>
-                    <p>
-                        Android ROM development, kernel patching,
-                        and Linux workspaces.
-                    </p>
-                </article>
-
-                <article class="interest-card">
-                    <span class="interest-icon">⌬</span>
-                    <h3>Tech Exploration</h3>
-                    <p>
-                        Cybersecurity, open-source software,
-                        and workstation customization.
-                    </p>
-                </article>
-
-                <article class="interest-card">
-                    <span class="interest-icon">◈</span>
-                    <h3>Gaming</h3>
-                    <p>
-                        Action RPGs and tactical games.
-                    </p>
-                </article>
-
-                <article class="interest-card">
-                    <span class="interest-icon">◉</span>
-                    <h3>Motorsport</h3>
-                    <p>
-                        Formula 1 and rally racing.
-                    </p>
-                </article>
-
-                <article class="interest-card">
-                    <span class="interest-icon">⌁</span>
-                    <h3>Creative</h3>
-                    <p>
-                        Photography, acoustic music,
-                        and softer sounds.
-                    </p>
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- DEVICE -->
-        <section id="device" class="section">
-
-            <div class="section-heading">
-                <span class="section-number">04</span>
-                <h2>Device Maintenance</h2>
-            </div>
-
-            <div class="device-card">
-
-                <div class="device-info">
-
-                    <span class="card-label">
-                        CURRENTLY MAINTAINING
-                    </span>
-
-                    <h3>Motorola G34 5G</h3>
-
-                    <p class="codename">
-                        codename:
-                        <strong>fogos</strong>
-                    </p>
-
-                    <p>
-                        Android development, custom ROM bring-up,
-                        device tree maintenance and kernel work.
-                    </p>
-
-                </div>
-
-                <div class="device-code">
-                    <span>&lt;/&gt;</span>
-                    <strong>fogos</strong>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ROMS -->
-<section id="roms" class="section roms-section">
-
-    <div class="section-heading">
-        <span class="section-number">05</span>
-
-        <div>
-            <span class="section-kicker">ANDROID DEVELOPMENT</span>
-            <h2>My ROM Work</h2>
-        </div>
-    </div>
-
-    <div class="rom-intro">
-        <p>
-            Custom Android builds, AOSP projects, and ROM maintenance
-            for the <strong>Motorola G34 5G</strong>.
-        </p>
-
-        <span class="rom-device">
-            <span class="status-dot"></span>
-            fogos
-        </span>
-    </div>
-
-<div class="rom-notes">
-
-    <p>
-        <strong>Note:</strong>
-        PixelDrain files are automatically removed after
-        <strong>60 days</strong>, while Gofile files are
-        automatically removed after <strong>30 days</strong>.
-    </p>
-
-    <p>
-        <strong>Connection note:</strong>
-        If a PixelDrain link is not opening, try using a
-        <strong>VPN</strong> or changing your <strong>DNS</strong>.
-    </p>
+<img src="images/android.png">
 
 </div>
 
-    <div class="rom-grid">
-
-        <!-- LUNARIS -->
-    <a href="roms/lunaris.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">01</span>
-
-                <span class="rom-type">
-                    LINEAGE
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Lunaris AOSP</h3>
-
-                <p>
-                    Lunaris AOSP brings a balanced mix of performance, smoothness, and customization while keeping stability in mind.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-
-        <!-- AXION -->
-        <a href="roms/axion.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">02</span>
-
-                <span class="rom-type">
-                    LINEAGE
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Axion OS</h3>
-
-                <p>
-                    AxionOS is a streamlined alternative to bloated manufacturer Android skins — built to make your device faster, more powerful, and more reliable.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-
-        <!-- INFINITY X -->
-        <a href="roms/infinityx.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">03</span>
-
-                <span class="rom-type">
-                    LINEAGE
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Infinity X</h3>
-
-                <p>
-                    The Infinity-X Project introduces you to a world of endless customizations and useful Android features.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-
-        <!-- Pixel OS -->
-        <a href="roms/pixelos.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">04</span>
-
-                <span class="rom-type">
-                    AOSP
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Pixel OS</h3>
-
-                <p>
-                    PixelOS is an AOSP based ROM, with Google apps included and all Pixel goodies.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-
-        <!-- EVOLUTION X -->
-        <a href="roms/evolutionx.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">05</span>
-
-                <span class="rom-type">
-                    LINEAGE
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Evolution X</h3>
-
-                <p>
-                    Evolution X blends the best of Pixel with feature-rich customization, built on a clean LineageOS foundation.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-
-        <!-- DERPFEST -->
-        <a href="roms/derpfest.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">06</span>
-
-                <span class="rom-type">
-                    AOSP
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>DerpFest</h3>
-
-                <p>
-                    We are an AOSP based custom ROM, twisted with the latest features from all over the Android development community.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-
-        <!-- LINEAGE -->
-        <a href="roms/lineage.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">07</span>
-
-                <span class="rom-type">
-                    OPEN SOURCE
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>LineageOS</h3>
-
-                <p>
-                    Open-source Android distribution maintained
-                    for the Motorola G34 5G.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-        <!-- MIST OS -->
-        <a href="roms/mist.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">08</span>
-
-                <span class="rom-type">
-                    LINEAGE & AOSP
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Mist OS</h3>
-
-                <p>
-                    Performance, privacy, and personalization in perfect harmony. Built for users who want a fast, clean, and refined Android experience.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-        <!-- Voltage OS -->
-        <a href="roms/voltage.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">08</span>
-
-                <span class="rom-type">
-                    AOSP
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Voltage OS</h3>
-
-                <p>
-                    Greatly focused on privacy and secuirity without compromising customization.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-        <!-- Rising OS Revived -->
-        <a href="roms/rising.html" class="rom-card">
-
-            <div class="rom-top">
-                <span class="rom-index">08</span>
-
-                <span class="rom-type">
-                    LINEAGE
-                </span>
-            </div>
-
-            <div class="rom-body">
-
-                <h3>Rising OS Revived</h3>
-
-                <p>
-                    RisingOS is a OpenSource Aftermarket Android Operating System that aims to bring unique and fresh user experience.
-                </p>
-
-            </div>
-
-            <div class="rom-bottom">
-
-                <span class="rom-device-name">
-                    fogos
-                </span>
-
-                <span class="rom-arrow">↗</span>
-
-            </div>
-
-        </a>
-
-    </div>
 
 </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="section contact-section">
-
-            <div class="contact-content">
-
-                <span class="section-number">06</span>
-
-                <h2>
-                    Let's build<br>
-                    <span class="gradient-text">something.</span>
-                </h2>
-
-                <p>
-                    I'm always open to collaborating on AOSP bring-ups,
-                    device trees, Linux tooling, and interesting
-                    open-source projects.
-                </p>
-
-                <div class="contact-buttons">
-
-                    <a
-                        href="https://github.com/tiraq-official"
-                        class="button primary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        GitHub ↗
-                    </a>
-
-                    <a
-                        href="https://t.me/lost_traveller"
-                        class="button secondary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Telegram ↗
-                    </a>
-
-                    <a
-                        href="https://t.me/Orb_of_Fortune_Teller"
-                        class="button secondary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Channel ↗
-                    </a>
-                    
-                    <a
-                        href="https://t.me/TheEuthymia"
-                        class="button secondary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Support Group ↗
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
 
 
-    <!-- FOOTER -->
-    <footer>
-
-        <div>
-            🔮 Orb of Fortune Teller
-        </div>
-
-        <div>
-            Built by Tiraq • Open Source
-        </div>
-
-    </footer>
 
 
-    <script src="js/script.js"></script>
+<!-- COMMUNITY -->
+
+
+<section class="community">
+
+
+<div class="community-image">
+
+<img src="images/shrine.png">
+
+</div>
+
+
+
+<div class="community-text">
+
+<span class="jp">
+私たちについて
+</span>
+
+git 
+<h2>
+BUILT WITH PASSION.<br>
+FOR THE <span>COMMUNITY.</span>
+</h2>
+
+
+<p>
+
+All ROMs are built with dedication and a focus on
+performance, stability and user experience.
+
+<br><br>
+
+This is more than just ROMs.
+<br>
+This is a commitment.
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- DEVICE -->
+
+
+<section class="device">
+
+
+<div class="device-title">
+
+<span class="jp">
+サポートされているデバイス
+</span>
+
+<h2>
+DEVICE MAINTAINED
+<span></span>
+</h2>
+
+
+</div>
+
+
+
+
+<div class="device-content">
+
+
+<img src="images/moto.png">
+
+
+
+<div>
+
+<h2>
+Motorola G34 / G45 5G
+</h2>
+
+
+<p>
+Codename:
+<b>fogos</b>
+</p>
+
+
+<p>
+Snapdragon 695 |
+Android 16+
+</p>
+
+
+<p>
+Maintained with ❤️
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+</main>
+
+
+
+
+
+<footer>
+
+FORTUNE TELLER
+
+<br>
+
+🎐 🔮
+
+
+</footer>
+
+
+
+<script src="js/script.js"></script>
+
 
 </body>
+
 </html>
