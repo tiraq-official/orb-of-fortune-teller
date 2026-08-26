@@ -1,0 +1,617 @@
+/* =========================================================
+   TIRAQ — ABOUT PAGE
+   Uses the same cream / red visual language as the homepage.
+   ========================================================= */
+
+.about-page {
+    padding-bottom: 40px;
+}
+
+.about-page section {
+    position: relative;
+}
+
+
+/* -------------------------
+   ABOUT HERO
+------------------------- */
+
+.about-hero {
+    min-height: 680px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 30px;
+    padding: 55px 70px 80px;
+}
+
+.about-hero-text {
+    padding-left: 10px;
+    max-width: 720px;
+}
+
+.about-kicker {
+    display: inline-block;
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+}
+
+.about-hero h1 {
+    font-size: clamp(58px, 7vw, 100px);
+    line-height: 0.94;
+    letter-spacing: -5px;
+    font-weight: 900;
+}
+
+.about-hero h1 span {
+    color: var(--red);
+}
+
+.about-hero h2 {
+    margin-top: 25px;
+    font-size: clamp(19px, 2vw, 28px);
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+.about-hero h2 span {
+    color: var(--red);
+    margin: 0 8px;
+}
+
+.about-lead {
+    max-width: 600px;
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.about-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.github-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 51px;
+    padding: 0 23px;
+    border: 1px solid rgba(23, 23, 23, 0.35);
+    color: var(--black);
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 3px;
+    transition: 0.25s ease;
+}
+
+.github-button:hover {
+    border-color: var(--red);
+    color: var(--red);
+    transform: translateY(-2px);
+}
+
+.scroll-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 70px;
+    color: #716a63;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.scroll-note span {
+    width: 28px;
+    height: 1px;
+    background: var(--red);
+}
+
+
+/* Image slot */
+
+.about-hero-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 480px;
+    padding: 20px;
+}
+
+.image-placeholder {
+    width: min(100%, 520px);
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--border);
+    background: rgba(248, 240, 229, 0.28);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.image-placeholder::before,
+.image-placeholder::after {
+    content: "";
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-color: var(--red);
+    border-style: solid;
+}
+
+.image-placeholder::before {
+    top: 12px;
+    left: 12px;
+    border-width: 1px 0 0 1px;
+}
+
+.image-placeholder::after {
+    right: 12px;
+    bottom: 12px;
+    border-width: 0 1px 1px 0;
+}
+
+.image-placeholder span {
+    color: var(--red);
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.image-placeholder small {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* -------------------------
+   SHARED ABOUT SECTIONS
+------------------------- */
+
+.about-section {
+    padding: 90px 70px;
+    border-top: 1px solid rgba(233, 54, 34, 0.22);
+}
+
+.section-number {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.section-heading .jp {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.section-heading h2 {
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1;
+    letter-spacing: -2px;
+    font-weight: 900;
+}
+
+.section-copy {
+    max-width: 720px;
+}
+
+.section-copy p {
+    margin-bottom: 22px;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--muted);
+}
+
+.section-copy strong {
+    color: var(--black);
+}
+
+
+/* Philosophy */
+
+.philosophy {
+    margin-top: 65px;
+    padding-top: 35px;
+    border-top: 1px solid rgba(23, 23, 23, 0.18);
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+}
+
+.philosophy-mark {
+    color: var(--red);
+    font-size: 35px;
+    line-height: 1;
+}
+
+.philosophy p {
+    font-size: clamp(24px, 3vw, 38px);
+    line-height: 1.25;
+    letter-spacing: -1px;
+    font-weight: 700;
+}
+
+.philosophy strong {
+    color: var(--red);
+}
+
+
+/* -------------------------
+   TECH STACK
+------------------------- */
+
+.wide-heading {
+    margin-bottom: 45px;
+}
+
+.stack-groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 70px;
+}
+
+.stack-group {
+    padding-top: 22px;
+    border-top: 1px solid rgba(23, 23, 23, 0.16);
+}
+
+.stack-label {
+    display: block;
+    color: #6d655e;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 17px;
+}
+
+.tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.tag-row span {
+    border: 1px solid rgba(233, 54, 34, 0.35);
+    padding: 10px 14px;
+    background: rgba(248, 240, 229, 0.32);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* -------------------------
+   INTERESTS
+------------------------- */
+
+.interest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.interest-grid article {
+    min-height: 205px;
+    padding: 28px;
+    border: 1px solid rgba(233, 54, 34, 0.30);
+    background: rgba(248, 240, 229, 0.22);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.interest-grid article:hover {
+    transform: translateY(-4px);
+    border-color: var(--red);
+}
+
+.interest-icon {
+    display: block;
+    color: var(--red);
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.interest-grid h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.interest-grid p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+
+/* -------------------------
+   FORMULA 1
+------------------------- */
+
+.f1-section {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 60px;
+    align-items: center;
+    background: rgba(233, 54, 34, 0.045);
+}
+
+.f1-mark {
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+    font-size: 45px;
+    font-weight: 900;
+    transform: rotate(-4deg);
+}
+
+.f1-content h2 {
+    font-size: clamp(40px, 4vw, 60px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin: 4px 0 15px;
+}
+
+.f1-content > p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.drivers {
+    margin-top: 32px;
+}
+
+.driver-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.driver-row span {
+    padding: 11px 15px;
+    border: 1px solid rgba(23, 23, 23, 0.16);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* -------------------------
+   CONNECT
+------------------------- */
+
+.connect-grid {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 80px;
+}
+
+.connect-copy {
+    max-width: 650px;
+}
+
+.connect-copy p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.connect-link {
+    display: inline-flex;
+    gap: 18px;
+    align-items: center;
+    color: var(--red);
+    font-size: 17px;
+    font-weight: 800;
+    border-bottom: 1px solid var(--red);
+    padding-bottom: 7px;
+}
+
+.closing-line {
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(23, 23, 23, 0.18);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.closing-line b {
+    color: var(--red);
+}
+
+
+/* -------------------------
+   TABLET
+------------------------- */
+
+@media (max-width: 900px) {
+
+    .about-hero {
+        padding: 50px 35px 70px;
+        grid-template-columns: 1fr 0.9fr;
+    }
+
+    .about-hero h1 {
+        font-size: 65px;
+    }
+
+    .about-section {
+        padding: 70px 40px;
+    }
+
+    .about-grid,
+    .connect-grid {
+        gap: 45px;
+    }
+
+    .interest-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .f1-section {
+        grid-template-columns: 130px 1fr;
+        gap: 40px;
+    }
+
+    .f1-mark {
+        width: 110px;
+        height: 110px;
+        font-size: 34px;
+    }
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 650px) {
+
+    .about-hero {
+        display: flex;
+        flex-direction: column;
+        padding: 35px 25px 65px;
+        gap: 35px;
+    }
+
+    .about-hero-text {
+        padding-left: 0;
+    }
+
+    .about-kicker {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .about-hero h1 {
+        font-size: 56px;
+        letter-spacing: -3px;
+    }
+
+    .about-hero h2 {
+        font-size: 18px;
+    }
+
+    .about-hero h2 span {
+        display: none;
+    }
+
+    .about-lead {
+        font-size: 14px;
+    }
+
+    .about-actions {
+        flex-wrap: wrap;
+    }
+
+    .scroll-note {
+        margin-top: 45px;
+    }
+
+    .about-hero-image {
+        width: 100%;
+        min-height: auto;
+        padding: 0;
+    }
+
+    .image-placeholder {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+    }
+
+    .about-section {
+        padding: 55px 25px;
+    }
+
+    .about-grid,
+    .connect-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .section-heading h2 {
+        font-size: 40px;
+    }
+
+    .section-copy p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .philosophy {
+        margin-top: 40px;
+    }
+
+    .philosophy p {
+        font-size: 25px;
+    }
+
+    .stack-groups {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .interest-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .interest-grid article {
+        min-height: auto;
+    }
+
+    .f1-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .f1-mark {
+        width: 85px;
+        height: 85px;
+        font-size: 27px;
+    }
+
+    .f1-content h2 {
+        font-size: 42px;
+    }
+
+    .driver-row {
+        flex-direction: column;
+    }
+
+    .driver-row span {
+        width: fit-content;
+    }
+
+    .closing-line {
+        margin-top: 55px;
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+}
