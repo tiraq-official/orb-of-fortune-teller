@@ -1,0 +1,478 @@
+/* =========================================================
+   TIRAQ — SUPPORT PAGE
+   ========================================================= */
+
+
+/* -------------------------
+   SUPPORT PAGE
+------------------------- */
+
+.support-page {
+    padding-bottom: 40px;
+}
+
+
+/* -------------------------
+   HERO
+------------------------- */
+
+.support-hero {
+
+    min-height: 650px;
+
+    padding: 55px 70px 80px;
+
+}
+
+
+/* Heading */
+
+.support-heading {
+
+    margin-bottom: 45px;
+
+}
+
+
+.support-kicker {
+
+    display: block;
+
+    color: var(--red);
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.support-heading h1 {
+
+    font-size: clamp(42px, 5vw, 70px);
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    font-weight: 900;
+
+}
+
+
+.support-line {
+
+    display: block;
+
+    width: 45px;
+
+    height: 3px;
+
+    background: var(--red);
+
+    margin-top: 18px;
+
+}
+
+
+/* -------------------------
+   CONTENT
+------------------------- */
+
+.support-content {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 75px;
+
+}
+
+
+/* -------------------------
+   IMAGE
+------------------------- */
+
+.support-image {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.support-image img {
+
+    width: 100%;
+
+    max-width: 560px;
+
+    height: auto;
+
+    display: block;
+
+}
+
+
+/* -------------------------
+   INFO
+------------------------- */
+
+.support-info {
+
+    max-width: 500px;
+
+}
+
+
+.support-info h2 {
+
+    font-size: clamp(23px, 2.3vw, 32px);
+
+    line-height: 1.25;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+}
+
+
+.support-info > p {
+
+    margin-top: 24px;
+
+    max-width: 450px;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    color: var(--muted);
+
+    margin-bottom: 30px;
+
+}
+
+
+/* -------------------------
+   CONTACT LINKS
+------------------------- */
+
+.support-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    width: 100%;
+
+    padding: 17px 0;
+
+    border-top: 1px solid rgba(23, 23, 23, 0.16);
+
+    transition:
+        color 0.25s ease,
+        padding-left 0.25s ease;
+
+}
+
+
+.support-link:last-child {
+
+    border-bottom: 1px solid rgba(23, 23, 23, 0.16);
+
+}
+
+
+.support-link:hover {
+
+    color: var(--red);
+
+    padding-left: 8px;
+
+}
+
+
+/* Icon */
+
+.support-icon {
+
+    width: 25px;
+
+    color: var(--red);
+
+    font-size: 19px;
+
+    text-align: center;
+
+}
+
+
+/* Text */
+
+.support-link-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    flex: 1;
+
+}
+
+
+.support-link-text strong {
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+
+.support-link-text small {
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+}
+
+
+/* Arrow */
+
+.support-arrow {
+
+    color: var(--red);
+
+    font-size: 20px;
+
+    transition: transform 0.25s ease;
+
+}
+
+
+.support-link:hover .support-arrow {
+
+    transform: translateX(6px);
+
+}
+
+
+/* -------------------------
+   SECOND SECTION
+------------------------- */
+
+.support-note {
+
+    border-top: 1px solid rgba(233, 54, 34, 0.22);
+
+    padding: 80px 70px;
+
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+}
+
+
+.support-note .jp {
+
+    font-size: 17px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.support-note h2 {
+
+    font-size: clamp(34px, 4vw, 55px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    font-weight: 900;
+
+}
+
+
+.support-note p {
+
+    max-width: 650px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: var(--muted);
+
+}
+
+
+/* -------------------------
+   TABLET
+------------------------- */
+
+@media (max-width: 900px) {
+
+    .support-hero {
+
+        padding: 45px 50px 65px;
+
+    }
+
+
+    .support-content {
+
+        gap: 45px;
+
+    }
+
+
+    .support-note {
+
+        padding: 65px 50px;
+
+        gap: 45px;
+
+    }
+
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 650px) {
+
+    .support-hero {
+
+        padding: 40px 25px 55px;
+
+    }
+
+
+    .support-heading {
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .support-heading h1 {
+
+        font-size: 42px;
+
+        letter-spacing: -2px;
+
+    }
+
+
+    .support-content {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 35px;
+
+    }
+
+
+    .support-image {
+
+        order: 1;
+
+    }
+
+
+    .support-image img {
+
+        max-width: 100%;
+
+    }
+
+
+    .support-info {
+
+        order: 2;
+
+        width: 100%;
+
+    }
+
+
+    .support-info h2 {
+
+        font-size: 25px;
+
+    }
+
+
+    .support-info > p {
+
+        font-size: 14px;
+
+    }
+
+
+    .support-link {
+
+        padding: 15px 0;
+
+    }
+
+
+    .support-note {
+
+        padding: 60px 25px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 30px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .support-note h2 {
+
+        font-size: 36px;
+
+    }
+
+
+    .support-note p {
+
+        font-size: 14px;
+
+    }
+
+}
