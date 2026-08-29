@@ -141,7 +141,7 @@ const roms = {
 
     risingos: {
 
-        name: "RISINGOS REVIVED",
+        name: "RISINGOS",
 
         type: "COMMUNITY ROM",
 
@@ -266,7 +266,7 @@ const roms = {
 
     shinkai: {
 
-        name: "SHINKAI PROJECT",
+        name: "SHINKAI PR",
 
         type: "COMMUNITY ROM",
 
@@ -554,12 +554,12 @@ function formatRomName(name) {
         "MISTOS": ["MIST", "OS"],
         "VOLATGEOS": ["VOLATGE", "OS"],
         "PIXELIFYOS": ["PIXELIFY", "OS"],
-        "RISINGOS REVIVED": ["RISINGOS", "REVIVED"],
+        "RISINGOS": ["RISING", "OS"],
         "DERPFEST": ["DERP", "FEST"],
         "AXIONOS": ["AXION", "OS"],
         "LUMINEDROID": ["LUMINE", "DROID"],
         "NYX ROM": ["NYX", "ROM"],
-        "SHINKAI PROJECT": ["SHINKAI", "PROJECT"],
+        "SHINKAI PR": ["SHINKAI", "PR"],
         "INFINITYX": ["INFINITY", "X"],
         "PIXELOS": ["PIXEL", "OS"]
     };
