@@ -552,14 +552,20 @@
 
     .about-hero-image {
         width: 100%;
-        min-height: auto;
+        min-height: 0; /* Override the desktop 480px min-height */
         padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center; /* Centers the image inside the mobile hero section */
+        overflow: hidden;
     }
 
     .about-hero-image img {
-    width: 100%;
-    max-width: 100%;
-    transform: none;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0;
+        transform: none !important;
     }
 
     .image-placeholder {
