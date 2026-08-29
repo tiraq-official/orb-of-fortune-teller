@@ -873,15 +873,10 @@ section {
 
     }
 
-
     .device-content img {
-
-        width: 120px;
-
-        height: 170px;
-
+        width: 220px;
+        height: 280px;
     }
-
 
     .device-content > div {
 
