@@ -8,10 +8,10 @@ const roms = {
 
         name: "LINEAGEOS",
 
-        type: "AOSP BASED",
+        type: "OPEN SOURCE",
 
         description:
-            "LineageOS is a free and open-source Android distribution based on AOSP, focused on stability, reliability and a clean everyday experience.",
+            "A free and open-source operating system for various devices, based on the Android mobile platform.",
 
         logo:
             "images/roms/lineageos.png",
@@ -43,10 +43,10 @@ const roms = {
 
         name: "LUNARISOS",
 
-        type: "CUSTOM ROM",
+        type: "AOSP based",
 
         description:
-            "A clean and fast Android ROM focused on delivering a balanced experience between performance, customization and everyday usability.",
+            "Lunaris-AOSP is a custom ROM based on AOSP, featuring an extensive range of customizations cherry-picked from various custom ROMs",
 
         logo:
             "images/roms/lunarisos.png",
@@ -68,10 +68,10 @@ const roms = {
 
         name: "MISTOS",
 
-        type: "CUSTOM ROM",
+        type: "AOSP & LINEAGE",
 
         description:
-            "A minimal and smooth Android experience designed around clean software, daily performance and a simple user experience.",
+            "Cherry picked beautiful ROM based on AOSP and LineageOS also with Pixel goodies & good quality of features",
 
         logo:
             "images/roms/mistos.png",
@@ -96,7 +96,7 @@ const roms = {
         type: "AOSP BASED",
 
         description:
-            "A performance-focused Android ROM with refined features, smooth performance and a clean experience.",
+            "A privacy-focused Android ROM with refined features, smooth performance and a clean experience.",
 
         logo:
             "images/roms/voltageos.png",
@@ -118,10 +118,10 @@ const roms = {
 
         name: "PIXELIFYOS",
 
-        type: "CUSTOM ROM",
+        type: "AOSP & LINEAGE",
 
         description:
-            "A Pixel-inspired Android experience with additional customization and features while keeping the interface clean and familiar.",
+            "ASCP is built upon open-source projects including Android Open Source Project (AOSP), LineageOS, Pixel Os, and numerous other community contributions",
 
         logo:
             "images/roms/pixelifyos.png",
@@ -143,10 +143,10 @@ const roms = {
 
         name: "RISINGOS",
 
-        type: "COMMUNITY ROM",
+        type: "LINEAGE BASED",
 
         description:
-            "RisingOS Revived continues the project with updated sources, refreshed development and community-focused maintenance.",
+            "RisingOS Revived provides Customizable, Beautiful, Refined",
 
         logo:
             "images/roms/risingos.png",
@@ -168,10 +168,10 @@ const roms = {
 
         name: "DERPFEST",
 
-        type: "CUSTOM ROM",
+        type: "AOSP BASED",
 
         description:
-            "A feature-rich Android ROM built around customization, flexibility and a smooth everyday experience.",
+            "We are an AOSP based custom ROM, twisted with the latest features from all over the Android development community.",
 
         logo:
             "images/roms/derpfest.png",
@@ -193,10 +193,10 @@ const roms = {
 
         name: "AXIONOS",
 
-        type: "CUSTOM ROM",
+        type: "LINEAGE BASED",
 
         description:
-            "A lightweight Android experience focused on speed, efficiency, customization and smooth day-to-day performance.",
+            "AxionOS is a streamlined alternative to bloated manufacturer Android skins — built to make your device faster, more powerful, and more reliable.",
 
         logo:
             "images/roms/axionos.png",
@@ -218,10 +218,10 @@ const roms = {
 
         name: "LUMINEDROID",
 
-        type: "CUSTOM ROM",
+        type: "AOSP ROM",
 
         description:
-            "An Android experience focused on performance, stability and customization with a distinct visual identity.",
+            "An open-source custom Android based on AOSP, built for better performance and user experience.",
 
         logo:
             "images/roms/luminedroid.png",
@@ -243,10 +243,10 @@ const roms = {
 
         name: "NYX ROM",
 
-        type: "AOSP BASED",
+        type: "AXION BASED",
 
         description:
-            "A clean and powerful Android experience designed for users who prefer simplicity, control and a refined system.",
+            "A clean and powerful Android experience of axion os",
 
         logo:
             "images/roms/nyx.png",
@@ -271,7 +271,7 @@ const roms = {
         type: "COMMUNITY ROM",
 
         description:
-            "A community-driven Android project focused on stability, performance and long-term development.",
+            "project shinkai is a pixel rom with some extra features",
 
         logo:
             "images/roms/shinkai.png",
@@ -293,10 +293,10 @@ const roms = {
 
         name: "INFINITYX",
 
-        type: "CUSTOM ROM",
+        type: "LINEAGE BASED",
 
         description:
-            "A customizable Android experience combining powerful features with smooth performance and a flexible interface.",
+            "The Infinity-X Project introduces you to a world of endless customizations and useful Android features.",
 
         logo:
             "images/roms/infinityx.png",
@@ -321,7 +321,7 @@ const roms = {
         type: "AOSP BASED",
 
         description:
-            "A clean Pixel-inspired Android experience built on AOSP with a focus on simplicity, smoothness and everyday usability.",
+            "An AOSP based ROM aiming to provide the best of Pixel",
 
         logo:
             "images/roms/pixelos.png",
