@@ -139,16 +139,11 @@
 
 .rom-hero-art {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 }
 
 .rom-hero-art img {
     width: 100%;
     height: auto;
-    max-width: none;
-    object-fit: contain;
     display: block;
     border-radius: 6px;
 }
@@ -703,18 +698,14 @@
 
         width: 100%;
 
-        display: flex;
-
-        justify-content: center;
-
     }
 
 
     .rom-hero-art img {
 
-        width: 110%;
+        width: 100%;
 
-        max-width: 110%;
+        max-width: 100%;
 
     }
 
