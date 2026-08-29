@@ -457,46 +457,76 @@
 }
 
 
+
 /* -------------------------
-   TABLET
+   MOBILE
 ------------------------- */
 
-@media (max-width: 900px) {
+@media (max-width: 650px) {
 
     .about-hero {
-        padding: 50px 35px 70px;
-        grid-template-columns: 1fr 0.9fr;
+        grid-template-columns: 1fr;   /* stack: text on top, image below */
+        padding: 40px 25px 60px;
+        gap: 40px;
+        min-height: auto;
+    }
+
+    .about-hero-text {
+        padding-left: 0;
     }
 
     .about-hero h1 {
-        font-size: 65px;
+        font-size: 54px;
+        letter-spacing: -2px;
     }
 
+    .about-hero h2 {
+        font-size: 20px;
+    }
+
+    .about-lead {
+        font-size: 15px;
+    }
+
+    /* center the image and kill the desktop rightward nudge */
+    .about-hero-image {
+        min-height: 320px;
+        padding: 0;
+    }
+
+    .about-hero-image img {
+        max-width: 100%;
+        transform: none;              /* removes translateX(35px) scale(1.25) */
+    }
+
+    /* sections */
     .about-section {
-        padding: 70px 40px;
+        padding: 55px 25px;
     }
 
     .about-grid,
-    .connect-grid {
-        gap: 45px;
-    }
-
+    .connect-grid,
+    .stack-groups,
     .interest-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .f1-section {
-        grid-template-columns: 130px 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: left;
     }
 
-    .f1-mark {
-        width: 110px;
-        height: 110px;
-        font-size: 34px;
+    .philosophy {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .about-actions {
+        flex-wrap: wrap;
     }
 }
-
 
 /* -------------------------
    MOBILE
