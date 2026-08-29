@@ -144,27 +144,24 @@
    HERO ART
 ========================================= */
 
+/* ROM FEATURED LOGO */
+
 .rom-hero-art {
-    width: 100%;
-
     display: flex;
-
-    justify-content: flex-end;
-
     align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 20px;
 }
-
 
 .rom-hero-art img {
     width: 100%;
-
-    max-width: 720px;
-
+    max-width: 500px;
     height: auto;
-
+    object-fit: contain;
     display: block;
+    border-radius: 6px;
 }
-
 
 /* =========================================
    FEATURED ROM
@@ -392,6 +389,8 @@
     letter-spacing: 1px;
 
     transition: 0.2s ease;
+
+    border-radius: 6px;
 }
 
 
@@ -849,4 +848,8 @@
         transform: translateY(0);
     }
 
+}
+.rom-card,
+.featured-rom {
+    border-radius: 8px;
 }
