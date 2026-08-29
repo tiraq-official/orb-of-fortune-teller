@@ -144,7 +144,7 @@
 }
 
 .rom-hero-art img {
-    width: 500px; /* Adjust up from 300px to desired size */
+    width: clamp(440px, 40vw, 680px);
     height: auto;
     max-width: none;
     object-fit: contain;
@@ -681,19 +681,25 @@
 
     .rom-hero {
 
-        grid-template-columns: 1fr;
+        flex-direction: column;
 
         min-height: auto;
 
         padding-bottom: 30px;
+
+        gap: 40px;
+
     }
 
 
     .rom-hero-art {
 
-        order: -1;
+        width: 100%;
+
+        display: flex;
 
         justify-content: center;
+
     }
 
 
@@ -701,7 +707,8 @@
 
         width: 100%;
 
-        max-width: 600px;
+        max-width: 360px;
+
     }
 
 
@@ -767,6 +774,13 @@
     .rom-hero h1 {
 
         font-size: 62px;
+
+    }
+
+
+    .rom-hero-art img {
+
+        max-width: 280px;
 
     }
 
