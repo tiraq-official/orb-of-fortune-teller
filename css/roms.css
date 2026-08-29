@@ -12,10 +12,10 @@
 ========================================= */
 
 .rom-hero {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
+    gap: 3rem;
     width: 100%;
 }
 
@@ -75,7 +75,6 @@
 
 
 .rom-hero p {
-    max-width: 490px;
 
     color: #5d5956;
 
@@ -84,6 +83,7 @@
     line-height: 1.7;
 
     margin-bottom: 35px;
+
 }
 
 
@@ -137,16 +137,17 @@
    HERO ART
 ========================================= */
 
-/* ROM FEATURED LOGO */
-
 .rom-hero-art {
-    flex-shrink: 0; 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rom-hero-art img {
-    width: clamp(440px, 40vw, 680px);
+    width: 100%;
     height: auto;
-    max-width: none;
+    max-width: 720px;
     object-fit: contain;
     display: block;
     border-radius: 6px;
@@ -681,24 +682,26 @@
 
     .rom-hero {
 
-        flex-direction: column;
+        grid-template-columns: 1fr;
 
         min-height: auto;
 
         padding-bottom: 30px;
 
-        gap: 40px;
+        gap: 30px;
 
     }
 
 
+    .rom-hero-content {
+        order: 1;
+    }
+
     .rom-hero-art {
 
+        order: 2;
+
         width: 100%;
-
-        display: flex;
-
-        justify-content: center;
 
     }
 
@@ -707,7 +710,7 @@
 
         width: 100%;
 
-        max-width: 360px;
+        max-width: 100%;
 
     }
 
@@ -780,7 +783,7 @@
 
     .rom-hero-art img {
 
-        max-width: 280px;
+        max-width: 100%;
 
     }
 
