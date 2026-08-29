@@ -1,0 +1,852 @@
+/* =========================================
+   ROM PAGE
+========================================= */
+
+.roms-page {
+    padding: 70px 6vw 0;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.rom-hero {
+    min-height: 560px;
+
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+
+    align-items: center;
+
+    gap: 30px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.rom-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.rom-japanese {
+    display: block;
+
+    color: #f03423;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+
+.rom-hero h1 {
+    margin: 0;
+
+    font-size: clamp(70px, 9vw, 135px);
+
+    line-height: 0.82;
+
+    font-weight: 900;
+
+    letter-spacing: -5px;
+
+    color: #171717;
+}
+
+
+.rom-hero h1 span {
+    color: #f03423;
+}
+
+
+.rom-hero h2 {
+    margin: 45px 0 20px;
+
+    font-size: 25px;
+
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    color: #171717;
+}
+
+
+.rom-hero p {
+    max-width: 490px;
+
+    color: #5d5956;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+
+.rom-count {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.rom-count > span {
+    width: 42px;
+    height: 3px;
+
+    background: #f03423;
+
+    display: block;
+}
+
+
+.rom-count div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.rom-count strong {
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    color: #171717;
+}
+
+
+.rom-count small {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #5d5956;
+}
+
+
+/* =========================================
+   HERO ART
+========================================= */
+
+.rom-hero-art {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+}
+
+
+.rom-hero-art img {
+    width: 100%;
+
+    max-width: 720px;
+
+    height: auto;
+
+    display: block;
+}
+
+
+/* =========================================
+   FEATURED ROM
+========================================= */
+
+.featured-rom {
+
+    margin-top: 30px;
+
+    border: 1px solid rgba(240, 52, 35, 0.55);
+
+    min-height: 310px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.25fr;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* little corner decorations */
+
+.featured-rom::before,
+.featured-rom::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border: 1px solid #f03423;
+
+    z-index: 3;
+}
+
+
+.featured-rom::before {
+    top: 5px;
+    left: 5px;
+}
+
+
+.featured-rom::after {
+    bottom: 5px;
+    right: 5px;
+}
+
+
+/* =========================================
+   FEATURED LEFT
+========================================= */
+
+.featured-left {
+
+    padding: 45px;
+
+    border-right: 1px solid rgba(240, 52, 35, 0.35);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.featured-label {
+
+    color: #f03423;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+}
+
+
+.featured-left h2 {
+
+    margin: 0 0 10px;
+
+    font-size: clamp(45px, 5vw, 75px);
+
+    line-height: 0.9;
+
+    letter-spacing: -3px;
+
+    color: #171717;
+
+    font-weight: 900;
+}
+
+
+.featured-left h2 span {
+    color: #f03423;
+}
+
+
+.featured-type {
+
+    color: #f03423;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+
+.featured-left p {
+
+    max-width: 480px;
+
+    margin: 0;
+
+    color: #55514e;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   FEATURED RIGHT
+========================================= */
+
+.featured-right {
+
+    display: grid;
+
+    grid-template-columns: 1fr 230px;
+
+    align-items: center;
+
+    padding: 35px;
+}
+
+
+.download-area {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 28px;
+}
+
+
+.download-title {
+
+    color: #f03423;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+
+.download-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.download-group strong {
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    color: #171717;
+}
+
+
+.download-group strong span {
+    margin-left: 5px;
+}
+
+
+.download-links {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+.download-links a {
+
+    display: inline-block;
+
+    padding: 10px 14px;
+
+    border: 1px solid #f03423;
+
+    color: #f03423;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transition: 0.2s ease;
+}
+
+
+.download-links a:hover {
+
+    background: #f03423;
+
+    color: #fff;
+}
+
+
+/* =========================================
+   ROM LOGO
+========================================= */
+
+.featured-logo {
+
+    width: 210px;
+    height: 210px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.featured-logo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================
+   OTHER ROMS
+========================================= */
+
+.other-roms {
+
+    margin-top: 50px;
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+.section-heading span {
+
+    width: 30px;
+    height: 3px;
+
+    background: #f03423;
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    color: #f03423;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================
+   ROM GRID
+========================================= */
+
+.rom-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 14px;
+}
+
+
+.rom-card {
+
+    min-height: 165px;
+
+    border: 1px solid rgba(240, 52, 35, 0.35);
+
+    background: transparent;
+
+    padding: 22px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    color: #171717;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+
+    font-family: inherit;
+}
+
+
+.rom-card:hover {
+
+    background: rgba(240, 52, 35, 0.06);
+
+    border-color: #f03423;
+
+    transform: translateY(-3px);
+}
+
+
+.rom-card.active {
+
+    background: rgba(240, 52, 35, 0.08);
+
+    border-color: #f03423;
+}
+
+
+.rom-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 3px;
+    height: 35px;
+
+    transform: translateY(-50%);
+
+    background: #f03423;
+
+    opacity: 0;
+
+    transition: 0.2s ease;
+}
+
+
+.rom-card.active::before,
+.rom-card:hover::before {
+
+    opacity: 1;
+}
+
+
+.rom-number {
+
+    display: block;
+
+    color: #f03423;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 12px;
+}
+
+
+.rom-card h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+
+.rom-card h3 span {
+    color: #f03423;
+}
+
+
+.rom-card small {
+
+    display: block;
+
+    color: #55514e;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 700;
+}
+
+
+.rom-arrow {
+
+    position: absolute;
+
+    right: 18px;
+    bottom: 15px;
+
+    font-size: 20px;
+
+    color: #171717;
+}
+
+
+/* =========================================
+   MOTTO
+========================================= */
+
+.rom-motto {
+
+    margin-top: 50px;
+
+    padding: 40px 20px 25px;
+
+    border-top: 1px solid rgba(240, 52, 35, 0.3);
+
+    text-align: center;
+}
+
+
+.rom-motto p {
+
+    margin: 0 0 15px;
+
+    color: #171717;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    font-weight: 600;
+}
+
+
+.rom-motto strong {
+
+    color: #171717;
+
+    font-size: 13px;
+
+    letter-spacing: 6px;
+}
+
+
+.rom-motto strong span {
+    color: #f03423;
+}
+
+
+.rom-motto div {
+
+    width: 30px;
+    height: 3px;
+
+    background: #f03423;
+
+    margin: 15px auto 0;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .roms-page {
+        padding: 50px 7vw 0;
+    }
+
+
+    .rom-hero {
+
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        padding-bottom: 30px;
+    }
+
+
+    .rom-hero-art {
+
+        order: -1;
+
+        justify-content: center;
+    }
+
+
+    .rom-hero-art img {
+
+        width: 100%;
+
+        max-width: 600px;
+    }
+
+
+    .rom-hero h1 {
+
+        font-size: 75px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .featured-rom {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .featured-left {
+
+        border-right: none;
+
+        border-bottom: 1px solid rgba(240, 52, 35, 0.35);
+
+        padding: 35px 25px;
+    }
+
+
+    .featured-right {
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding: 30px 25px;
+    }
+
+
+    .featured-logo {
+
+        width: 180px;
+        height: 180px;
+
+        margin: 0 auto;
+    }
+
+
+    .rom-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .roms-page {
+        padding: 35px 6vw 0;
+    }
+
+
+    .rom-hero h1 {
+
+        font-size: 62px;
+
+    }
+
+
+    .rom-hero h2 {
+
+        font-size: 21px;
+
+        margin-top: 35px;
+    }
+
+
+    .rom-hero p {
+
+        font-size: 16px;
+
+    }
+
+
+    .featured-left h2 {
+
+        font-size: 48px;
+
+    }
+
+
+    .rom-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .rom-card {
+
+        min-height: 145px;
+
+    }
+
+
+    .rom-motto strong {
+
+        font-size: 10px;
+
+        letter-spacing: 3px;
+
+    }
+
+}
+/* =========================================
+   FEATURED ROM CHANGE ANIMATION
+========================================= */
+
+.rom-changing {
+    animation: romChange 0.35s ease;
+}
+
+
+@keyframes romChange {
+
+    0% {
+        opacity: 0.35;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
