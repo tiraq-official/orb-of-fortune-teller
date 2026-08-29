@@ -670,3 +670,22 @@
 .driver-row span {
     border-radius: 6px;
 }
+@media (max-width: 650px) {
+
+    .about-hero-image {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .about-hero-image img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0;
+        transform: none !important;
+    }
+
+}
