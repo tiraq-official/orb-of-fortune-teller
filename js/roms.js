@@ -423,16 +423,7 @@ romOrder.forEach((romKey, index) => {
        LUNARISOS → LUNARIS + OS
     */
 
-    let displayName = rom.name;
-
-    if (displayName.endsWith("OS")) {
-
-        displayName =
-            displayName.slice(0, -2) +
-            "<span>OS</span>";
-
-    }
-
+let displayName = formatRomName(rom.name);
 
     card.innerHTML = `
 
