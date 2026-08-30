@@ -19,20 +19,20 @@ const roms = {
         vanilla: {
 
             pixeldrain:
-                "YOUR_LINEAGE_VANILLA_PIXELDRAIN_LINK",
+                "https://drive.google.com/file/d/1B-R4W-srk7Hbi77ygOwHd6-KOv4ZaLHl/view?usp=drivesdk",
 
             gofile:
-                "YOUR_LINEAGE_VANILLA_GOFILE_LINK"
+                "https://drive.google.com/file/d/1B-R4W-srk7Hbi77ygOwHd6-KOv4ZaLHl/view?usp=drivesdk"
 
         },
 
         gapps: {
 
             pixeldrain:
-                "YOUR_LINEAGE_GAPPS_PIXELDRAIN_LINK",
+                "404.html",
 
             gofile:
-                "YOUR_LINEAGE_GAPPS_GOFILE_LINK"
+                "404.html"
 
         }
 
@@ -52,13 +52,13 @@ const roms = {
             "images/roms/lunarisos.png",
 
         vanilla: {
-            pixeldrain: "YOUR_LUNARIS_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_LUNARIS_VANILLA_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/iUk9rGxf",
+            gofile: "https://gofile.io/d/W4UsCiQ5"
         },
 
         gapps: {
-            pixeldrain: "YOUR_LUNARIS_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_LUNARIS_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/gua31VtW",
+            gofile: "https://gofile.io/d/DbftZuDt"
         }
 
     },
@@ -77,13 +77,13 @@ const roms = {
             "images/roms/mistos.png",
 
         vanilla: {
-            pixeldrain: "YOUR_MISTOS_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_MISTOS_VANILLA_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/a6Tf4xqx",
+            gofile: "https://gofile.io/d/UwAYsN"
         },
 
         gapps: {
-            pixeldrain: "YOUR_MISTOS_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_MISTOS_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/K8RZcqdp",
+            gofile: "https://gofile.io/d/3scJnA"
         }
 
     },
@@ -102,13 +102,13 @@ const roms = {
             "images/roms/voltageos.png",
 
         vanilla: {
-            pixeldrain: "YOUR_VOLTAGE_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_VOLTAGE_VANILLA_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/xis4Gb9Y",
+            gofile: "https://gofile.io/d/GSHPcmd1"
         },
 
         gapps: {
-            pixeldrain: "YOUR_VOLTAGE_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_VOLTAGE_GAPPS_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         }
 
     },
@@ -127,13 +127,13 @@ const roms = {
             "images/roms/pixelifyos.png",
 
         vanilla: {
-            pixeldrain: "YOUR_PIXELIFY_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_PIXELIFY_VANILLA_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         },
 
         gapps: {
-            pixeldrain: "YOUR_PIXELIFY_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_PIXELIFY_GAPPS_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         }
 
     },
@@ -152,13 +152,13 @@ const roms = {
             "images/roms/risingos.png",
 
         vanilla: {
-            pixeldrain: "YOUR_RISING_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_RISING_VANILLA_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/xyQme2SB",
+            gofile: "https://gofile.io/d/htPhtD9h"
         },
 
         gapps: {
-            pixeldrain: "YOUR_RISING_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_RISING_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/NMn8nwSN",
+            gofile: "https://gofile.io/d/Ugtbqcnf"
         }
 
     },
@@ -177,13 +177,13 @@ const roms = {
             "images/roms/derpfest.png",
 
         vanilla: {
-            pixeldrain: "YOUR_DERPFEST_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_DERPFEST_VANILLA_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         },
 
         gapps: {
-            pixeldrain: "YOUR_DERPFEST_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_DERPFEST_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/jYnfDDpY",
+            gofile: "https://gofile.io/d/VOxry1zM"
         }
 
     },
@@ -202,13 +202,13 @@ const roms = {
             "images/roms/axionos.png",
 
         vanilla: {
-            pixeldrain: "YOUR_AXION_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_AXION_VANILLA_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/DqoqaXhU",
+            gofile: "https://gofile.io/d/074FZaCa"
         },
 
         gapps: {
-            pixeldrain: "YOUR_AXION_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_AXION_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/FJnWiwrK",
+            gofile: "https://gofile.io/d/bxwXmlVK"
         }
 
     },
@@ -227,13 +227,13 @@ const roms = {
             "images/roms/luminedroid.png",
 
         vanilla: {
-            pixeldrain: "YOUR_LUMINE_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_LUMINE_VANILLA_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         },
 
         gapps: {
-            pixeldrain: "YOUR_LUMINE_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_LUMINE_GAPPS_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         }
 
     },
@@ -252,13 +252,13 @@ const roms = {
             "images/roms/nyx.png",
 
         vanilla: {
-            pixeldrain: "YOUR_NYX_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_NYX_VANILLA_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         },
 
         gapps: {
-            pixeldrain: "YOUR_NYX_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_NYX_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/o63Q47Ng",
+            gofile: "https://gofile.io/d/qFVbLiYH"
         }
 
     },
@@ -277,13 +277,13 @@ const roms = {
             "images/roms/shinkai.png",
 
         vanilla: {
-            pixeldrain: "YOUR_SHINKAI_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_SHINKAI_VANILLA_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         },
 
         gapps: {
-            pixeldrain: "YOUR_SHINKAI_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_SHINKAI_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/vVBGazEJ",
+            gofile: "https://gofile.io/d/tOIWRl"
         }
 
     },
@@ -302,13 +302,13 @@ const roms = {
             "images/roms/infinityx.png",
 
         vanilla: {
-            pixeldrain: "YOUR_INFINITYX_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_INFINITYX_VANILLA_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/VBdHTUmC",
+            gofile: "https://gofile.io/d/PiP1Kt"
         },
 
         gapps: {
-            pixeldrain: "YOUR_INFINITYX_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_INFINITYX_GAPPS_GOFILE"
+            pixeldrain: "https://pixeldrain.com/u/qvDGxFvm",
+            gofile: "https://gofile.io/d/49pVkb"
         }
 
     },
@@ -327,13 +327,13 @@ const roms = {
             "images/roms/pixelos.png",
 
         vanilla: {
-            pixeldrain: "YOUR_PIXELOS_VANILLA_PIXELDRAIN",
-            gofile: "YOUR_PIXELOS_VANILLA_GOFILE"
+            pixeldrain: "404.html",
+            gofile: "404.html"
         },
 
         gapps: {
-            pixeldrain: "YOUR_PIXELOS_GAPPS_PIXELDRAIN",
-            gofile: "YOUR_PIXELOS_GAPPS_GOFILE"
+            pixeldrain: "https://mega.nz/file/Fp8zxKrT#JjzJkCCM9eO3DKcw3n6AY2G0TgICadDkM-1OcnOoddo",
+            gofile: "https://gofile.io/d/lrUCJnhA"
         }
 
     }
