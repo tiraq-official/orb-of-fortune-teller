@@ -107,6 +107,14 @@ a {
     background: #ef321f;
 }
 
+/* Hamburger menu — hidden on desktop, shown on mobile */
+.menu {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #181818;
+}
+
 
 /* =========================================
    MAIN
@@ -528,11 +536,30 @@ a {
         gap: 20px;
     }
 
+    /* Hide nav links, show hamburger menu */
     .site-nav {
-        gap: 14px;
+        display: none;
+    }
 
-        flex-wrap: wrap;
-        justify-content: flex-end;
+    .menu {
+        display: block;
+    }
+
+    /* Dropdown when menu is toggled open */
+    .site-nav.mobile-open {
+        display: flex;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 25px;
+        background: #ecdccc;
+        border: 1px solid #ef321f;
+        border-radius: 6px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        min-width: 170px;
     }
 
     .site-nav a {
