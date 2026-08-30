@@ -80,20 +80,27 @@ a {
 .site-nav a {
     position: relative;
 
-    color: #35312f;
+    color: #3d3935;
 
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 500;
 
     text-decoration: none;
 
     padding: 12px 0;
+
+    transition: color 0.25s ease;
 }
 
-.site-nav a:first-child {
+.site-nav a:hover {
     color: #ef321f;
 }
 
-.site-nav a:first-child::after {
+.site-nav a.active {
+    color: #ef321f;
+}
+
+.site-nav a.active::after {
     content: "";
 
     position: absolute;
@@ -568,6 +575,10 @@ a {
 
     .site-nav a {
         font-size: 11px;
+    }
+
+    .site-nav.mobile-open a.active::after {
+        bottom: -5px;
     }
 
     .error-hero {
