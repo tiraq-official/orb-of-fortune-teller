@@ -1,0 +1,631 @@
+/* =========================================================
+   TIRAQ — MOTION LAYER
+   Animations, transitions & scroll reveals.
+
+   Loaded AFTER style.css / about.css / support.css so it can
+   only ADD behaviour on top of the existing layout.
+   Every hidden state is gated behind `html.js-anim`, which is
+   set by JS — so if JS is disabled, nothing is ever hidden.
+   ========================================================= */
+
+
+/* -------------------------
+   TOKENS
+------------------------- */
+
+html.js-anim {
+
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* -------------------------
+   SCROLL REVEALS
+------------------------- */
+
+/* Initial (hidden) state — only when JS is running */
+
+html.js-anim .reveal {
+
+    opacity: 0;
+
+}
+
+
+/* Triggered state — animated with keyframes so it never
+   fights the element's own hover transitions */
+
+html.js-anim .reveal.in {
+
+    opacity: 1;
+
+    animation: reveal-up 0.85s var(--ease-out) both;
+
+    animation-delay: var(--d, 0ms);
+
+}
+
+
+@keyframes reveal-up {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(26px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* Slightly softer variant for big images */
+
+html.js-anim .reveal-soft.in {
+
+    animation-name: reveal-soft;
+
+}
+
+
+@keyframes reveal-soft {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(14px) scale(0.985);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* Elements that carry their OWN transform (rotated marks,
+   nudged images) must keep it — fade only */
+
+html.js-anim .reveal-fade.in {
+
+    animation-name: reveal-fade;
+
+}
+
+
+@keyframes reveal-fade {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* Entrance finished — hand control back to the element's
+   own hover transitions (needed because a filled keyframe
+   animation would keep overriding them) */
+
+html.js-anim .reveal.reveal-done {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+
+}
+
+
+/* -------------------------
+   NAV — SLIDING UNDERLINE
+------------------------- */
+
+nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: -12px;
+
+    height: 2px;
+
+    background: var(--red);
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: transform 0.35s var(--ease-out);
+
+}
+
+
+nav a:hover::after,
+
+nav a.active::after {
+
+    transform: scaleX(1);
+
+}
+
+
+/* -------------------------
+   HEADER MENU BUTTON
+------------------------- */
+
+.menu {
+
+    transition: transform 0.3s var(--ease);
+
+    user-select: none;
+
+}
+
+
+.menu:hover {
+
+    transform: rotate(90deg);
+
+}
+
+
+.menu:active {
+
+    transform: rotate(90deg) scale(0.9);
+
+}
+
+
+/* -------------------------
+   BUTTONS
+------------------------- */
+
+.button,
+
+.github-button {
+
+    transition:
+
+        background 0.25s ease,
+
+        color 0.25s ease,
+
+        border-color 0.25s ease,
+
+        transform 0.25s var(--ease),
+
+        box-shadow 0.3s ease;
+
+}
+
+
+.button:hover {
+
+    box-shadow: 0 12px 28px rgba(233, 54, 34, 0.35);
+
+}
+
+
+.button:active {
+
+    transform: translateY(0) scale(0.97);
+
+}
+
+
+.github-button:hover {
+
+    box-shadow: 0 12px 28px rgba(23, 23, 23, 0.10);
+
+}
+
+
+/* -------------------------
+   IMAGES — FLOAT & ZOOM
+------------------------- */
+
+/* Gentle idle float on the hero + device art */
+
+.hero-image img,
+
+.device-content img,
+
+.support-image img {
+
+    animation: float-y 7s ease-in-out infinite;
+
+}
+
+
+.device-content img {
+
+    animation-duration: 6s;
+
+}
+
+
+@keyframes float-y {
+
+    0%, 100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-12px);
+
+    }
+
+}
+
+
+/* Zoom-on-hover for framed pictures (container already
+   has overflow:hidden, so nothing overflows) */
+
+.community-image img {
+
+    transition: transform 0.8s var(--ease-out);
+
+}
+
+
+.community-image:hover img {
+
+    transform: scale(1.05);
+
+}
+
+
+/* -------------------------
+   SCROLL NOTE — PULSE LINE
+------------------------- */
+
+.scroll-note span {
+
+    animation: line-pulse 2.4s ease-in-out infinite;
+
+    transform-origin: left;
+
+}
+
+
+@keyframes line-pulse {
+
+    0%, 100% {
+
+        width: 28px;
+
+        opacity: 1;
+
+    }
+
+    50% {
+
+        width: 46px;
+
+        opacity: 0.55;
+
+    }
+
+}
+
+
+/* -------------------------
+   TAGS & BADGES
+------------------------- */
+
+.tag-row span,
+
+.driver-row span {
+
+    transition:
+
+        transform 0.3s var(--ease),
+
+        border-color 0.3s ease,
+
+        background 0.3s ease;
+
+    cursor: default;
+
+}
+
+
+.tag-row span:hover,
+
+.driver-row span:hover {
+
+    transform: translateY(-3px);
+
+    border-color: var(--red);
+
+    background: rgba(248, 240, 229, 0.65);
+
+}
+
+
+/* -------------------------
+   INTEREST CARDS
+------------------------- */
+
+.interest-grid article {
+
+    transition:
+
+        transform 0.35s var(--ease),
+
+        border-color 0.3s ease,
+
+        box-shadow 0.35s ease,
+
+        background 0.3s ease;
+
+}
+
+
+.interest-grid article:hover {
+
+    box-shadow: 0 16px 32px rgba(23, 23, 23, 0.10);
+
+    background: rgba(248, 240, 229, 0.45);
+
+}
+
+
+.interest-icon {
+
+    transition: transform 0.35s var(--ease-out);
+
+}
+
+
+.interest-grid article:hover .interest-icon {
+
+    transform: scale(1.18) rotate(-8deg);
+
+}
+
+
+/* -------------------------
+   F1 MARK
+------------------------- */
+
+.f1-mark {
+
+    transition: transform 0.45s var(--ease-out), box-shadow 0.4s ease;
+
+}
+
+
+.f1-mark:hover {
+
+    transform: rotate(4deg) scale(1.04);
+
+    box-shadow: 0 14px 30px rgba(233, 54, 34, 0.18);
+
+}
+
+
+/* -------------------------
+   CONNECT LINK
+------------------------- */
+
+.connect-link span {
+
+    display: inline-block;
+
+    transition: transform 0.3s var(--ease-out);
+
+}
+
+
+.connect-link:hover span {
+
+    transform: translate(3px, -3px);
+
+}
+
+
+.connect-link {
+
+    transition: color 0.25s ease, opacity 0.25s ease;
+
+}
+
+
+/* -------------------------
+   SUPPORT LINKS
+------------------------- */
+
+.support-link {
+
+    transition:
+
+        color 0.25s ease,
+
+        padding-left 0.3s var(--ease),
+
+        background 0.3s ease;
+
+}
+
+
+.support-link:hover {
+
+    background: rgba(248, 240, 229, 0.55);
+
+}
+
+
+.support-icon {
+
+    transition: transform 0.3s var(--ease-out);
+
+}
+
+
+.support-link:hover .support-icon {
+
+    transform: scale(1.18);
+
+}
+
+
+/* -------------------------
+   FOOTER
+------------------------- */
+
+footer {
+
+    transition: opacity 0.6s ease;
+
+}
+
+
+/* -------------------------
+   MOBILE MENU — DROP-IN
+------------------------- */
+
+@media (max-width: 650px) {
+
+
+    nav.mobile-open {
+
+        animation: menu-drop 0.4s var(--ease-out) both;
+
+        transform-origin: top right;
+
+    }
+
+
+    nav.mobile-open a {
+
+        opacity: 0;
+
+        animation: menu-link-in 0.45s var(--ease-out) both;
+
+    }
+
+
+    nav.mobile-open a:nth-child(1) { animation-delay: 0.06s; }
+
+    nav.mobile-open a:nth-child(2) { animation-delay: 0.12s; }
+
+    nav.mobile-open a:nth-child(3) { animation-delay: 0.18s; }
+
+
+    @keyframes menu-drop {
+
+        from {
+
+            opacity: 0;
+
+            transform: translateY(-10px) scale(0.97);
+
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform: translateY(0) scale(1);
+
+        }
+
+    }
+
+
+    @keyframes menu-link-in {
+
+        from {
+
+            opacity: 0;
+
+            transform: translateX(14px);
+
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform: translateX(0);
+
+        }
+
+    }
+
+
+}
+
+
+/* -------------------------
+   REDUCED MOTION
+------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+
+    html.js-anim .reveal,
+
+    html.js-anim .reveal.in {
+
+        opacity: 1 !important;
+
+        animation: none !important;
+
+    }
+
+
+    *,
+
+    *::before,
+
+    *::after {
+
+        animation-duration: 0.001ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.001ms !important;
+
+    }
+
+}
