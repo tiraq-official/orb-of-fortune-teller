@@ -1,506 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiraq — Android ROMs, built loud</title>
+<meta name="description" content="Tiraq (Saptak Maji) tinkers with Android until it feels brand new — ROMs, kernels and device trees, built for the community.">
+<meta name="theme-color" content="#f5f2ec">
 
-<title>Tiraq — Orb of Fortune Teller</title>
+<!-- Open Graph -->
+<meta property="og:title" content="Tiraq — Android ROMs, built loud">
+<meta property="og:description" content="I tinker with Android until it feels brand new.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/about.css">
 <link rel="stylesheet" href="css/animations.css">
-
 </head>
-
 
 <body>
 
+<!-- scroll progress -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-<header>
+<!-- custom cursor (desktop, fine pointers only) -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-<nav>
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
 
-<a class="active" href="#">Home</a>
-<a href="#about">About</a>
-<a href="support.html">Support</a>
+        <a class="brand" href="#top" aria-label="Tiraq — home">
+            <b>Tiraq</b>
+            <small>fogos maintainer</small>
+        </a>
 
-</nav>
+        <nav class="nav" id="primaryNav" aria-label="Primary">
+            <a href="#top" class="is-active">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Works</a>
+            <a href="#support">Say hi</a>
+        </nav>
 
+        <div class="header-tools">
+            <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">
+                <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+                <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+            </button>
 
-<div class="menu">
-☰
-</div>
+            <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+                <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+                <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+        </div>
 
-
+    </div>
 </header>
+<div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
 
+<main id="top">
 
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+        <div class="container hero-grid">
 
+            <div class="hero-text">
+                <span class="kicker">android roms &amp; other mischief</span>
 
-<main>
+                <h1>
+                    <span class="line"><span>I tinker with Android</span></span>
+                    <span class="line"><span>until it feels</span></span>
+                    <span class="line"><span><em>brand new</em>.</span></span>
+                </h1>
 
-
-<!-- HERO -->
-
-
-<section class="hero">
-
-
-<div class="hero-text">
-    <div class="logo">
-            TIR<br>AQ
-        </div>
-    <span class="jp">
-        アンドロイド
-    </span>
-
-
-<h1>
-CRAFTING SMOOTH,<br>
-RELIABLE <span>ANDROID</span><br>
-EXPERIENCES.
-</h1>
-
-
-<p>
-Android ROM Developer &amp; Device Maintainer<br>
-Building with passion. For the community.
-</p>
-
-
-<a href="https://t.me/Orb_of_Fortune_Teller" target="_blank" rel="noopener noreferrer" class="button">
-Explore ROMs →
-</a>
-
-
-</div>
-
-
-
-<div class="hero-image">
-
-<img src="images/anime.png">
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- COMMUNITY -->
-
-
-<section class="community">
-
-
-<div class="community-image">
-
-<img src="images/shrine.png">
-
-</div>
-
-
-
-<div class="community-text">
-
-<span class="jp">
-私たちについて
-</span>
-
-
-<h2>
-BUILT WITH PASSION.<br>
-FOR THE <span>COMMUNITY.</span>
-</h2>
-
-
-<p>
-
-All ROMs are built with dedication and a focus on
-performance, stability and user experience.
-
-<br><br>
-
-This is more than just ROMs.
-<br>
-This is a commitment.
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- DEVICE -->
-
-
-<section class="device">
-
-
-<div class="device-title">
-
-<span class="jp">
-サポートされているデバイス
-</span>
-
-<h2>
-DEVICE MAINTAINED
-<span></span>
-</h2>
-
-
-</div>
-
-
-
-
-<div class="device-content">
-
-
-<img src="images/moto.png">
-
-
-
-<div>
-
-<h2>
-Motorola G34 / G45 5G
-</h2>
-
-
-<p>
-Codename:
-<b>fogos</b>
-</p>
-
-
-<p>
-Snapdragon 695 |
-Android 16+
-</p>
-
-
-<p>
-Maintained with ❤️
-</p>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<!-- =========================================
-     ABOUT (MERGED)
-========================================== -->
-
-<div class="about-page" id="about">
-
-    <!-- ABOUT HERO -->
-    <section class="about-hero">
-
-        <div class="about-hero-text">
-
-            <span class="about-kicker">OPEN SOURCE • ANDROID • LINUX</span>
-
-            <h1>
-                Hi, I'm<br>
-                <span>Tiraq.</span>
-            </h1>
-
-            <h2>
-                Android ROM Developer
-                <span>/</span>
-                Device Maintainer
-            </h2>
-
-            <p class="about-lead">
-                Student and open-source enthusiast exploring Android,
-                Linux, low-level system tweaking, and everything that
-                makes an operating system tick.
-            </p>
-
-            <div class="about-actions">
-                <a href="https://t.me/Orb_of_Fortune_Teller" target="_blank" rel="noopener noreferrer" class="button">
-                    Explore My Work ↗
-                </a>
-
-                <a href="https://github.com/tiraq-official"
-                   class="github-button"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    GitHub ↗
-                </a>
-            </div>
-
-            <div class="scroll-note">
-                <span></span>
-                Scroll to explore
-            </div>
-
-        </div>
-
-        <div class="about-hero-image">
-            <img src="images/about.png" alt="Tiraq — Android ROM Developer">
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT ME -->
-    <section class="about-section about-intro">
-
-        <div class="section-number">01</div>
-
-        <div class="about-grid">
-
-            <div class="section-heading">
-                <span class="jp">私について</span>
-                <h2>About Me</h2>
-            </div>
-
-            <div class="section-copy">
-
-                <p>
-                    Hi! I'm <strong>Tiraq</strong>, also known as
-                    <strong>Saptak Maji</strong> — a student and
-                    open-source enthusiast passionate about
-                    <strong>Android ROM development</strong>,
-                    <strong>Linux customization</strong>, and
-                    low-level system tweaking.
+                <p class="lead reveal reveal-up">
+                    ROMs, kernels, device trees and the odd 3&nbsp;a.m. build. I'm Tiraq —
+                    I make phones do things their makers never planned.
                 </p>
 
-                <p>
-                    Most of my time is spent diving into the Android
-                    Open Source Project ecosystem — building device
-                    trees, customizing kernels, and learning the
-                    ins and outs of Android bring-up.
-                </p>
-
-                <p>
-                    When I'm not in the terminal or flashing builds,
-                    you'll probably find me tracking Formula 1 sector
-                    times, mastering games, or relaxing with good music.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="philosophy">
-            <div class="philosophy-mark">⌘</div>
-
-            <p>
-                Building things.<br>
-                Breaking things.<br>
-                <strong>Learning from both.</strong>
-            </p>
-        </div>
-
-    </section>
-
-
-    <!-- TECH STACK -->
-    <section class="about-section stack-section">
-
-        <div class="section-number">02</div>
-
-        <div class="section-heading wide-heading">
-            <span class="jp">技術スタック</span>
-            <h2>Tech Stack</h2>
-        </div>
-
-        <div class="stack-groups">
-
-            <div class="stack-group">
-                <span class="stack-label">LANGUAGES &amp; SHELL</span>
-                <div class="tag-row">
-                    <span>Python</span>
-                    <span>Bash</span>
-                    <span>Shell</span>
-                    <span>Makefile</span>
+                <div class="hero-actions reveal reveal-up">
+                    <a class="btn btn--solid" href="https://t.me/Orb_of_Fortune_Teller" target="_blank" rel="noopener noreferrer">
+                        <span>Grab a ROM</span>
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                    </a>
+                    <a class="btn" href="https://github.com/tiraq-official" target="_blank" rel="noopener noreferrer">
+                        <span>Snoop my code</span>
+                    </a>
                 </div>
-            </div>
 
-            <div class="stack-group">
-                <span class="stack-label">VERSION CONTROL</span>
-                <div class="tag-row">
-                    <span>Git</span>
-                    <span>GitHub</span>
-                </div>
-            </div>
-
-            <div class="stack-group">
-                <span class="stack-label">CORE SYSTEMS</span>
-                <div class="tag-row">
+                <div class="hero-meta reveal reveal-up">
                     <span>Arch Linux</span>
-                    <span>Hyprland</span>
                     <span>AOSP</span>
-                </div>
-            </div>
-
-            <div class="stack-group">
-                <span class="stack-label">ANDROID &amp; MOBILE</span>
-                <div class="tag-row">
-                    <span>Device Trees</span>
+                    <span>Hyprland</span>
                     <span>Kernel</span>
-                    <span>Magisk</span>
-                    <span>Termux</span>
                 </div>
             </div>
 
-        </div>
+            <div class="hero-visual reveal reveal-soft">
+                <div class="orb-ring" aria-hidden="true"></div>
+                <div class="orb" aria-hidden="true"></div>
+                <span class="badge">Motorola G34 / G45 5G · fogos</span>
+            </div>
 
+        </div>
     </section>
 
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about">
+        <div class="container">
 
-    <!-- INTERESTS -->
-    <section class="about-section interests-section">
+            <div class="section-head reveal reveal-up">
+                <span class="section-index">01 — who</span>
+                <h2>Right, hello.</h2>
+            </div>
 
-        <div class="section-number">03</div>
+            <div class="about-grid">
+                <div class="reveal reveal-up">
+                    <p class="lead">
+                        I'm <strong>Tiraq</strong> — Saptak Maji on the official paperwork.
+                    </p>
+                </div>
 
-        <div class="section-heading wide-heading">
-            <span class="jp">興味と探求</span>
-            <h2>Interests &amp; Pursuits</h2>
-        </div>
-
-        <div class="interest-grid">
-
-            <article>
-                <span class="interest-icon">⚙</span>
-                <h3>System Engineering</h3>
-                <p>Android ROM development, kernel patching, and Linux workspaces.</p>
-            </article>
-
-            <article>
-                <span class="interest-icon">⌬</span>
-                <h3>Tech Exploration</h3>
-                <p>Cybersecurity, open-source software, and workstation customization.</p>
-            </article>
-
-            <article>
-                <span class="interest-icon">◈</span>
-                <h3>Gaming</h3>
-                <p>Action RPGs and tactical games.</p>
-            </article>
-
-            <article>
-                <span class="interest-icon">◉</span>
-                <h3>Motorsport</h3>
-                <p>Formula 1 and rally racing.</p>
-            </article>
-
-            <article>
-                <span class="interest-icon">⌁</span>
-                <h3>Creative</h3>
-                <p>Photography, acoustic music, and softer sounds.</p>
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- FORMULA 1 -->
-    <section class="about-section f1-section">
-
-        <div class="f1-mark">F1</div>
-
-        <div class="f1-content">
-            <span class="jp">モータースポーツ</span>
-            <h2>Formula 1</h2>
-
-            <p>
-                Big Formula 1 enthusiast.
-            </p>
-
-            <div class="drivers">
-                <span class="stack-label">FAVOURITE DRIVERS</span>
-
-                <div class="driver-row">
-                    <span>🇬🇧 Lewis Hamilton</span>
-                    <span>🇳🇱 Max Verstappen</span>
-                    <span>🇲🇨 Charles Leclerc</span>
+                <div class="about-copy">
+                    <p class="reveal reveal-up">
+                        Student, tinkerer, and full-time resident of the Android rabbit hole.
+                        Most days I'm deep in the <strong>AOSP</strong> world — writing device
+                        trees, patching kernels, and figuring out why a build that worked
+                        yesterday now refuses to boot. It's a hobby and a mild obsession.
+                    </p>
+                    <p class="reveal reveal-up">
+                        Away from the terminal it's F1 race weekends, action RPGs, and playlists
+                        that swing wildly between very loud and very quiet. No in-between.
+                    </p>
                 </div>
             </div>
-        </div>
 
-    </section>
-
-
-    <!-- CONNECT -->
-    <section class="about-section connect-section">
-
-        <div class="section-number">04</div>
-
-        <div class="connect-grid">
-
-            <div class="section-heading">
-                <span class="jp">つながる</span>
-                <h2>Connect</h2>
-            </div>
-
-            <div class="connect-copy">
+            <div class="philosophy reveal reveal-up">
+                <div class="philosophy-mark" aria-hidden="true">✳</div>
                 <p>
-                    Open source, Android, Linux, and everything in between.
-                    Follow the work, explore the projects, and say hello.
+                    Build it. Break it.<br>
+                    Then <strong>figure out why</strong>.
                 </p>
+            </div>
 
-                <a href="https://github.com/tiraq-official"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="connect-link">
-                    GitHub <span>↗</span>
+            <!-- Stats -->
+            <div class="stats reveal reveal-up">
+                <div class="stat">
+                    <b><span class="count" data-count="17">0</span></b>
+                    <span>repos shipped</span>
+                </div>
+                <div class="stat">
+                    <b><span class="count" data-count="1">0</span></b>
+                    <span>phone kept alive</span>
+                </div>
+                <div class="stat">
+                    <b><span class="count" data-count="6">0</span></b>
+                    <span>languages juggled</span>
+                </div>
+                <div class="stat">
+                    <b><span class="count" data-count="100" data-suffix="%">0</span></b>
+                    <span>open source, always</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== TECH STACK ===================== -->
+    <section class="section" id="stack" style="padding-top:0;">
+        <div class="container">
+
+            <div class="section-head reveal reveal-up">
+                <span class="section-index">02 — tools</span>
+                <h2>My toolbox</h2>
+            </div>
+
+            <div class="stack-grid reveal reveal-up">
+                <div class="stack-group">
+                    <span class="stack-label">Languages &amp; shell</span>
+                    <div class="tag-row">
+                        <span>Python</span><span>Bash</span><span>Shell</span><span>Makefile</span>
+                    </div>
+                </div>
+                <div class="stack-group">
+                    <span class="stack-label">Version control</span>
+                    <div class="tag-row">
+                        <span>Git</span><span>GitHub</span>
+                    </div>
+                </div>
+                <div class="stack-group">
+                    <span class="stack-label">Systems</span>
+                    <div class="tag-row">
+                        <span>Arch Linux</span><span>Hyprland</span><span>AOSP</span>
+                    </div>
+                </div>
+                <div class="stack-group">
+                    <span class="stack-label">Android</span>
+                    <div class="tag-row">
+                        <span>Device trees</span><span>Kernel</span><span>Magisk</span><span>Termux</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== INTERESTS ===================== -->
+    <section class="section" id="interests" style="padding-top:0;">
+        <div class="container">
+
+            <div class="section-head reveal reveal-up">
+                <span class="section-index">03 — stuff I love</span>
+                <h2>Things I'm into</h2>
+            </div>
+
+            <div class="interest-grid">
+                <article class="interest-card reveal reveal-up">
+                    <span class="interest-icon" aria-hidden="true">⚙</span>
+                    <h3>System tinkering</h3>
+                    <p>Android ROMs, kernel patching, and a Linux setup I rearrange far too often.</p>
+                </article>
+                <article class="interest-card reveal reveal-up">
+                    <span class="interest-icon" aria-hidden="true">⌬</span>
+                    <h3>Curiosity</h3>
+                    <p>Cybersecurity, open source, and poking at how things actually work.</p>
+                </article>
+                <article class="interest-card reveal reveal-up">
+                    <span class="interest-icon" aria-hidden="true">◈</span>
+                    <h3>Gaming</h3>
+                    <p>Action RPGs and tactical games — the longer the better.</p>
+                </article>
+                <article class="interest-card reveal reveal-up">
+                    <span class="interest-icon" aria-hidden="true">◉</span>
+                    <h3>Motorsport</h3>
+                    <p>Formula 1 and rally racing. Race weekends are non-negotiable.</p>
+                </article>
+                <article class="interest-card reveal reveal-up">
+                    <span class="interest-icon" aria-hidden="true">⌁</span>
+                    <h3>Music</h3>
+                    <p>Acoustic sets, softer sounds, and a headphone collection I justify badly.</p>
+                </article>
+                <article class="interest-card reveal reveal-up">
+                    <span class="interest-icon" aria-hidden="true">✦</span>
+                    <h3>Open source</h3>
+                    <p>Giving builds, trees and tooling back to whoever wants them.</p>
+                </article>
+            </div>
+
+            <!-- F1 -->
+            <div class="f1 reveal reveal-up">
+                <div class="f1-mark" aria-hidden="true">F1</div>
+                <div class="f1-content">
+                    <h3>Formula 1</h3>
+                    <p>If it has a start light and a tyre strategy, I'm watching.</p>
+                    <div class="driver-row">
+                        <span>🇬🇧 Lewis Hamilton</span>
+                        <span>🇳🇱 Max Verstappen</span>
+                        <span>🇲🇨 Charles Leclerc</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section class="section" id="projects" style="padding-top:0;">
+        <div class="container">
+
+            <div class="section-head reveal reveal-up">
+                <span class="section-index">04 — work</span>
+                <h2>Selected works</h2>
+            </div>
+
+            <div class="filters reveal reveal-up" role="tablist" aria-label="Filter works">
+                <button class="filter is-active" data-filter="all">All</button>
+                <button class="filter" data-filter="rom">ROM &amp; Device Trees</button>
+                <button class="filter" data-filter="kernel">Kernel</button>
+                <button class="filter" data-filter="apps">Apps &amp; Mods</button>
+                <button class="filter" data-filter="linux">Linux &amp; Ricing</button>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+
+                <a class="project reveal reveal-up" data-cat="apps" href="https://github.com/tiraq-official/android_packages_apps_FogosParts" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Apps</span><span class="project-lang">Kotlin</span></div>
+                    <h3>FogosParts</h3>
+                    <p>The little control room that lets my Motorola build tweak itself.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/android_device_motorola_fogos" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Device Tree</span><span class="project-lang">Makefile</span></div>
+                    <h3>Fogos device tree</h3>
+                    <p>The blueprint that gets the G34 / G45 5G booting custom Android.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/android_device_motorola_sm6375-common" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Device Tree</span><span class="project-lang">C++</span></div>
+                    <h3>SM6375 common tree</h3>
+                    <p>Shared Snapdragon 695 plumbing that powers the fogos builds.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/android_hardware_motorola" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Hardware</span><span class="project-lang">AIDL</span></div>
+                    <h3>Motorola hardware</h3>
+                    <p>HALs and AIDL glue so the phone's hardware actually talks to the ROM.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/proprietary_vendor_motorola_fogos" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Vendor</span><span class="project-lang">Makefile</span></div>
+                    <h3>Vendor blobs — fogos</h3>
+                    <p>The proprietary bits the build simply can't boot without.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="kernel" href="https://github.com/tiraq-official/android_kernel_motorola_sm6375" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Kernel</span><span class="project-lang">C</span></div>
+                    <h3>Motorola kernel (sm6375)</h3>
+                    <p>A kernel I can poke, patch and rebuild whenever the mood strikes.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="kernel" href="https://github.com/tiraq-official/susfs_5.4" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Kernel</span><span class="project-lang">C</span></div>
+                    <h3>SUSFS 5.4</h3>
+                    <p>Kernel-level hide-and-seek for root and system modifications.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="linux" href="https://github.com/tiraq-official/catppuccin-mocha-i3" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Linux</span><span class="project-lang">GLSL</span></div>
+                    <h3>Catppuccin Mocha i3</h3>
+                    <p>My first i3 rice on Arch, dressed head-to-toe in Catppuccin Mocha.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+                <a class="project reveal reveal-up" data-cat="apps" href="https://github.com/tiraq-official/android_packages_apps_Messaging" target="_blank" rel="noopener noreferrer">
+                    <div class="project-top"><span class="project-cat">Apps</span><span class="project-lang">Java</span></div>
+                    <h3>Messaging</h3>
+                    <p>The AOSP messaging app, kept alive and shipping with the build.</p>
+                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </a>
+
+            </div>
+
+            <div class="projects-more reveal reveal-up">
+                <a class="btn" href="https://github.com/tiraq-official?tab=repositories" target="_blank" rel="noopener noreferrer">
+                    <span>Everything else lives on GitHub</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
                 </a>
             </div>
 
         </div>
-
-        <div class="closing-line">
-            <span>"Still learning. Still breaking things. Still building."</span>
-            <b>⚡</b>
-        </div>
-
     </section>
 
-</div>
+    <!-- ===================== SUPPORT ===================== -->
+    <section class="section" id="support" style="padding-top:0;">
+        <div class="container">
 
+            <div class="section-head reveal reveal-up">
+                <span class="section-index">05 — say hi</span>
+                <h2>Come say hi</h2>
+            </div>
+
+            <div class="support-grid">
+
+                <a class="support-link reveal reveal-up" href="https://t.me/Orb_of_Fortune_Teller" target="_blank" rel="noopener noreferrer">
+                    <span class="support-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.9c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.1 13.1l-4.7-1.5c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>
+                    </span>
+                    <span class="support-text">
+                        <strong>Telegram Channel</strong>
+                        <small>News, releases &amp; updates</small>
+                    </span>
+                    <span class="support-arrow" aria-hidden="true">→</span>
+                </a>
+
+                <a class="support-link reveal reveal-up" href="https://t.me/TheEuthymia" target="_blank" rel="noopener noreferrer">
+                    <span class="support-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.9c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.1 13.1l-4.7-1.5c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>
+                    </span>
+                    <span class="support-text">
+                        <strong>Telegram Group</strong>
+                        <small>Community &amp; chatter</small>
+                    </span>
+                    <span class="support-arrow" aria-hidden="true">→</span>
+                </a>
+
+                <a class="support-link reveal reveal-up" href="https://t.me/lost_traveller" target="_blank" rel="noopener noreferrer">
+                    <span class="support-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.9c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.1 13.1l-4.7-1.5c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>
+                    </span>
+                    <span class="support-text">
+                        <strong>Telegram Profile</strong>
+                        <small>Straight to my DMs</small>
+                    </span>
+                    <span class="support-arrow" aria-hidden="true">→</span>
+                </a>
+
+                <a class="support-link reveal reveal-up" href="https://github.com/tiraq-official" target="_blank" rel="noopener noreferrer">
+                    <span class="support-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                    </span>
+                    <span class="support-text">
+                        <strong>GitHub</strong>
+                        <small>All the code, all the chaos</small>
+                    </span>
+                    <span class="support-arrow" aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+            <div class="closing reveal reveal-up">
+                <p>"Built in the terminal. Fuelled by curiosity."</p>
+            </div>
+
+        </div>
+    </section>
 
 </main>
 
-
-
-
-
-<footer>
-
-FORTUNE TELLER 🎐 🔮
-
-
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <span class="footer-brand">Tiraq</span>
+        <span class="footer-note"> <span id="year">2026</span> Saptak Maji · built in the terminal</span>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="https://github.com/tiraq-official" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://t.me/Orb_of_Fortune_Teller" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a href="#top">Back to top</a>
+        </nav>
+    </div>
 </footer>
 
-
-
 <script src="js/script.js"></script>
-
-
 </body>
-
 </html>
