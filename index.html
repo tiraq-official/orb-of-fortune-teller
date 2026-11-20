@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" id="meta-theme-color" content="#FFF8F4" />
+  <meta name="theme-color" id="meta-theme-color" content="#F6FBF3" />
   <title>Tiraq – Android ROMs, built loud</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -93,7 +93,7 @@
         <div class="relative">
           <button id="palette-btn" type="button" aria-label="Change Material 3 dynamic color theme" class="md3-state-layer h-10 px-3.5 rounded-full flex items-center gap-2 text-sm font-medium transition-transform active:scale-95" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);">
             <i data-lucide="palette" class="w-4 h-4"></i>
-            <span id="palette-label" class="hidden sm:inline text-xs font-semibold">Terracotta</span>
+            <span id="palette-label" class="hidden sm:inline text-xs font-semibold">Emerald</span>
           </button>
           <div id="palette-menu" class="hidden md3-card-anim absolute right-0 mt-2 w-56 rounded-2xl border shadow-lg p-2 z-50" style="background-color: var(--md-surface-container-high); border-color: var(--md-outline-variant);"></div>
         </div>
@@ -472,66 +472,7 @@
         },
       };
 
-      // Probe OS / Browser AccentColor (supports Monet-exposed AccentColor on compatible mobile browsers)
-      function detectSystemAccentPalette() {
-        try {
-          if (typeof CSS === 'undefined' || !CSS.supports('color', 'AccentColor')) return null;
-          const probe = document.createElement('span');
-          probe.style.color = 'AccentColor';
-          probe.style.display = 'none';
-          document.body.appendChild(probe);
-          const computed = getComputedStyle(probe).color;
-          document.body.removeChild(probe);
-          const m = computed.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-          if (!m) return null;
-          let r = +m[1] / 255, g = +m[2] / 255, b = +m[3] / 255;
-          const max = Math.max(r, g, b), min = Math.min(r, g, b);
-          const d = max - min;
-          if (d < 0.08) return null; // Achromatic gray/black/white -> fall back to Terracotta
-          let h = 0;
-          if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
-          else if (max === g) h = ((b - r) / d + 2) * 60;
-          else h = ((r - g) / d + 4) * 60;
-          const h3 = (h + 40) % 360;
-          return {
-            name: 'System Accent',
-            swatch: `hsl(${Math.round(h)}, 65%, 45%)`,
-            light: {
-              '--md-primary': `hsl(${Math.round(h)}, 62%, 34%)`, '--md-on-primary': '#FFFFFF',
-              '--md-primary-container': `hsl(${Math.round(h)}, 78%, 90%)`, '--md-on-primary-container': `hsl(${Math.round(h)}, 75%, 14%)`,
-              '--md-secondary': `hsl(${Math.round(h)}, 22%, 40%)`, '--md-on-secondary': '#FFFFFF',
-              '--md-secondary-container': `hsl(${Math.round(h)}, 30%, 90%)`, '--md-on-secondary-container': `hsl(${Math.round(h)}, 30%, 16%)`,
-              '--md-tertiary': `hsl(${Math.round(h3)}, 38%, 38%)`, '--md-on-tertiary': '#FFFFFF',
-              '--md-tertiary-container': `hsl(${Math.round(h3)}, 65%, 90%)`, '--md-on-tertiary-container': `hsl(${Math.round(h3)}, 60%, 15%)`,
-              '--md-surface': `hsl(${Math.round(h)}, 30%, 98%)`, '--md-surface-container-lowest': '#FFFFFF',
-              '--md-surface-container-low': `hsl(${Math.round(h)}, 26%, 96%)`, '--md-surface-container': `hsl(${Math.round(h)}, 22%, 94%)`,
-              '--md-surface-container-high': `hsl(${Math.round(h)}, 20%, 91%)`, '--md-surface-container-highest': `hsl(${Math.round(h)}, 18%, 89%)`,
-              '--md-on-surface': `hsl(${Math.round(h)}, 15%, 12%)`, '--md-on-surface-variant': `hsl(${Math.round(h)}, 12%, 30%)`,
-              '--md-outline': `hsl(${Math.round(h)}, 10%, 48%)`, '--md-outline-variant': `hsl(${Math.round(h)}, 16%, 80%)`,
-            },
-            dark: {
-              '--md-primary': `hsl(${Math.round(h)}, 80%, 80%)`, '--md-on-primary': `hsl(${Math.round(h)}, 65%, 20%)`,
-              '--md-primary-container': `hsl(${Math.round(h)}, 50%, 28%)`, '--md-on-primary-container': `hsl(${Math.round(h)}, 82%, 90%)`,
-              '--md-secondary': `hsl(${Math.round(h)}, 28%, 78%)`, '--md-on-secondary': `hsl(${Math.round(h)}, 26%, 20%)`,
-              '--md-secondary-container': `hsl(${Math.round(h)}, 22%, 27%)`, '--md-on-secondary-container': `hsl(${Math.round(h)}, 32%, 90%)`,
-              '--md-tertiary': `hsl(${Math.round(h3)}, 60%, 78%)`, '--md-on-tertiary': `hsl(${Math.round(h3)}, 50%, 20%)`,
-              '--md-tertiary-container': `hsl(${Math.round(h3)}, 40%, 28%)`, '--md-on-tertiary-container': `hsl(${Math.round(h3)}, 65%, 90%)`,
-              '--md-surface': `hsl(${Math.round(h)}, 14%, 8%)`, '--md-surface-container-lowest': `hsl(${Math.round(h)}, 16%, 5%)`,
-              '--md-surface-container-low': `hsl(${Math.round(h)}, 14%, 11%)`, '--md-surface-container': `hsl(${Math.round(h)}, 14%, 14%)`,
-              '--md-surface-container-high': `hsl(${Math.round(h)}, 14%, 17%)`, '--md-surface-container-highest': `hsl(${Math.round(h)}, 14%, 21%)`,
-              '--md-on-surface': `hsl(${Math.round(h)}, 18%, 92%)`, '--md-on-surface-variant': `hsl(${Math.round(h)}, 12%, 74%)`,
-              '--md-outline': `hsl(${Math.round(h)}, 10%, 52%)`, '--md-outline-variant': `hsl(${Math.round(h)}, 14%, 22%)`,
-            },
-          };
-        } catch {
-          return null;
-        }
-      }
 
-      const systemAccent = detectSystemAccentPalette();
-      if (systemAccent) {
-        MD3_PALETTES.system = systemAccent;
-      }
 
       const LANG_COLORS = {
         Kotlin: '#A97BFF', Java: '#B07219', C: '#555555', 'C++': '#F34B7D',
@@ -621,7 +562,7 @@
       let state = {
         isDark: sysMedia.matches,
         manualDarkOverride: false,
-        seedTheme: systemAccent ? 'system' : 'amber',
+        seedTheme: 'emerald',
         activeSkillTab: 'languages',
         activeCategory: 'All',
         searchQuery: '',
@@ -638,7 +579,7 @@
       } catch {}
 
       function applyTheme() {
-        const pal = MD3_PALETTES[state.seedTheme] || MD3_PALETTES.amber;
+        const pal = MD3_PALETTES[state.seedTheme] || MD3_PALETTES.emerald;
         const vars = state.isDark ? pal.dark : pal.light;
         const root = document.documentElement;
         for (const [k, v] of Object.entries(vars)) {
