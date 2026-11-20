@@ -332,7 +332,9 @@
   </main>
 
   <!-- Mobile Bottom Navigation Bar -->
-  <nav aria-label="Mobile navigation" class="md:hidden fixed bottom-0 inset-x-0 z-40 border-t rounded-b-[24px] shadow-sm px-2 py-2 flex items-center justify-around backdrop-blur-md" style="background-color: var(--md-surface-container); border-color: var(--md-outline-variant);">
+  <nav aria-label="Mobile navigation" class="md:hidden fixed bottom-0 inset-x-0 z-40 px-2 py-2 flex items-center justify-around" style="background-color: var(--md-surface-container);">
+    <span aria-hidden="true" class="pointer-events-none absolute -top-6 left-0 w-6 h-6" style="background: radial-gradient(circle at 100% 0%, transparent 24px, var(--md-surface-container) 24.5px);"></span>
+    <span aria-hidden="true" class="pointer-events-none absolute -top-6 right-0 w-6 h-6" style="background: radial-gradient(circle at 0% 0%, transparent 24px, var(--md-surface-container) 24.5px);"></span>
     <a href="#overview" data-mobile-nav="overview" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">Overview</a>
     <a href="#about" data-mobile-nav="about" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">About</a>
     <a href="#toolbox" data-mobile-nav="toolbox" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">Toolbox</a>
