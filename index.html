@@ -13,6 +13,9 @@
   <style>
     :root {
       --md-ease: cubic-bezier(0.2, 0.0, 0, 1.0);
+      --md-ease-decel: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+      --md-ease-accel: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+      --md-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     html {
       scroll-behavior: smooth;
@@ -21,17 +24,43 @@
     body {
       background-color: var(--md-surface);
       color: var(--md-on-surface);
-      transition: background-color 400ms var(--md-ease), color 400ms var(--md-ease);
+      transition: background-color 420ms var(--md-ease), color 420ms var(--md-ease);
     }
     .font-mono {
       font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     }
     @keyframes md3FadeSlide {
-      from { opacity: 0; transform: translateY(10px) scale(0.985); }
+      from { opacity: 0; transform: translateY(14px) scale(0.975); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
+    @keyframes md3HeroEnter {
+      from { opacity: 0; transform: translateY(22px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes md3SharedAxisY {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes md3Ripple {
+      from { transform: scale(0); opacity: 0.28; }
+      to { transform: scale(2.6); opacity: 0; }
+    }
     .md3-card-anim {
-      animation: md3FadeSlide 0.36s var(--md-ease) both;
+      animation: md3FadeSlide 0.42s var(--md-ease-decel) both;
+    }
+    .md3-hero-enter {
+      animation: md3HeroEnter 0.65s var(--md-ease-decel) both;
+    }
+    .md3-shared-axis {
+      animation: md3SharedAxisY 0.34s var(--md-ease-decel) both;
+    }
+    .md3-ripple-span {
+      position: absolute;
+      border-radius: 9999px;
+      background-color: currentColor;
+      pointer-events: none;
+      transform: scale(0);
+      animation: md3Ripple 550ms var(--md-ease-decel) forwards;
     }
     .md3-state-layer {
       position: relative;
@@ -54,16 +83,48 @@
     }
     .reveal-on-scroll {
       opacity: 0;
-      transform: translateY(20px) scale(0.985);
-      transition: opacity 700ms var(--md-ease), transform 700ms var(--md-ease);
+      transform: translateY(24px) scale(0.98);
+      transition: opacity 680ms var(--md-ease-decel), transform 680ms var(--md-ease-decel);
     }
     .reveal-on-scroll.is-visible {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
+    #project-modal {
+      transition: opacity 260ms var(--md-ease), visibility 260ms var(--md-ease);
+    }
+    #project-modal.modal-closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    #project-modal.modal-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    #project-modal-card {
+      transition: transform 320ms var(--md-ease-decel), opacity 260ms var(--md-ease);
+    }
+    #project-modal.modal-closed #project-modal-card {
+      opacity: 0;
+      transform: translateY(18px) scale(0.94);
+    }
+    #project-modal.modal-open #project-modal-card {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen pb-24 md:pb-14 selection:bg-[var(--md-primary-container)] selection:text-[var(--md-on-primary-container)]">
+  <!-- MD3 Linear Scroll Progress Indicator -->
+  <div id="scroll-progress" aria-hidden="true" class="fixed top-0 left-0 right-0 h-[2.5px] z-50 origin-left transition-transform duration-150" style="background-color: var(--md-primary); transform: scaleX(0);"></div>
 
   <!-- MD3 Sticky Top App Bar with rounded bottom corners -->
   <header id="top-app-bar" class="sticky top-0 z-40 border-b rounded-b-[24px] transition-all duration-300 backdrop-blur-md" style="background-color: var(--md-surface); border-color: transparent;">
@@ -122,7 +183,7 @@
   <main class="max-w-6xl mx-auto px-4 sm:px-6 space-y-24 pt-8 sm:pt-12">
     <!-- HERO SECTION -->
     <section id="overview" class="scroll-mt-24 space-y-6">
-      <div class="relative overflow-hidden rounded-[32px] border p-7 sm:p-12" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
+      <div class="md3-hero-enter relative overflow-hidden rounded-[32px] border p-7 sm:p-12" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
         <div id="hero-glow-1" class="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl transition-opacity duration-500 opacity-40" style="background-color: var(--md-primary-container);"></div>
         <div id="hero-glow-2" class="pointer-events-none absolute -bottom-24 -left-24 w-72 h-72 rounded-full blur-3xl transition-opacity duration-500 opacity-30" style="background-color: var(--md-tertiary-container);"></div>
 
@@ -343,7 +404,7 @@
   </nav>
 
   <!-- MD3 Project Detail Dialog -->
-  <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+  <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" class="modal-closed fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
     <div id="project-modal-card" class="md3-card-anim w-full max-w-lg rounded-[28px] border p-6 sm:p-8 shadow-2xl space-y-5" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface); border-color: var(--md-outline-variant);"></div>
   </div>
 
@@ -639,8 +700,8 @@
       }
 
       function renderStats() {
-        document.getElementById('stats-grid').innerHTML = STATS.map((s) => `
-          <div class="rounded-[24px] border p-5 h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-0.5" style="background-color: var(--md-surface-container); border-color: var(--md-outline-variant);">
+        document.getElementById('stats-grid').innerHTML = STATS.map((s, idx) => `
+          <div class="md3-card-anim rounded-[24px] border p-5 h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1" style="background-color: var(--md-surface-container); border-color: var(--md-outline-variant); animation-delay: ${120 + idx * 65}ms;">
             <div class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--md-primary);">${s.value}</div>
             <div class="mt-2.5">
               <div class="text-sm font-semibold">${s.label}</div>
@@ -691,6 +752,9 @@
         }).join('');
 
         const activeGroup = SKILL_GROUPS.find((g) => g.id === state.activeSkillTab) || SKILL_GROUPS[0];
+        stage.classList.remove('md3-shared-axis');
+        void stage.offsetWidth;
+        stage.classList.add('md3-shared-axis');
         stage.innerHTML = `
           <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b" style="border-color: var(--md-outline-variant);">
             <div>
@@ -890,14 +954,17 @@
             </a>
           </div>
         `;
-        modal.classList.remove('hidden');
+        modal.classList.remove('modal-closed');
+        modal.classList.add('modal-open');
         document.getElementById('close-modal-x').addEventListener('click', closeModal);
         document.getElementById('close-modal-btn').addEventListener('click', closeModal);
         refreshIcons();
       }
 
       function closeModal() {
-        document.getElementById('project-modal').classList.add('hidden');
+        const modal = document.getElementById('project-modal');
+        modal.classList.remove('modal-open');
+        modal.classList.add('modal-closed');
       }
 
       function renderNavState() {
@@ -986,7 +1053,27 @@
         }
       });
 
+      // MD3 Ink Ripple delegation on interactive elements
+      document.addEventListener('pointerdown', (e) => {
+        const target = e.target.closest('.md3-state-layer');
+        if (!target) return;
+        const rect = target.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement('span');
+        ripple.className = 'md3-ripple-span';
+        ripple.style.width = `${size}px`;
+        ripple.style.height = `${size}px`;
+        ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+        ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+        target.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      });
+
       window.addEventListener('scroll', () => {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const prog = docH > 0 ? Math.min(1, Math.max(0, window.scrollY / docH)) : 0;
+        const barProg = document.getElementById('scroll-progress');
+        if (barProg) barProg.style.transform = `scaleX(${prog})`;
         const isSc = window.scrollY > 16;
         if (isSc !== state.scrolled) {
           state.scrolled = isSc;
