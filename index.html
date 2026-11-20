@@ -1,471 +1,1092 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiraq — Android ROMs, built loud</title>
-<meta name="description" content="Tiraq (Saptak Maji) tinkers with Android until it feels brand new — ROMs, kernels and device trees, built for the community.">
-<meta name="theme-color" content="#f5f2ec">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Tiraq — Android ROMs, built loud">
-<meta property="og:description" content="I tinker with Android until it feels brand new.">
-<meta property="og:type" content="website">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/animations.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" id="meta-theme-color" content="#FFF8F4" />
+  <title>Tiraq – Android ROMs, built loud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --md-ease: cubic-bezier(0.2, 0.0, 0, 1.0);
+    }
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background-color: var(--md-surface);
+      color: var(--md-on-surface);
+      transition: background-color 400ms var(--md-ease), color 400ms var(--md-ease);
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    @keyframes md3FadeSlide {
+      from { opacity: 0; transform: translateY(10px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .md3-card-anim {
+      animation: md3FadeSlide 0.36s var(--md-ease) both;
+    }
+    .md3-state-layer {
+      position: relative;
+      overflow: hidden;
+    }
+    .md3-state-layer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: currentColor;
+      opacity: 0;
+      transition: opacity 200ms var(--md-ease);
+      pointer-events: none;
+    }
+    .md3-state-layer:hover::after {
+      opacity: 0.07;
+    }
+    .md3-state-layer:active::after {
+      opacity: 0.12;
+    }
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px) scale(0.985);
+      transition: opacity 700ms var(--md-ease), transform 700ms var(--md-ease);
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  </style>
 </head>
+<body class="min-h-screen pb-24 md:pb-14 selection:bg-[var(--md-primary-container)] selection:text-[var(--md-on-primary-container)]">
 
-<body>
+  <!-- MD3 Sticky Top App Bar with rounded bottom corners -->
+  <header id="top-app-bar" class="sticky top-0 z-40 border-b rounded-b-[24px] transition-all duration-300 backdrop-blur-md" style="background-color: var(--md-surface); border-color: transparent;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="#overview" class="flex items-center gap-3 text-left group focus:outline-none">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-base tracking-tight transition-transform duration-300 group-hover:scale-105 group-active:scale-95" style="background-color: var(--md-primary); color: var(--md-on-primary);">
+          T
+        </div>
+        <div>
+          <div class="font-semibold text-base leading-tight tracking-tight">Tiraq</div>
+          <div class="text-xs leading-tight" style="color: var(--md-on-surface-variant);">fogos-5-4 maintainer</div>
+        </div>
+      </a>
 
-<!-- scroll progress -->
-<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+      <!-- Desktop Navigation Pills -->
+      <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-1 p-1 rounded-full border" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
+        <a href="#overview" data-nav="overview" class="nav-pill md3-state-layer px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300">Overview</a>
+        <a href="#about" data-nav="about" class="nav-pill md3-state-layer px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300">About</a>
+        <a href="#toolbox" data-nav="toolbox" class="nav-pill md3-state-layer px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300">Toolbox</a>
+        <a href="#works" data-nav="works" class="nav-pill md3-state-layer px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300">Works</a>
+        <a href="#connect" data-nav="connect" class="nav-pill md3-state-layer px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300">Connect</a>
+      </nav>
 
-<!-- custom cursor (desktop, fine pointers only) -->
-<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-
-<!-- ===================== HEADER ===================== -->
-<header class="site-header" id="siteHeader">
-    <div class="container header-inner">
-
-        <a class="brand" href="#top" aria-label="Tiraq — home">
-            <b>Tiraq</b>
-            <small>fogos maintainer</small>
-        </a>
-
-        <nav class="nav" id="primaryNav" aria-label="Primary">
-            <a href="#top" class="is-active">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Works</a>
-            <a href="#support">Say hi</a>
-        </nav>
-
-        <div class="header-tools">
-            <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">
-                <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
-                <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
-            </button>
-
-            <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
-                <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
-                <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-            </button>
+      <!-- Right Controls -->
+      <div class="flex items-center gap-2 relative">
+        <!-- Dynamic Palette Picker -->
+        <div class="relative">
+          <button id="palette-btn" type="button" aria-label="Change Material 3 dynamic color theme" class="md3-state-layer h-10 px-3.5 rounded-full flex items-center gap-2 text-sm font-medium transition-transform active:scale-95" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);">
+            <i data-lucide="palette" class="w-4 h-4"></i>
+            <span id="palette-label" class="hidden sm:inline text-xs font-semibold">Terracotta</span>
+          </button>
+          <div id="palette-menu" class="hidden md3-card-anim absolute right-0 mt-2 w-56 rounded-2xl border shadow-lg p-2 z-50" style="background-color: var(--md-surface-container-high); border-color: var(--md-outline-variant);"></div>
         </div>
 
+        <!-- System / Light / Dark Mode Toggle -->
+        <button id="theme-toggle-btn" type="button" aria-label="Toggle light or dark theme" title="Toggle Light / Dark (adapts to system by default)" class="md3-state-layer w-10 h-10 rounded-full flex items-center justify-center transition-transform active:scale-95" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);">
+          <i id="theme-icon-sun" data-lucide="sun" class="w-4 h-4 hidden"></i>
+          <i id="theme-icon-moon" data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Morphing 3-Bar Hamburger Button -->
+        <button id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden md3-state-layer w-10 h-10 rounded-full flex flex-col items-center justify-center gap-[4.5px] transition-colors duration-300 active:scale-95" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);">
+          <span id="ham-1" class="block h-[2px] w-4 rounded-full transition-all duration-300" style="background-color: currentColor; transition-timing-function: cubic-bezier(0.2, 0.0, 0, 1.0);"></span>
+          <span id="ham-2" class="block h-[2px] w-4 rounded-full transition-all duration-200" style="background-color: currentColor; transition-timing-function: cubic-bezier(0.2, 0.0, 0, 1.0);"></span>
+          <span id="ham-3" class="block h-[2px] w-4 rounded-full transition-all duration-300" style="background-color: currentColor; transition-timing-function: cubic-bezier(0.2, 0.0, 0, 1.0);"></span>
+        </button>
+      </div>
     </div>
-</header>
-<div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
 
-<main id="top">
-
-    <!-- ===================== HERO ===================== -->
-    <section class="hero">
-        <div class="container hero-grid">
-
-            <div class="hero-text">
-                <span class="kicker">android roms &amp; other mischief</span>
-
-                <h1>
-                    <span class="line"><span>I tinker with Android</span></span>
-                    <span class="line"><span>until it feels</span></span>
-                    <span class="line"><span><em>brand new</em>.</span></span>
-                </h1>
-
-                <p class="lead reveal reveal-up">
-                    ROMs, kernels, device trees and the odd 3&nbsp;a.m. build. I'm Tiraq —
-                    I make phones do things their makers never planned.
-                </p>
-
-                <div class="hero-actions reveal reveal-up">
-                    <a class="btn" href="https://github.com/tiraq-official" target="_blank" rel="noopener noreferrer">
-                        <span>Snoop my code</span>
-                    </a>
-                </div>
-
-                <div class="hero-meta reveal reveal-up">
-                    <span>Arch Linux</span>
-                    <span>AOSP</span>
-                    <span>Hyprland</span>
-                    <span>Kernel</span>
-                </div>
-            </div>
-
-            <div class="hero-visual reveal reveal-soft">
-                <div class="orb-ring" aria-hidden="true"></div>
-                <div class="orb" aria-hidden="true"></div>
-                <span class="badge">Motorola G34 / G45 5G · fogos</span>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===================== ABOUT ===================== -->
-    <section class="section" id="about">
-        <div class="container">
-
-            <div class="section-head reveal reveal-up">
-                <span class="section-index">01 — who</span>
-                <h2>Right, hello.</h2>
-            </div>
-
-            <div class="about-grid">
-                <div class="reveal reveal-up">
-                    <p class="lead">
-                        I'm <strong>Tiraq</strong> — Saptak Maji on the official paperwork.
-                    </p>
-                </div>
-
-                <div class="about-copy">
-                    <p class="reveal reveal-up">
-                        Student, tinkerer, and full-time resident of the Android rabbit hole.
-                        Most days I'm deep in the <strong>AOSP</strong> world — writing device
-                        trees, patching kernels, and figuring out why a build that worked
-                        yesterday now refuses to boot. It's a hobby and a mild obsession.
-                    </p>
-                    <p class="reveal reveal-up">
-                        Away from the terminal it's F1 race weekends, action RPGs, and playlists
-                        that swing wildly between very loud and very quiet. No in-between.
-                    </p>
-                </div>
-            </div>
-
-            <div class="philosophy reveal reveal-up">
-                <div class="philosophy-mark" aria-hidden="true">✳</div>
-                <p>
-                    Build it. Break it.<br>
-                    Then <strong>figure out why</strong>.
-                </p>
-            </div>
-
-            <!-- Stats -->
-            <div class="stats reveal reveal-up">
-                <div class="stat">
-                    <b><span class="count" data-count="19">0</span></b>
-                    <span>repos shipped</span>
-                </div>
-                <div class="stat">
-                    <b><span class="count" data-count="1">0</span></b>
-                    <span>phone kept alive</span>
-                </div>
-                <div class="stat">
-                    <b><span class="count" data-count="6">0</span></b>
-                    <span>languages juggled</span>
-                </div>
-                <div class="stat">
-                    <b><span class="count" data-count="100" data-suffix="%">0</span></b>
-                    <span>open source, always</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===================== TECH STACK ===================== -->
-    <section class="section" id="stack" style="padding-top:0;">
-        <div class="container">
-
-            <div class="section-head reveal reveal-up">
-                <span class="section-index">02 — tools</span>
-                <h2>My toolbox</h2>
-            </div>
-
-            <div class="stack-grid reveal reveal-up">
-                <div class="stack-group">
-                    <span class="stack-label">Languages &amp; shell</span>
-                    <div class="tag-row">
-                        <span>Python</span><span>Bash</span><span>Shell</span><span>Makefile</span>
-                    </div>
-                </div>
-                <div class="stack-group">
-                    <span class="stack-label">Version control</span>
-                    <div class="tag-row">
-                        <span>Git</span><span>GitHub</span>
-                    </div>
-                </div>
-                <div class="stack-group">
-                    <span class="stack-label">Systems</span>
-                    <div class="tag-row">
-                        <span>Arch Linux</span><span>Hyprland</span><span>AOSP</span>
-                    </div>
-                </div>
-                <div class="stack-group">
-                    <span class="stack-label">Android</span>
-                    <div class="tag-row">
-                        <span>Device trees</span><span>Kernel</span><span>Magisk</span><span>Termux</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===================== INTERESTS ===================== -->
-    <section class="section" id="interests" style="padding-top:0;">
-        <div class="container">
-
-            <div class="section-head reveal reveal-up">
-                <span class="section-index">03 — stuff I love</span>
-                <h2>Things I'm into</h2>
-            </div>
-
-            <div class="interest-grid">
-                <article class="interest-card reveal reveal-up">
-                    <span class="interest-icon" aria-hidden="true">⚙</span>
-                    <h3>System tinkering</h3>
-                    <p>Android ROMs, kernel patching, and a Linux setup I rearrange far too often.</p>
-                </article>
-                <article class="interest-card reveal reveal-up">
-                    <span class="interest-icon" aria-hidden="true">⌬</span>
-                    <h3>Curiosity</h3>
-                    <p>Cybersecurity, open source, and poking at how things actually work.</p>
-                </article>
-                <article class="interest-card reveal reveal-up">
-                    <span class="interest-icon" aria-hidden="true">◈</span>
-                    <h3>Gaming</h3>
-                    <p>Action RPGs and tactical games — the longer the better.</p>
-                </article>
-                <article class="interest-card reveal reveal-up">
-                    <span class="interest-icon" aria-hidden="true">◉</span>
-                    <h3>Motorsport</h3>
-                    <p>Formula 1 and rally racing. Race weekends are non-negotiable.</p>
-                </article>
-                <article class="interest-card reveal reveal-up">
-                    <span class="interest-icon" aria-hidden="true">⌁</span>
-                    <h3>Music</h3>
-                    <p>Acoustic sets, softer sounds, and a headphone collection I justify badly.</p>
-                </article>
-                <article class="interest-card reveal reveal-up">
-                    <span class="interest-icon" aria-hidden="true">✦</span>
-                    <h3>Open source</h3>
-                    <p>Giving builds, trees and tooling back to whoever wants them.</p>
-                </article>
-            </div>
-
-            <!-- F1 -->
-            <div class="f1 reveal reveal-up">
-                <div class="f1-mark" aria-hidden="true">F1</div>
-                <div class="f1-content">
-                    <h3>Formula 1</h3>
-                    <p>If it has a start light and a tyre strategy, I'm watching.</p>
-                    <div class="driver-row">
-                        <span>🇬🇧 Lewis Hamilton</span>
-                        <span>🇳🇱 Max Verstappen</span>
-                        <span>🇲🇨 Charles Leclerc</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reading -->
-            <div class="f1 reading reveal reveal-up">
-                <div class="f1-mark" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.6C10 4.9 7.2 4.1 4.5 4.4 3.7 4.5 3 5.1 3 6v12.1c0 .9.8 1.6 1.7 1.5 2.5-.3 5.2.3 7.3 1.9 2.1-1.6 4.8-2.2 7.3-1.9.9.1 1.7-.6 1.7-1.5V6c0-.9-.7-1.5-1.5-1.6C16.8 4.1 14 4.9 12 6.6z"/><path d="M12 6.6v15"/></svg>
-                </div>
-                <div class="f1-content">
-                    <h3>Reading</h3>
-                    <p>Manhwa, manhua and manga &mdash; if it has chapters, I'm somewhere in them.</p>
-                    <div class="driver-row">
-                        <span>Manhwa</span>
-                        <span>Manhua</span>
-                        <span>Manga</span>
-                        <span>Anime</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===================== PROJECTS ===================== -->
-    <section class="section" id="projects" style="padding-top:0;">
-        <div class="container">
-
-            <div class="section-head reveal reveal-up">
-                <span class="section-index">04 — work</span>
-                <h2>Selected works</h2>
-            </div>
-
-            <div class="filters reveal reveal-up" role="tablist" aria-label="Filter works">
-                <button class="filter is-active" data-filter="all">All</button>
-                <button class="filter" data-filter="apps">Apps &amp; Mods</button>
-                <button class="filter" data-filter="linux">Linux &amp; Ricing</button>
-                <button class="filter" data-filter="rom">ROM &amp; Device Trees</button>
-                <button class="filter" data-filter="kernel">Kernel</button>
-            </div>
-
-            <div class="projects-grid" id="projectsGrid">
-
-                <a class="project reveal reveal-up" data-cat="apps" href="https://github.com/tiraq-official/android_packages_apps_FogosParts" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Apps</span><span class="project-lang">Kotlin</span></div>
-                    <h3>FogosParts</h3>
-                    <p>The little control room that lets my Motorola build tweak itself.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="apps" href="https://github.com/tiraq-official/android_packages_apps_Messaging" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Apps</span><span class="project-lang">Java</span></div>
-                    <h3>Messaging</h3>
-                    <p>The AOSP messaging app, kept alive and shipping with the build.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="apps" href="https://github.com/tiraq-official/Guardian" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Mod</span><span class="project-lang">Shell</span></div>
-                    <h3>Guardian</h3>
-                    <p>Half a million domains in one hosts file &mdash; ads, gambling and adult sites blocked system-wide.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="linux" href="https://github.com/tiraq-official/AnimeUnlock" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Linux</span><span class="project-lang">QML</span></div>
-                    <h3>AnimeUnlock</h3>
-                    <p>A frosted-glass SDDM login screen &mdash; profile on the left, session on the right, and a password bar that rises out of the blur.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="linux" href="https://github.com/tiraq-official/catppuccin-mocha-i3" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Linux</span><span class="project-lang">GLSL</span></div>
-                    <h3>Catppuccin Mocha i3</h3>
-                    <p>My first i3 rice on Arch, dressed head-to-toe in Catppuccin Mocha.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/android_device_motorola_fogos" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Device Tree</span><span class="project-lang">Makefile</span></div>
-                    <h3>Fogos device tree</h3>
-                    <p>The blueprint that gets the G34 / G45 5G booting custom Android.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/android_device_motorola_sm6375-common" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Device Tree</span><span class="project-lang">C++</span></div>
-                    <h3>SM6375 common tree</h3>
-                    <p>Shared Snapdragon 695 plumbing that powers the fogos builds.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/android_hardware_motorola" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Hardware</span><span class="project-lang">AIDL</span></div>
-                    <h3>Motorola hardware</h3>
-                    <p>HALs and AIDL glue so the phone's hardware actually talks to the ROM.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="rom" href="https://github.com/tiraq-official/proprietary_vendor_motorola_fogos" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Vendor</span><span class="project-lang">Makefile</span></div>
-                    <h3>Vendor blobs — fogos</h3>
-                    <p>The proprietary bits the build simply can't boot without.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="kernel" href="https://github.com/tiraq-official/android_kernel_motorola_sm6375" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Kernel</span><span class="project-lang">C</span></div>
-                    <h3>Motorola kernel (sm6375)</h3>
-                    <p>A kernel I can poke, patch and rebuild whenever the mood strikes.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-                <a class="project reveal reveal-up" data-cat="kernel" href="https://github.com/tiraq-official/susfs_5.4" target="_blank" rel="noopener noreferrer">
-                    <div class="project-top"><span class="project-cat">Kernel</span><span class="project-lang">C</span></div>
-                    <h3>SUSFS 5.4</h3>
-                    <p>Kernel-level hide-and-seek for root and system modifications.</p>
-                    <span class="project-link">View repo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-                </a>
-
-            </div>
-
-            <div class="projects-more reveal reveal-up">
-                <a class="btn" href="https://github.com/tiraq-official?tab=repositories" target="_blank" rel="noopener noreferrer">
-                    <span>Everything else lives on GitHub</span>
-                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===================== SUPPORT ===================== -->
-    <section class="section" id="support" style="padding-top:0;">
-        <div class="container">
-
-            <div class="section-head reveal reveal-up">
-                <span class="section-index">05 — say hi</span>
-                <h2>Come say hi</h2>
-            </div>
-
-            <div class="support-grid">
-
-                <a class="support-link reveal reveal-up" href="https://t.me/TheEuthymia" target="_blank" rel="noopener noreferrer">
-                    <span class="support-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.9c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.1 13.1l-4.7-1.5c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>
-                    </span>
-                    <span class="support-text">
-                        <strong>Telegram Group</strong>
-                        <small>Community &amp; chatter</small>
-                    </span>
-                    <span class="support-arrow" aria-hidden="true">→</span>
-                </a>
-
-                <a class="support-link reveal reveal-up" href="https://t.me/lost_traveller" target="_blank" rel="noopener noreferrer">
-                    <span class="support-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.9c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.1 13.1l-4.7-1.5c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>
-                    </span>
-                    <span class="support-text">
-                        <strong>Telegram Profile</strong>
-                        <small>Straight to my DMs</small>
-                    </span>
-                    <span class="support-arrow" aria-hidden="true">→</span>
-                </a>
-
-                <a class="support-link reveal reveal-up" href="https://anilist.co/user/tiraq/" target="_blank" rel="noopener noreferrer">
-                    <span class="support-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 17.53v2.421c0 .71-.391 1.101-1.1 1.101h-5l-.057-.165L11.84 3.736c.106-.502.46-.788 1.053-.788h2.422c.71 0 1.1.391 1.1 1.1v12.38H22.9c.71 0 1.1.392 1.1 1.101zM11.034 2.947l6.337 18.104h-4.918l-1.052-3.131H6.019l-1.077 3.131H0L6.361 2.948h4.673zm-.66 10.96-1.69-5.014-1.541 5.015h3.23z"/></svg>
-                    </span>
-                    <span class="support-text">
-                        <strong>AniList</strong>
-                        <small>Manhwa, manga &amp; anime I'm tracking</small>
-                    </span>
-                    <span class="support-arrow" aria-hidden="true">→</span>
-                </a>
-
-                <a class="support-link reveal reveal-up" href="https://github.com/tiraq-official" target="_blank" rel="noopener noreferrer">
-                    <span class="support-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
-                    </span>
-                    <span class="support-text">
-                        <strong>GitHub</strong>
-                        <small>All the code, all the chaos</small>
-                    </span>
-                    <span class="support-arrow" aria-hidden="true">→</span>
-                </a>
-
-            </div>
-
-            <div class="closing reveal reveal-up">
-                <p>"Built in the terminal. Fuelled by curiosity."</p>
-            </div>
-
-        </div>
-    </section>
-
-</main>
-
-<!-- ===================== FOOTER ===================== -->
-<footer class="site-footer">
-    <div class="container footer-inner">
-        <span class="footer-brand">Tiraq</span>
-        <span class="footer-note"> <span id="year">2026</span> Saptak Maji · built in the terminal</span>
-        <nav class="footer-links" aria-label="Footer">
-            <a href="https://github.com/tiraq-official" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://t.me/Orb_of_Fortune_Teller" target="_blank" rel="noopener noreferrer">Telegram</a>
-            <a href="#top">Back to top</a>
-        </nav>
+    <!-- Animated MD3 Navigation Sheet -->
+    <div id="mobile-drawer" class="md:hidden grid grid-rows-[0fr] opacity-0 pointer-events-none transition-all duration-300" style="transition-timing-function: cubic-bezier(0.2, 0.0, 0, 1.0);">
+      <div class="overflow-hidden">
+        <div id="mobile-drawer-inner" class="mx-4 mb-3 mt-1 rounded-[24px] border p-2.5 shadow-lg space-y-1" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);"></div>
+      </div>
     </div>
-</footer>
+  </header>
 
-<script src="js/script.js"></script>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 space-y-24 pt-8 sm:pt-12">
+    <!-- HERO SECTION -->
+    <section id="overview" class="scroll-mt-24 space-y-6">
+      <div class="relative overflow-hidden rounded-[32px] border p-7 sm:p-12" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
+        <div id="hero-glow-1" class="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl transition-opacity duration-500 opacity-40" style="background-color: var(--md-primary-container);"></div>
+        <div id="hero-glow-2" class="pointer-events-none absolute -bottom-24 -left-24 w-72 h-72 rounded-full blur-3xl transition-opacity duration-500 opacity-30" style="background-color: var(--md-tertiary-container);"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div class="lg:col-span-8 space-y-6">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">
+                <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+                fogos maintainer · Moto G34 / G45 5G
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium" style="background-color: var(--md-tertiary-container); color: var(--md-on-tertiary-container);">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                Android ROMs, built loud
+              </span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.06]">
+              I tinker with Android until it feels
+              <span style="color: var(--md-primary);">brand new.</span>
+            </h1>
+
+            <p class="text-base sm:text-xl leading-relaxed max-w-2xl" style="color: var(--md-on-surface-variant);">
+              ROMs, kernels, device trees and the odd 3 a.m. build. I&apos;m
+              <strong style="color: var(--md-on-surface);">Tiraq</strong>
+              – I make phones do things their makers never planned.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <a href="#works" class="md3-state-layer inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold shadow-sm transition-transform active:scale-95" style="background-color: var(--md-primary); color: var(--md-on-primary);">
+                Explore Selected Works
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </a>
+              <a href="https://github.com/fogos-5-4" target="_blank" rel="noreferrer" class="md3-state-layer inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-semibold transition-transform active:scale-95" style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">
+                <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+                fogos-5-4 Org
+              </a>
+              <a href="https://github.com/tiraq-official" target="_blank" rel="noreferrer" class="md3-state-layer inline-flex items-center gap-2 px-5 py-3.5 rounded-full border text-sm font-semibold transition-transform active:scale-95" style="border-color: var(--md-outline); color: var(--md-primary);">
+                <i data-lucide="github" class="w-4 h-4"></i>
+                @tiraq-official
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 flex flex-col gap-4">
+            <a href="https://github.com/fogos-5-4" target="_blank" rel="noreferrer" class="md3-state-layer group rounded-[24px] border p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style="background-color: var(--md-surface-container-lowest); border-color: var(--md-outline-variant);">
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">
+                  <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style="color: var(--md-on-surface-variant);"></i>
+              </div>
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-wider opacity-70">Device Organization</div>
+                <div class="text-lg font-bold mt-0.5">fogos-5-4</div>
+                <p class="text-xs leading-relaxed mt-1" style="color: var(--md-on-surface-variant);">
+                  Home to all Moto G34 / G45 5G trees, Linux 5.4 kernel, Dolby ports, ViPER4AndroidFX &amp; vendor blobs.
+                </p>
+              </div>
+            </a>
+
+            <div class="rounded-[24px] p-5 flex items-center justify-between gap-3" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">
+              <div>
+                <div class="text-[11px] font-semibold uppercase tracking-wider opacity-75">Philosophy</div>
+                <div class="text-base font-bold leading-snug mt-0.5">&ldquo;Build it. Break it. Then figure out why.&rdquo;</div>
+              </div>
+              <i data-lucide="cpu" class="w-6 h-6 shrink-0 opacity-85"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Stats Strip -->
+      <div id="stats-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- ABOUT & THINGS I'M INTO -->
+    <section id="about" class="scroll-mt-24 space-y-8 reveal-on-scroll">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div class="lg:col-span-5 rounded-[28px] border p-7 sm:p-8 flex flex-col justify-between gap-6" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
+          <div class="space-y-4">
+            <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold" style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">About</span>
+            <h2 class="text-3xl font-bold tracking-tight">Right, hello.</h2>
+            <p class="text-base font-semibold">I&apos;m Tiraq – Saptak Maji on the official paperwork.</p>
+            <p class="text-sm sm:text-base leading-relaxed" style="color: var(--md-on-surface-variant);">
+              Student, tinkerer, and full-time resident of the Android rabbit hole. Most days I&apos;m deep in the AOSP world – writing device trees, patching kernels, and figuring out why a build that worked yesterday now refuses to boot. It&apos;s a hobby and a mild obsession.
+            </p>
+            <p class="text-sm sm:text-base leading-relaxed" style="color: var(--md-on-surface-variant);">
+              Away from the terminal it&apos;s F1 race weekends, action RPGs, and playlists that swing wildly between very loud and very quiet. No in-between.
+            </p>
+          </div>
+          <div class="rounded-2xl border px-4 py-3 flex items-center justify-between text-xs" style="background-color: var(--md-surface-container-high); border-color: var(--md-outline-variant);">
+            <span style="color: var(--md-on-surface-variant);">Primary Target</span>
+            <span class="font-mono font-semibold">motorola / fogos (sm6375)</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 flex flex-col gap-4">
+          <div class="flex items-center justify-between px-1">
+            <h3 class="text-xl font-bold tracking-tight">Things I&apos;m into</h3>
+            <span class="text-xs font-medium" style="color: var(--md-on-surface-variant);">Off &amp; on the terminal</span>
+          </div>
+          <div id="interests-bento" class="grid grid-cols-1 md:grid-cols-12 gap-4 flex-1"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY TOOLBOX -->
+    <section id="toolbox" class="scroll-mt-24 space-y-6 reveal-on-scroll">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold mb-2" style="background-color: var(--md-tertiary-container); color: var(--md-on-tertiary-container);">
+            <i data-lucide="wrench" class="w-3.5 h-3.5"></i>
+            Skills &amp; Stack
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">My toolbox</h2>
+        </div>
+        <p class="text-sm" style="color: var(--md-on-surface-variant);">Select a discipline to inspect the stack.</p>
+      </div>
+
+      <div class="rounded-[28px] border p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
+        <div id="toolbox-rail" class="lg:col-span-4 flex flex-col gap-2"></div>
+        <div id="toolbox-stage" class="md3-card-anim lg:col-span-8 rounded-[24px] border p-5 sm:p-6 flex flex-col justify-between gap-5" style="background-color: var(--md-surface-container-lowest); border-color: var(--md-outline-variant);"></div>
+      </div>
+    </section>
+
+    <!-- SELECTED WORKS -->
+    <section id="works" class="scroll-mt-24 space-y-6 reveal-on-scroll">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold mb-2" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">Portfolio</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Selected works</h2>
+          <p id="works-count-label" class="text-sm mt-1" style="color: var(--md-on-surface-variant);"></p>
+        </div>
+
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <div class="flex items-center gap-2 px-4 h-11 rounded-full border flex-1 md:w-64 transition-colors focus-within:border-[var(--md-primary)]" style="background-color: var(--md-surface-container-high); border-color: var(--md-outline-variant);">
+            <i data-lucide="search" class="w-4 h-4 shrink-0" style="color: var(--md-on-surface-variant);"></i>
+            <input id="project-search" type="text" placeholder="Filter repos, org, or tech..." class="bg-transparent text-sm w-full focus:outline-none placeholder:text-[var(--md-on-surface-variant)]" />
+            <button id="clear-search-btn" type="button" aria-label="Clear search" class="hidden p-0.5 rounded-full hover:bg-black/10">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center p-1 rounded-full border" style="background-color: var(--md-surface-container-high); border-color: var(--md-outline-variant);">
+            <button id="view-grid-btn" type="button" aria-label="Grid view" class="w-9 h-9 rounded-full flex items-center justify-center transition-colors">
+              <i data-lucide="layout-grid" class="w-4 h-4"></i>
+            </button>
+            <button id="view-list-btn" type="button" aria-label="List view" class="w-9 h-9 rounded-full flex items-center justify-center transition-colors">
+              <i data-lucide="list" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="filter-chips" class="flex flex-wrap gap-2 pt-1"></div>
+      <div id="projects-container"></div>
+
+      <!-- Dual Org & Repo Banner -->
+      <div class="rounded-[28px] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">
+        <div>
+          <h3 class="text-lg sm:text-xl font-bold">Everything else lives on GitHub</h3>
+          <p class="text-sm opacity-90 mt-1">
+            Moto G34 / G45 5G trees are maintained in <strong>fogos-5-4</strong>, alongside personal projects on <strong>tiraq-official</strong>.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-2.5 shrink-0">
+          <a href="https://github.com/fogos-5-4" target="_blank" rel="noreferrer" class="md3-state-layer inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-semibold transition-transform active:scale-95" style="background-color: var(--md-primary); color: var(--md-on-primary);">
+            <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+            fogos-5-4
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+          <a href="https://github.com/tiraq-official?tab=repositories" target="_blank" rel="noreferrer" class="md3-state-layer inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-semibold transition-transform active:scale-95" style="background-color: var(--md-surface-container-lowest); color: var(--md-on-surface);">
+            <i data-lucide="github" class="w-4 h-4"></i>
+            tiraq-official
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONNECT & FOOTER -->
+    <section id="connect" class="scroll-mt-24 space-y-6 reveal-on-scroll">
+      <div class="space-y-2">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold" style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">Connect</span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Built in the terminal. Fuelled by curiosity.</h2>
+      </div>
+
+      <div id="social-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"></div>
+
+      <footer class="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style="border-color: var(--md-outline-variant); color: var(--md-on-surface-variant);">
+        <div>Tiraq (Saptak Maji) · Material Design 3 Portfolio</div>
+        <div class="flex items-center gap-4">
+          <a href="https://t.me/Orb_of_Fortune_Teller" target="_blank" rel="noreferrer" class="hover:underline inline-flex items-center gap-1">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            Orb of Fortune Teller
+          </a>
+          <a href="https://github.com/fogos-5-4" target="_blank" rel="noreferrer" class="hover:underline inline-flex items-center gap-1">
+            <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i>
+            fogos-5-4
+          </a>
+          <a href="https://github.com/tiraq-official/orb-of-fortune-teller" target="_blank" rel="noreferrer" class="hover:underline inline-flex items-center gap-1">
+            <i data-lucide="github" class="w-3.5 h-3.5"></i>
+            Original Repo
+          </a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav aria-label="Mobile navigation" class="md:hidden fixed bottom-0 inset-x-0 z-40 border-t px-2 py-2 flex items-center justify-around backdrop-blur-md" style="background-color: var(--md-surface-container); border-color: var(--md-outline-variant);">
+    <a href="#overview" data-mobile-nav="overview" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">Overview</a>
+    <a href="#about" data-mobile-nav="about" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">About</a>
+    <a href="#toolbox" data-mobile-nav="toolbox" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">Toolbox</a>
+    <a href="#works" data-mobile-nav="works" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">Works</a>
+    <a href="#connect" data-mobile-nav="connect" class="mobile-nav-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors">Connect</a>
+  </nav>
+
+  <!-- MD3 Project Detail Dialog -->
+  <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="project-modal-card" class="md3-card-anim w-full max-w-lg rounded-[28px] border p-6 sm:p-8 shadow-2xl space-y-5" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface); border-color: var(--md-outline-variant);"></div>
+  </div>
+
+  <script>
+    (function () {
+      const MD3_PALETTES = {
+        amber: {
+          name: 'Terracotta',
+          swatch: '#8B5000',
+          light: {
+            '--md-primary': '#8B5000', '--md-on-primary': '#FFFFFF',
+            '--md-primary-container': '#FFDCBE', '--md-on-primary-container': '#2C1600',
+            '--md-secondary': '#735A42', '--md-on-secondary': '#FFFFFF',
+            '--md-secondary-container': '#FFDCBE', '--md-on-secondary-container': '#291806',
+            '--md-tertiary': '#596339', '--md-on-tertiary': '#FFFFFF',
+            '--md-tertiary-container': '#DDE9B3', '--md-on-tertiary-container': '#171E00',
+            '--md-surface': '#FFF8F4', '--md-surface-container-lowest': '#FFFFFF',
+            '--md-surface-container-low': '#FDF1E8', '--md-surface-container': '#F7EBE2',
+            '--md-surface-container-high': '#F1E5DC', '--md-surface-container-highest': '#EBDFD6',
+            '--md-on-surface': '#211A14', '--md-on-surface-variant': '#50453B',
+            '--md-outline': '#827569', '--md-outline-variant': '#D4C4B6',
+          },
+          dark: {
+            '--md-primary': '#FFB870', '--md-on-primary': '#4A2800',
+            '--md-primary-container': '#5C3504', '--md-on-primary-container': '#FFDCBE',
+            '--md-secondary': '#E2C1A4', '--md-on-secondary': '#402C18',
+            '--md-secondary-container': '#4A3624', '--md-on-secondary-container': '#FFDCBE',
+            '--md-tertiary': '#C1CD99', '--md-on-tertiary': '#2B3410',
+            '--md-tertiary-container': '#38411F', '--md-on-tertiary-container': '#DDE9B3',
+            '--md-surface': '#14100C', '--md-surface-container-lowest': '#0F0B08',
+            '--md-surface-container-low': '#1C1611', '--md-surface-container': '#221B16',
+            '--md-surface-container-high': '#2B231D', '--md-surface-container-highest': '#352C25',
+            '--md-on-surface': '#F0E5DC', '--md-on-surface-variant': '#C4B4A7',
+            '--md-outline': '#8A7B6F', '--md-outline-variant': '#352C24',
+          },
+        },
+        violet: {
+          name: 'M3 Violet',
+          swatch: '#6750A4',
+          light: {
+            '--md-primary': '#6750A4', '--md-on-primary': '#FFFFFF',
+            '--md-primary-container': '#EADDFF', '--md-on-primary-container': '#21005D',
+            '--md-secondary': '#625B71', '--md-on-secondary': '#FFFFFF',
+            '--md-secondary-container': '#E8DEF8', '--md-on-secondary-container': '#1D192B',
+            '--md-tertiary': '#7D5260', '--md-on-tertiary': '#FFFFFF',
+            '--md-tertiary-container': '#FFD8E4', '--md-on-tertiary-container': '#31111D',
+            '--md-surface': '#FEF7FF', '--md-surface-container-lowest': '#FFFFFF',
+            '--md-surface-container-low': '#F7F2FA', '--md-surface-container': '#F3EDF7',
+            '--md-surface-container-high': '#ECE6F0', '--md-surface-container-highest': '#E6E0E9',
+            '--md-on-surface': '#1D1B20', '--md-on-surface-variant': '#49454F',
+            '--md-outline': '#79747E', '--md-outline-variant': '#CAC4D0',
+          },
+          dark: {
+            '--md-primary': '#D0BCFF', '--md-on-primary': '#381E72',
+            '--md-primary-container': '#432D78', '--md-on-primary-container': '#EADDFF',
+            '--md-secondary': '#CCC2DC', '--md-on-secondary': '#332D41',
+            '--md-secondary-container': '#3B3647', '--md-on-secondary-container': '#E8DEF8',
+            '--md-tertiary': '#EFB8C8', '--md-on-tertiary': '#492532',
+            '--md-tertiary-container': '#54323E', '--md-on-tertiary-container': '#FFD8E4',
+            '--md-surface': '#111015', '--md-surface-container-lowest': '#0C0B0F',
+            '--md-surface-container-low': '#18161C', '--md-surface-container': '#1E1C23',
+            '--md-surface-container-high': '#27242D', '--md-surface-container-highest': '#312E38',
+            '--md-on-surface': '#EDE8F2', '--md-on-surface-variant': '#B8B2C2',
+            '--md-outline': '#7E7887', '--md-outline-variant': '#2E2B36',
+          },
+        },
+        teal: {
+          name: 'Pixel Teal',
+          swatch: '#006A6A',
+          light: {
+            '--md-primary': '#006A6A', '--md-on-primary': '#FFFFFF',
+            '--md-primary-container': '#9CF1F0', '--md-on-primary-container': '#002020',
+            '--md-secondary': '#4A6363', '--md-on-secondary': '#FFFFFF',
+            '--md-secondary-container': '#CCE8E7', '--md-on-secondary-container': '#051F1F',
+            '--md-tertiary': '#4B607C', '--md-on-tertiary': '#FFFFFF',
+            '--md-tertiary-container': '#D3E4FF', '--md-on-tertiary-container': '#041C35',
+            '--md-surface': '#F4FBF9', '--md-surface-container-lowest': '#FFFFFF',
+            '--md-surface-container-low': '#EFF5F4', '--md-surface-container': '#E9EFEE',
+            '--md-surface-container-high': '#E3E9E8', '--md-surface-container-highest': '#DDE4E2',
+            '--md-on-surface': '#161D1D', '--md-on-surface-variant': '#3F4948',
+            '--md-outline': '#6F7979', '--md-outline-variant': '#BEC9C8',
+          },
+          dark: {
+            '--md-primary': '#80D5D4', '--md-on-primary': '#003737',
+            '--md-primary-container': '#084747', '--md-on-primary-container': '#9CF1F0',
+            '--md-secondary': '#B0CCCB', '--md-on-secondary': '#1B3534',
+            '--md-secondary-container': '#283E3E', '--md-on-secondary-container': '#CCE8E7',
+            '--md-tertiary': '#B3C8E8', '--md-on-tertiary': '#1C314B',
+            '--md-tertiary-container': '#2B3E57', '--md-on-tertiary-container': '#D3E4FF',
+            '--md-surface': '#0D1313', '--md-surface-container-lowest': '#080D0D',
+            '--md-surface-container-low': '#141B1B', '--md-surface-container': '#192121',
+            '--md-surface-container-high': '#222A2A', '--md-surface-container-highest': '#2B3434',
+            '--md-on-surface': '#E2EAE8', '--md-on-surface-variant': '#AEBBBB',
+            '--md-outline': '#768281', '--md-outline-variant': '#263030',
+          },
+        },
+        emerald: {
+          name: 'Emerald',
+          swatch: '#1B6D37',
+          light: {
+            '--md-primary': '#1B6D37', '--md-on-primary': '#FFFFFF',
+            '--md-primary-container': '#A3F5B1', '--md-on-primary-container': '#00210B',
+            '--md-secondary': '#506352', '--md-on-secondary': '#FFFFFF',
+            '--md-secondary-container': '#D3E8D3', '--md-on-secondary-container': '#0E1F12',
+            '--md-tertiary': '#3A656F', '--md-on-tertiary': '#FFFFFF',
+            '--md-tertiary-container': '#BDEAF5', '--md-on-tertiary-container': '#001F26',
+            '--md-surface': '#F6FBF3', '--md-surface-container-lowest': '#FFFFFF',
+            '--md-surface-container-low': '#F0F5ED', '--md-surface-container': '#EAEFE8',
+            '--md-surface-container-high': '#E4EAE2', '--md-surface-container-highest': '#DFE4DC',
+            '--md-on-surface': '#181D18', '--md-on-surface-variant': '#414941',
+            '--md-outline': '#717971', '--md-outline-variant': '#C1C9BF',
+          },
+          dark: {
+            '--md-primary': '#88D897', '--md-on-primary': '#003917',
+            '--md-primary-container': '#0C4722', '--md-on-primary-container': '#A3F5B1',
+            '--md-secondary': '#B7CCB7', '--md-on-secondary': '#233426',
+            '--md-secondary-container': '#2E3D30', '--md-on-secondary-container': '#D3E8D3',
+            '--md-tertiary': '#A2CED9', '--md-on-tertiary': '#01363F',
+            '--md-tertiary-container': '#1C4149', '--md-on-tertiary-container': '#BDEAF5',
+            '--md-surface': '#0E130F', '--md-surface-container-lowest': '#090D0A',
+            '--md-surface-container-low': '#151B16', '--md-surface-container': '#1B211C',
+            '--md-surface-container-high': '#232A24', '--md-surface-container-highest': '#2D352E',
+            '--md-on-surface': '#E3EAE2', '--md-on-surface-variant': '#B2BDB2',
+            '--md-outline': '#7A8479', '--md-outline-variant': '#273028',
+          },
+        },
+      };
+
+      // Probe OS / Browser AccentColor (supports Monet-exposed AccentColor on compatible mobile browsers)
+      function detectSystemAccentPalette() {
+        try {
+          if (typeof CSS === 'undefined' || !CSS.supports('color', 'AccentColor')) return null;
+          const probe = document.createElement('span');
+          probe.style.color = 'AccentColor';
+          probe.style.display = 'none';
+          document.body.appendChild(probe);
+          const computed = getComputedStyle(probe).color;
+          document.body.removeChild(probe);
+          const m = computed.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+          if (!m) return null;
+          let r = +m[1] / 255, g = +m[2] / 255, b = +m[3] / 255;
+          const max = Math.max(r, g, b), min = Math.min(r, g, b);
+          const d = max - min;
+          if (d < 0.08) return null; // Achromatic gray/black/white -> fall back to Terracotta
+          let h = 0;
+          if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+          else if (max === g) h = ((b - r) / d + 2) * 60;
+          else h = ((r - g) / d + 4) * 60;
+          const h3 = (h + 40) % 360;
+          return {
+            name: 'System Accent',
+            swatch: `hsl(${Math.round(h)}, 65%, 45%)`,
+            light: {
+              '--md-primary': `hsl(${Math.round(h)}, 62%, 34%)`, '--md-on-primary': '#FFFFFF',
+              '--md-primary-container': `hsl(${Math.round(h)}, 78%, 90%)`, '--md-on-primary-container': `hsl(${Math.round(h)}, 75%, 14%)`,
+              '--md-secondary': `hsl(${Math.round(h)}, 22%, 40%)`, '--md-on-secondary': '#FFFFFF',
+              '--md-secondary-container': `hsl(${Math.round(h)}, 30%, 90%)`, '--md-on-secondary-container': `hsl(${Math.round(h)}, 30%, 16%)`,
+              '--md-tertiary': `hsl(${Math.round(h3)}, 38%, 38%)`, '--md-on-tertiary': '#FFFFFF',
+              '--md-tertiary-container': `hsl(${Math.round(h3)}, 65%, 90%)`, '--md-on-tertiary-container': `hsl(${Math.round(h3)}, 60%, 15%)`,
+              '--md-surface': `hsl(${Math.round(h)}, 30%, 98%)`, '--md-surface-container-lowest': '#FFFFFF',
+              '--md-surface-container-low': `hsl(${Math.round(h)}, 26%, 96%)`, '--md-surface-container': `hsl(${Math.round(h)}, 22%, 94%)`,
+              '--md-surface-container-high': `hsl(${Math.round(h)}, 20%, 91%)`, '--md-surface-container-highest': `hsl(${Math.round(h)}, 18%, 89%)`,
+              '--md-on-surface': `hsl(${Math.round(h)}, 15%, 12%)`, '--md-on-surface-variant': `hsl(${Math.round(h)}, 12%, 30%)`,
+              '--md-outline': `hsl(${Math.round(h)}, 10%, 48%)`, '--md-outline-variant': `hsl(${Math.round(h)}, 16%, 80%)`,
+            },
+            dark: {
+              '--md-primary': `hsl(${Math.round(h)}, 80%, 80%)`, '--md-on-primary': `hsl(${Math.round(h)}, 65%, 20%)`,
+              '--md-primary-container': `hsl(${Math.round(h)}, 50%, 28%)`, '--md-on-primary-container': `hsl(${Math.round(h)}, 82%, 90%)`,
+              '--md-secondary': `hsl(${Math.round(h)}, 28%, 78%)`, '--md-on-secondary': `hsl(${Math.round(h)}, 26%, 20%)`,
+              '--md-secondary-container': `hsl(${Math.round(h)}, 22%, 27%)`, '--md-on-secondary-container': `hsl(${Math.round(h)}, 32%, 90%)`,
+              '--md-tertiary': `hsl(${Math.round(h3)}, 60%, 78%)`, '--md-on-tertiary': `hsl(${Math.round(h3)}, 50%, 20%)`,
+              '--md-tertiary-container': `hsl(${Math.round(h3)}, 40%, 28%)`, '--md-on-tertiary-container': `hsl(${Math.round(h3)}, 65%, 90%)`,
+              '--md-surface': `hsl(${Math.round(h)}, 14%, 8%)`, '--md-surface-container-lowest': `hsl(${Math.round(h)}, 16%, 5%)`,
+              '--md-surface-container-low': `hsl(${Math.round(h)}, 14%, 11%)`, '--md-surface-container': `hsl(${Math.round(h)}, 14%, 14%)`,
+              '--md-surface-container-high': `hsl(${Math.round(h)}, 14%, 17%)`, '--md-surface-container-highest': `hsl(${Math.round(h)}, 14%, 21%)`,
+              '--md-on-surface': `hsl(${Math.round(h)}, 18%, 92%)`, '--md-on-surface-variant': `hsl(${Math.round(h)}, 12%, 74%)`,
+              '--md-outline': `hsl(${Math.round(h)}, 10%, 52%)`, '--md-outline-variant': `hsl(${Math.round(h)}, 14%, 22%)`,
+            },
+          };
+        } catch {
+          return null;
+        }
+      }
+
+      const systemAccent = detectSystemAccentPalette();
+      if (systemAccent) {
+        MD3_PALETTES.system = systemAccent;
+      }
+
+      const LANG_COLORS = {
+        Kotlin: '#A97BFF', Java: '#B07219', C: '#555555', 'C++': '#F34B7D',
+        Makefile: '#427819', Shell: '#89E051', Python: '#3572A5', QML: '#44A51C',
+        GLSL: '#5686A5', PureBasic: '#5A6986',
+      };
+
+      const PROJECTS = [
+        { id: 'fogosparts', title: 'android_packages_apps_FogosParts', org: 'fogos-5-4', badge: 'App', category: 'Audio & Apps', language: 'Kotlin', description: 'Device-specific control room and settings overlay for Motorola fogos custom ROM builds.', url: 'https://github.com/fogos-5-4/android_packages_apps_FogosParts', highlights: ['Maintained under the fogos-5-4 organization', 'Custom device-specific toggles & preferences in Kotlin', 'Built natively alongside AOSP system packages'] },
+        { id: 'dolby-lunaris', title: 'hardware_dolby_lunaris', org: 'fogos-5-4', badge: 'Dolby', category: 'Audio & Apps', language: 'Kotlin', description: 'Dolby Lunaris audio processing and Spatial/EQ control interface for AOSP builds.', url: 'https://github.com/fogos-5-4/hardware_dolby_lunaris', highlights: ['Dolby Lunaris audio tuning package', 'Kotlin-based control UI & service hooks', 'Integrated into fogos-5-4 ROM releases'] },
+        { id: 'dolby-motorola', title: 'hardware_dolby_motorola', org: 'fogos-5-4', badge: 'Dolby', category: 'Audio & Apps', language: 'Makefile', description: 'Motorola stock Dolby port adapted cleanly for AOSP ROMs.', url: 'https://github.com/fogos-5-4/hardware_dolby_motorola', highlights: ['Motorola stock Dolby Atmos port for AOSP', 'Clean Makefile & audio effect policy integration', 'Preserves stock acoustic profiles on custom builds'] },
+        { id: 'viper4android', title: 'packages_apps_ViPER4AndroidFX', org: 'fogos-5-4', badge: 'Audio', category: 'Audio & Apps', language: 'Makefile', description: 'ViPER4AndroidFX (v4a re) audio DSP integration for fogos builds.', url: 'https://github.com/fogos-5-4/packages_apps_ViPER4AndroidFX', highlights: ['v4a re prebuilt & build-tree integration', 'System-level audio DSP support', 'Packaged cleanly via AOSP Makefiles'] },
+        { id: 'device-as-webcam', title: 'packages_services_DeviceAsWebcam', org: 'fogos-5-4', badge: 'Service', category: 'Audio & Apps', language: 'Java', description: 'AOSP DeviceAsWebcam service enabling USB UVC webcam functionality on Motorola fogos.', url: 'https://github.com/fogos-5-4/packages_services_DeviceAsWebcam', highlights: ['Turns Moto G34 / G45 5G into a plug-and-play USB webcam', 'AOSP UVC gadget service adaptation', 'Written in Java for Android framework compatibility'] },
+        { id: 'fogos-tree', title: 'android_device_motorola_fogos', org: 'fogos-5-4', badge: 'Device Tree', category: 'Device & Vendor', language: 'Makefile', description: 'Primary device tree blueprint that gets the Moto G34 / G45 5G booting custom Android.', url: 'https://github.com/fogos-5-4/android_device_motorola_fogos', highlights: ['Board configs, overlays & init scripts for Motorola fogos', 'Supports Motorola Moto G34 5G & Moto G45 5G', 'Now maintained in the fogos-5-4 organization'] },
+        { id: 'sm6375-common', title: 'android_device_motorola_sm6375-common', org: 'fogos-5-4', badge: 'Device Tree', category: 'Device & Vendor', language: 'C++', description: 'Shared Snapdragon 695 (sm6375) common device tree powering fogos builds.', url: 'https://github.com/fogos-5-4/android_device_motorola_sm6375-common', highlights: ['Common platform definitions for Qualcomm SM6375', 'Shared display, audio, media & RIL configurations', 'Keeps device-specific trees lean and modular'] },
+        { id: 'vendor-fogos', title: 'proprietary_vendor_motorola_fogos', org: 'fogos-5-4', badge: 'Vendor', category: 'Device & Vendor', language: 'Makefile', description: 'Device-specific proprietary vendor blobs required for Moto G34 / G45 5G bring-up.', url: 'https://github.com/fogos-5-4/proprietary_vendor_motorola_fogos', highlights: ['Extracted proprietary firmware & shared libraries', 'Android.bp & Makefile rules for clean AOSP linking', 'Companion to android_device_motorola_fogos'] },
+        { id: 'vendor-sm6375-common', title: 'proprietary_vendor_motorola_sm6375-common', org: 'fogos-5-4', badge: 'Vendor', category: 'Device & Vendor', language: 'Makefile', description: 'Shared proprietary vendor blobs for the Motorola Qualcomm SM6375 platform.', url: 'https://github.com/fogos-5-4/proprietary_vendor_motorola_sm6375-common', highlights: ['Common Snapdragon 695 vendor libraries & HAL blobs', 'Paired with android_device_motorola_sm6375-common', 'Structured for reproducible ROM builds'] },
+        { id: 'motocam', title: 'vendor_motorola_motocam', org: 'fogos-5-4', badge: 'Camera', category: 'Device & Vendor', language: 'Shell', description: 'Motorola stock camera (MotoCam) vendor package for custom AOSP ROMs.', url: 'https://github.com/fogos-5-4/vendor_motorola_motocam', highlights: ['Brings stock Motorola camera experience to AOSP', 'Shell-scripted extraction & vendor packaging', 'Maintained under fogos-5-4'] },
+        { id: 'fogos-dump', title: 'motorola_fogos_dump', org: 'fogos-5-4', badge: 'Dump', category: 'Device & Vendor', language: 'PureBasic', description: 'Stock firmware reference dump: user 15 V1UGS35H.75-14-9-3-1-4 d59ef release-keys.', url: 'https://github.com/fogos-5-4/motorola_fogos_dump', highlights: ['Android 15 stock release-keys reference dump', 'Build ID: V1UGS35H.75-14-9-3-1-4 (d59ef)', 'Reference source for blobs, props, and sepolicy'] },
+        { id: 'motorola-hardware', title: 'android_hardware_motorola', org: 'fogos-5-4', badge: 'Hardware', category: 'Kernel & System', language: 'Kotlin', description: 'Motorola HALs and hardware interfaces bridging vendor services with AOSP.', url: 'https://github.com/fogos-5-4/android_hardware_motorola', highlights: ['Updated hardware abstraction interfaces', 'Supports charging, gestures, and device-specific HALs', 'Hosted in fogos-5-4'] },
+        { id: 'samsung-nfc', title: 'android_hardware_samsung_slsi_nfc', org: 'fogos-5-4', badge: 'NFC HAL', category: 'Kernel & System', language: 'C++', description: 'Samsung SLSI NFC hardware abstraction layer for AOSP device bring-up.', url: 'https://github.com/fogos-5-4/android_hardware_samsung_slsi_nfc', highlights: ['C++ NFC HAL implementation for SLSI chipsets', 'Maintained for fogos-5-4 hardware compatibility', 'Clean AOSP HIDL/AIDL integration'] },
+        { id: 'system-sepolicy', title: 'system_sepolicy', org: 'fogos-5-4', badge: 'SELinux', category: 'Kernel & System', language: 'Python', description: 'AOSP SELinux policy definitions and build tooling for fogos ROMs.', url: 'https://github.com/fogos-5-4/system_sepolicy', highlights: ['Enforcing SELinux rules & compatibility mappings', 'Python policy verification & build scripts', 'Keeps custom builds secure and compliant'] },
+        { id: 'motorola-kernel', title: 'android_kernel_motorola_sm6375', org: 'fogos-5-4', badge: 'Kernel', category: 'Kernel & System', language: 'C', description: 'Linux 5.4 kernel source for Motorola sm6375 devices, ready to poke, patch, and rebuild.', url: 'https://github.com/fogos-5-4/android_kernel_motorola_sm6375', highlights: ['Linux 5.4 kernel tree for Moto G34 / G45 5G', 'Tuned and patched for custom ROM stability', 'Maintained under fogos-5-4'] },
+        { id: 'susfs', title: 'susfs_5.4', org: 'fogos-5-4', badge: 'Kernel', category: 'Kernel & System', language: 'C', description: 'Kernel-level hide-and-seek (SUSFS 5.4) for root and system modifications.', url: 'https://github.com/fogos-5-4/susfs_5.4', highlights: ['Kernel 5.4 filesystem-level hiding patches', 'Masks root & mount traces from userspace checks', 'Pure C kernel-space integration'] },
+        { id: 'messaging', title: 'android_packages_apps_Messaging', org: 'tiraq-official', badge: 'App', category: 'Audio & Apps', language: 'Java', description: 'The AOSP messaging app, kept alive and shipping cleanly with custom builds.', url: 'https://github.com/tiraq-official/android_packages_apps_Messaging', highlights: ['Maintained AOSP SMS/MMS client', 'Updated to compile cleanly on modern Android trees', 'Lightweight, telemetry-free stock experience'] },
+        { id: 'guardian', title: 'Guardian', org: 'tiraq-official', badge: 'Mod', category: 'Kernel & System', language: 'Shell', description: 'Half a million domains in one hosts file — ads, gambling and adult sites blocked system-wide.', url: 'https://github.com/tiraq-official/Guardian', highlights: ['500,000+ curated domain entries in a single hosts file', 'System-wide ad, gambling, and adult domain blocking', 'Automated shell packaging for rooted setups'] },
+        { id: 'animeunlock', title: 'AnimeUnlock', org: 'tiraq-official', badge: 'Linux', category: 'Linux & Ricing', language: 'QML', description: 'A frosted-glass SDDM login screen — profile on the left, session on the right, and a password bar that rises out of the blur.', url: 'https://github.com/tiraq-official/AnimeUnlock', highlights: ['Custom QML SDDM theme with frosted-glass blur', 'Asymmetric profile & session layout', 'Animated password input transition on focus'] },
+        { id: 'catppuccin-i3', title: 'catppuccin-mocha-i3', org: 'tiraq-official', badge: 'Linux', category: 'Linux & Ricing', language: 'GLSL', description: 'My first i3 rice on Arch Linux, dressed head-to-toe in Catppuccin Mocha.', url: 'https://github.com/tiraq-official/catppuccin-mocha-i3', highlights: ['Complete Arch Linux + i3wm desktop configuration', 'Cohesive Catppuccin Mocha color scheme', 'Custom GLSL compositor shaders & bar styling'] },
+      ];
+
+      const STATS = [
+        { value: '17', label: 'fogos-5-4 repos', sub: 'Dedicated Moto G34 / G45 5G org' },
+        { value: '1', label: 'phone kept alive', sub: 'Motorola fogos (sm6375)' },
+        { value: '10+', label: 'languages juggled', sub: 'C, C++, Kotlin, Python, QML & more' },
+        { value: '100%', label: 'open source, always', sub: 'Built for the community' },
+      ];
+
+      const INTERESTS = [
+        { id: 'tinkering', title: 'System tinkering', tag: 'Primary', description: 'Android ROMs, kernel patching, and a Linux setup I rearrange far too often.', icon: 'terminal', tone: 'primary', span: 'md:col-span-7' },
+        { id: 'motorsport', title: 'Motorsport', tag: 'Weekends', description: 'Formula 1 and rally racing. Race weekends are non-negotiable.', icon: 'flag', tone: 'tertiary', span: 'md:col-span-5' },
+        { id: 'curiosity', title: 'Curiosity', tag: 'Security', description: 'Cybersecurity, open source, and poking at how things actually work.', icon: 'shield', tone: 'surface', span: 'md:col-span-4' },
+        { id: 'gaming', title: 'Gaming', tag: 'RPGs', description: 'Action RPGs and tactical games – the longer the better.', icon: 'gamepad-2', tone: 'secondary', span: 'md:col-span-4' },
+        { id: 'music', title: 'Music', tag: 'Audio', description: 'Acoustic sets, softer sounds, and a headphone collection I justify badly.', icon: 'headphones', tone: 'surface', span: 'md:col-span-4' },
+        { id: 'opensource', title: 'Open source', tag: 'Community', description: 'Giving builds, trees, Dolby ports, and tooling back to whoever wants them — now organized under fogos-5-4.', icon: 'heart-handshake', tone: 'primary', span: 'md:col-span-12' },
+      ];
+
+      const SKILL_GROUPS = [
+        { id: 'languages', label: 'Languages & Shell', tagline: '10+ languages', subtitle: 'From Kotlin Android overlays to C kernel patches & Makefiles', icon: 'code-2', items: [
+          { name: 'C', note: 'Linux 5.4 kernel & SUSFS patches' }, { name: 'C++', note: 'SM6375 common HALs & NFC' },
+          { name: 'Kotlin', note: 'FogosParts & Dolby Lunaris' }, { name: 'Java', note: 'AOSP Messaging & DeviceAsWebcam' },
+          { name: 'Python', note: 'SEPolicy & automation scripts' }, { name: 'Makefile', note: 'AOSP & vendor build rules' },
+          { name: 'Bash / Shell', note: 'Guardian & MotoCam packaging' }, { name: 'QML', note: 'AnimeUnlock SDDM greeter' },
+          { name: 'GLSL', note: 'Arch i3 compositor shaders' }, { name: 'AIDL', note: 'Modern Android hardware glue' },
+        ]},
+        { id: 'android', label: 'Android & Bring-up', tagline: 'Core stack', subtitle: 'End-to-end Moto G34 / G45 5G (fogos) AOSP maintenance', icon: 'smartphone', items: [
+          { name: 'AOSP', note: 'Full source tree bring-up & builds' }, { name: 'Device Trees', note: 'fogos & sm6375-common' },
+          { name: 'Linux Kernel 5.4', note: 'sm6375 & SUSFS integration' }, { name: 'Dolby & V4A', note: 'Stock Dolby & ViPER4AndroidFX' },
+          { name: 'SEPolicy', note: 'Enforcing system policies' }, { name: 'Magisk & Termux', note: 'Root modules & on-device shell' },
+        ]},
+        { id: 'systems', label: 'Linux & Desktop', tagline: 'Daily driver', subtitle: 'Minimal, keyboard-driven Arch Linux environments', icon: 'layers', items: [
+          { name: 'Arch Linux', note: 'Daily driver OS & tinkering lab' }, { name: 'Hyprland', note: 'Wayland tiling compositor setup' },
+          { name: 'i3wm', note: 'Catppuccin Mocha desktop rice' }, { name: 'SDDM', note: 'Custom QML frosted-glass themes' },
+        ]},
+        { id: 'vcs', label: 'Version Control', tagline: 'Workflow', subtitle: 'Clean commit histories, rebases, and org maintenance', icon: 'git-branch', items: [
+          { name: 'Git', note: 'Kernel rebases, cherry-picks & bisect' }, { name: 'GitHub', note: 'tiraq-official & fogos-5-4 org' },
+        ]},
+      ];
+
+      const SOCIAL_LINKS = [
+        { id: 'github-org', name: 'fogos-5-4 Org', handle: 'github.com/fogos-5-4', description: 'All Moto G34 / G45 5G trees, kernel & audio ports', url: 'https://github.com/fogos-5-4', icon: 'folder-git-2', tone: 'primary' },
+        { id: 'github', name: 'GitHub Profile', handle: '@tiraq-official', description: 'All the code, all the chaos', url: 'https://github.com/tiraq-official', icon: 'github', tone: 'secondary' },
+        { id: 'tg-group', name: 'Telegram Group', handle: 't.me/TheEuthymia', description: 'Community & chatter', url: 'https://t.me/TheEuthymia', icon: 'send', tone: 'tertiary' },
+        { id: 'tg-dm', name: 'Telegram DMs', handle: 't.me/lost_traveller', description: 'Straight to my DMs', url: 'https://t.me/lost_traveller', icon: 'send', tone: 'surface' },
+        { id: 'anilist', name: 'AniList', handle: 'anilist.co/user/tiraq', description: 'Manhwa, manga & anime I’m tracking', url: 'https://anilist.co/user/tiraq/', icon: 'tv', tone: 'surface' },
+      ];
+
+      const CATEGORIES = ['All', 'fogos-5-4', 'Device & Vendor', 'Audio & Apps', 'Kernel & System', 'Linux & Ricing'];
+      const NAV_ITEMS = [
+        { id: 'overview', label: 'Overview' },
+        { id: 'about', label: 'About' },
+        { id: 'toolbox', label: 'Toolbox' },
+        { id: 'works', label: 'Works' },
+        { id: 'connect', label: 'Connect' },
+      ];
+
+      const sysMedia = window.matchMedia('(prefers-color-scheme: dark)');
+      let state = {
+        isDark: sysMedia.matches,
+        manualDarkOverride: false,
+        seedTheme: systemAccent ? 'system' : 'amber',
+        activeSkillTab: 'languages',
+        activeCategory: 'All',
+        searchQuery: '',
+        viewMode: 'grid',
+        activeSection: 'overview',
+        mobileMenuOpen: false,
+        paletteMenuOpen: false,
+        scrolled: false,
+      };
+
+      try {
+        const savedSeed = localStorage.getItem('tiraq_md3_seed');
+        if (savedSeed && MD3_PALETTES[savedSeed]) state.seedTheme = savedSeed;
+      } catch {}
+
+      function applyTheme() {
+        const pal = MD3_PALETTES[state.seedTheme] || MD3_PALETTES.amber;
+        const vars = state.isDark ? pal.dark : pal.light;
+        const root = document.documentElement;
+        for (const [k, v] of Object.entries(vars)) {
+          root.style.setProperty(k, v);
+        }
+        const meta = document.getElementById('meta-theme-color');
+        if (meta) meta.setAttribute('content', vars['--md-surface']);
+        document.getElementById('palette-label').textContent = pal.name;
+        document.getElementById('theme-icon-sun').classList.toggle('hidden', !state.isDark);
+        document.getElementById('theme-icon-moon').classList.toggle('hidden', state.isDark);
+        const g1 = document.getElementById('hero-glow-1');
+        const g2 = document.getElementById('hero-glow-2');
+        if (g1) g1.className = `pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl transition-opacity duration-500 ${state.isDark ? 'opacity-15' : 'opacity-40'}`;
+        if (g2) g2.className = `pointer-events-none absolute -bottom-24 -left-24 w-72 h-72 rounded-full blur-3xl transition-opacity duration-500 ${state.isDark ? 'opacity-10' : 'opacity-30'}`;
+        renderInterests();
+      }
+
+      sysMedia.addEventListener('change', (e) => {
+        if (!state.manualDarkOverride) {
+          state.isDark = e.matches;
+          applyTheme();
+        }
+      });
+
+      function refreshIcons() {
+        if (window.lucide && window.lucide.createIcons) {
+          window.lucide.createIcons();
+        }
+      }
+
+      function renderPaletteMenu() {
+        const menu = document.getElementById('palette-menu');
+        const keys = Object.keys(MD3_PALETTES);
+        menu.innerHTML = `<div class="px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider" style="color: var(--md-on-surface-variant);">MD3 Dynamic Seed</div>` +
+          keys.map((key) => {
+            const p = MD3_PALETTES[key];
+            const sel = state.seedTheme === key;
+            return `<button type="button" data-seed="${key}" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium transition-colors" style="background-color: ${sel ? 'var(--md-secondary-container)' : 'transparent'}; color: ${sel ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface)'};">
+              <span class="flex items-center gap-2.5">
+                <span class="w-3.5 h-3.5 rounded-full inline-block" style="background-color: ${p.swatch};"></span>
+                ${p.name}
+              </span>
+              ${sel ? '<i data-lucide="check" class="w-4 h-4"></i>' : ''}
+            </button>`;
+          }).join('');
+        menu.querySelectorAll('button[data-seed]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.seedTheme = btn.getAttribute('data-seed');
+            try { localStorage.setItem('tiraq_md3_seed', state.seedTheme); } catch {}
+            state.paletteMenuOpen = false;
+            menu.classList.add('hidden');
+            applyTheme();
+            renderPaletteMenu();
+            refreshIcons();
+          });
+        });
+      }
+
+      function renderStats() {
+        document.getElementById('stats-grid').innerHTML = STATS.map((s) => `
+          <div class="rounded-[24px] border p-5 h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-0.5" style="background-color: var(--md-surface-container); border-color: var(--md-outline-variant);">
+            <div class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--md-primary);">${s.value}</div>
+            <div class="mt-2.5">
+              <div class="text-sm font-semibold">${s.label}</div>
+              <div class="text-xs mt-0.5" style="color: var(--md-on-surface-variant);">${s.sub}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function renderInterests() {
+        document.getElementById('interests-bento').innerHTML = INTERESTS.map((item) => {
+          const bg = item.tone === 'primary' ? 'var(--md-primary-container)' : item.tone === 'secondary' ? 'var(--md-secondary-container)' : item.tone === 'tertiary' ? 'var(--md-tertiary-container)' : 'var(--md-surface-container)';
+          const fg = item.tone === 'primary' ? 'var(--md-on-primary-container)' : item.tone === 'secondary' ? 'var(--md-on-secondary-container)' : item.tone === 'tertiary' ? 'var(--md-on-tertiary-container)' : 'var(--md-on-surface)';
+          const iconBg = item.tone === 'surface' ? 'var(--md-surface-container-highest)' : state.isDark ? 'rgba(0,0,0,0.24)' : 'rgba(255,255,255,0.45)';
+          return `<div class="${item.span} group relative overflow-hidden rounded-[24px] border p-5 flex flex-col justify-between gap-4 transition-all duration-300 hover:-translate-y-0.5" style="background-color: ${bg}; color: ${fg}; border-color: ${item.tone === 'surface' ? 'var(--md-outline-variant)' : 'transparent'};">
+            <div class="flex items-center justify-between gap-2">
+              <div class="w-10 h-10 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" style="background-color: ${iconBg};">
+                <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[11px] font-semibold uppercase tracking-wider opacity-75">${item.tag}</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-base tracking-tight">${item.title}</h4>
+              <p class="text-xs sm:text-sm opacity-85 mt-1 leading-relaxed">${item.description}</p>
+            </div>
+          </div>`;
+        }).join('');
+        refreshIcons();
+      }
+
+      function renderToolbox() {
+        const rail = document.getElementById('toolbox-rail');
+        const stage = document.getElementById('toolbox-stage');
+        rail.innerHTML = SKILL_GROUPS.map((g) => {
+          const active = state.activeSkillTab === g.id;
+          return `<button type="button" data-skill="${g.id}" class="md3-state-layer w-full text-left rounded-2xl px-4 py-3.5 flex items-center justify-between gap-3 transition-all duration-200" style="background-color: ${active ? 'var(--md-secondary-container)' : 'transparent'}; color: ${active ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)'};">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors" style="background-color: ${active ? 'var(--md-primary)' : 'var(--md-surface-container-highest)'}; color: ${active ? 'var(--md-on-primary)' : 'var(--md-on-surface-variant)'};">
+                <i data-lucide="${g.icon}" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm" style="color: ${active ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface)'};">${g.label}</div>
+                <div class="text-xs opacity-75">${g.tagline}</div>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 transition-transform ${active ? 'translate-x-0.5 opacity-100' : 'opacity-40'}"></i>
+          </button>`;
+        }).join('');
+
+        const activeGroup = SKILL_GROUPS.find((g) => g.id === state.activeSkillTab) || SKILL_GROUPS[0];
+        stage.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b" style="border-color: var(--md-outline-variant);">
+            <div>
+              <h3 class="text-lg sm:text-xl font-bold tracking-tight">${activeGroup.label}</h3>
+              <p class="text-xs sm:text-sm mt-0.5" style="color: var(--md-on-surface-variant);">${activeGroup.subtitle}</p>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">${activeGroup.items.length} tools</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            ${activeGroup.items.map((it) => `
+              <div class="rounded-2xl border px-4 py-3 flex flex-col justify-center gap-0.5 transition-colors hover:border-[var(--md-primary)]" style="background-color: var(--md-surface-container); border-color: var(--md-outline-variant);">
+                <div class="font-semibold text-sm">${it.name}</div>
+                <div class="text-xs" style="color: var(--md-on-surface-variant);">${it.note}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        rail.querySelectorAll('button[data-skill]').forEach((b) => {
+          b.addEventListener('click', () => {
+            state.activeSkillTab = b.getAttribute('data-skill');
+            renderToolbox();
+          });
+        });
+        refreshIcons();
+      }
+
+      function renderProjects() {
+        const q = state.searchQuery.trim().toLowerCase();
+        const filtered = PROJECTS.filter((p) => {
+          const matchesCat = state.activeCategory === 'All' || (state.activeCategory === 'fogos-5-4' ? p.org === 'fogos-5-4' : p.category === state.activeCategory);
+          const matchesQuery = !q || p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q) || p.language.toLowerCase().includes(q) || p.badge.toLowerCase().includes(q) || p.org.toLowerCase().includes(q);
+          return matchesCat && matchesQuery;
+        });
+
+        document.getElementById('works-count-label').innerHTML = `Showing ${filtered.length} of ${PROJECTS.length} repositories across <a href="https://github.com/fogos-5-4" target="_blank" rel="noreferrer" class="font-semibold hover:underline" style="color: var(--md-primary);">fogos-5-4</a> and <a href="https://github.com/tiraq-official" target="_blank" rel="noreferrer" class="font-semibold hover:underline" style="color: var(--md-primary);">tiraq-official</a>.`;
+
+        document.getElementById('filter-chips').innerHTML = CATEGORIES.map((cat) => {
+          const active = state.activeCategory === cat;
+          return `<button type="button" data-cat="${cat}" class="md3-state-layer inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border text-xs sm:text-sm font-medium transition-all duration-200 active:scale-95" style="background-color: ${active ? 'var(--md-secondary-container)' : 'var(--md-surface-container-low)'}; color: ${active ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)'}; border-color: ${active ? 'transparent' : 'var(--md-outline-variant)'};">
+            ${active ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : ''}
+            ${cat}
+          </button>`;
+        }).join('');
+
+        document.querySelectorAll('#filter-chips button[data-cat]').forEach((b) => {
+          b.addEventListener('click', () => {
+            state.activeCategory = b.getAttribute('data-cat');
+            renderProjects();
+          });
+        });
+
+        const gridBtn = document.getElementById('view-grid-btn');
+        const listBtn = document.getElementById('view-list-btn');
+        gridBtn.style.backgroundColor = state.viewMode === 'grid' ? 'var(--md-secondary-container)' : 'transparent';
+        gridBtn.style.color = state.viewMode === 'grid' ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
+        listBtn.style.backgroundColor = state.viewMode === 'list' ? 'var(--md-secondary-container)' : 'transparent';
+        listBtn.style.color = state.viewMode === 'list' ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
+
+        const container = document.getElementById('projects-container');
+        if (filtered.length === 0) {
+          container.innerHTML = `<div class="rounded-[28px] border p-10 text-center space-y-3" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
+            <p class="font-semibold text-base">No repositories match &ldquo;${state.searchQuery.replace(/</g, '&lt;')}&rdquo;</p>
+            <button id="reset-filters-btn" type="button" class="px-5 py-2 rounded-full text-sm font-medium" style="background-color: var(--md-primary); color: var(--md-on-primary);">Reset filters</button>
+          </div>`;
+          document.getElementById('reset-filters-btn').addEventListener('click', () => {
+            state.searchQuery = '';
+            state.activeCategory = 'All';
+            document.getElementById('project-search').value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            renderProjects();
+          });
+          refreshIcons();
+          return;
+        }
+
+        if (state.viewMode === 'grid') {
+          container.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">` +
+            filtered.map((p, idx) => {
+              const lc = LANG_COLORS[p.language] || '#888888';
+              const orgBg = p.org === 'fogos-5-4' ? 'var(--md-primary-container)' : 'var(--md-secondary-container)';
+              const orgFg = p.org === 'fogos-5-4' ? 'var(--md-on-primary-container)' : 'var(--md-on-secondary-container)';
+              return `<article data-pid="${p.id}" class="md3-card-anim md3-state-layer group cursor-pointer rounded-[24px] border p-5 sm:p-6 flex flex-col justify-between gap-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant); animation-delay: ${idx * 30}ms;">
+                <div class="space-y-3.5">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold" style="background-color: ${orgBg}; color: ${orgFg};">${p.org}</span>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface-variant);">
+                      <span class="w-2 h-2 rounded-full" style="background-color: ${lc};"></span>
+                      ${p.language}
+                    </span>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-semibold uppercase tracking-wider mb-1" style="color: var(--md-primary);">${p.badge}</div>
+                    <h3 class="text-base sm:text-lg font-bold tracking-tight break-words">${p.title}</h3>
+                  </div>
+                  <p class="text-sm leading-relaxed" style="color: var(--md-on-surface-variant);">${p.description}</p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t" style="border-color: var(--md-outline-variant);">
+                  <span class="text-xs font-semibold inline-flex items-center gap-1" style="color: var(--md-primary);">
+                    Inspect details
+                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"></i>
+                  </span>
+                  <a href="${p.url}" target="_blank" rel="noreferrer" class="ext-repo-link inline-flex items-center gap-1 text-xs font-medium hover:underline" style="color: var(--md-on-surface-variant);">
+                    GitHub
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </article>`;
+            }).join('') + `</div>`;
+        } else {
+          container.innerHTML = `<div class="space-y-2.5">` +
+            filtered.map((p, idx) => {
+              const lc = LANG_COLORS[p.language] || '#888888';
+              const orgBg = p.org === 'fogos-5-4' ? 'var(--md-primary-container)' : 'var(--md-secondary-container)';
+              const orgFg = p.org === 'fogos-5-4' ? 'var(--md-on-primary-container)' : 'var(--md-on-secondary-container)';
+              return `<article data-pid="${p.id}" class="md3-card-anim md3-state-layer cursor-pointer rounded-2xl border p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:shadow-sm" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant); animation-delay: ${idx * 25}ms;">
+                <div class="space-y-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-base break-all">${p.title}</h3>
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold" style="background-color: ${orgBg}; color: ${orgFg};">${p.org}</span>
+                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md font-mono text-[11px]" style="background-color: var(--md-surface-container-high); color: var(--md-on-surface-variant);">
+                      <span class="w-2 h-2 rounded-full" style="background-color: ${lc};"></span>
+                      ${p.language}
+                    </span>
+                  </div>
+                  <p class="text-sm" style="color: var(--md-on-surface-variant);">${p.description}</p>
+                </div>
+                <a href="${p.url}" target="_blank" rel="noreferrer" class="ext-repo-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold shrink-0 self-start sm:self-center" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">
+                  Open Repo
+                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </article>`;
+            }).join('') + `</div>`;
+        }
+
+        container.querySelectorAll('article[data-pid]').forEach((card) => {
+          card.addEventListener('click', () => {
+            const p = PROJECTS.find((item) => item.id === card.getAttribute('data-pid'));
+            if (p) openModal(p);
+          });
+        });
+        container.querySelectorAll('.ext-repo-link').forEach((a) => {
+          a.addEventListener('click', (e) => e.stopPropagation());
+        });
+        refreshIcons();
+      }
+
+      function renderSocials() {
+        document.getElementById('social-grid').innerHTML = SOCIAL_LINKS.map((l) => {
+          const iconBg = l.tone === 'primary' ? 'var(--md-primary-container)' : l.tone === 'secondary' ? 'var(--md-secondary-container)' : l.tone === 'tertiary' ? 'var(--md-tertiary-container)' : 'var(--md-surface-container-highest)';
+          const iconFg = l.tone === 'primary' ? 'var(--md-on-primary-container)' : l.tone === 'secondary' ? 'var(--md-on-secondary-container)' : l.tone === 'tertiary' ? 'var(--md-on-tertiary-container)' : 'var(--md-on-surface)';
+          return `<a href="${l.url}" target="_blank" rel="noreferrer" class="md3-state-layer rounded-[24px] border p-5 h-full flex flex-col justify-between gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md" style="background-color: var(--md-surface-container); border-color: var(--md-outline-variant);">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background-color: ${iconBg}; color: ${iconFg};">
+                <i data-lucide="${l.icon}" class="w-5 h-5"></i>
+              </div>
+              <i data-lucide="arrow-up-right" class="w-4 h-4" style="color: var(--md-on-surface-variant);"></i>
+            </div>
+            <div>
+              <div class="font-bold text-base">${l.name}</div>
+              <div class="text-xs font-mono mt-0.5 break-all" style="color: var(--md-primary);">${l.handle}</div>
+              <p class="text-xs mt-1.5 leading-relaxed" style="color: var(--md-on-surface-variant);">${l.description}</p>
+            </div>
+          </a>`;
+        }).join('');
+      }
+
+      function openModal(p) {
+        const modal = document.getElementById('project-modal');
+        const card = document.getElementById('project-modal-card');
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-4">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">${p.org}</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">${p.badge}</span>
+                <span class="px-2.5 py-1 rounded-lg font-mono text-xs" style="background-color: var(--md-surface-container-highest); color: var(--md-on-surface-variant);">${p.language}</span>
+              </div>
+              <h3 id="project-dialog-title" class="text-xl sm:text-2xl font-bold tracking-tight break-all">${p.title}</h3>
+            </div>
+            <button id="close-modal-x" type="button" aria-label="Close project details" class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background-color: var(--md-surface-container-highest);">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <p class="text-sm sm:text-base leading-relaxed" style="color: var(--md-on-surface-variant);">${p.description}</p>
+          <div class="rounded-2xl border p-4 space-y-2" style="background-color: var(--md-surface-container-low); border-color: var(--md-outline-variant);">
+            <div class="text-xs font-semibold uppercase tracking-wider opacity-80">Highlights</div>
+            <ul class="space-y-1.5 text-sm">
+              ${p.highlights.map((h) => `<li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5" style="color: var(--md-primary);"></i><span>${h}</span></li>`).join('')}
+            </ul>
+          </div>
+          <div class="flex items-center justify-end gap-3 pt-2">
+            <button id="close-modal-btn" type="button" class="px-4 py-2.5 rounded-full text-sm font-semibold" style="color: var(--md-primary);">Close</button>
+            <a href="${p.url}" target="_blank" rel="noreferrer" class="md3-state-layer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold" style="background-color: var(--md-primary); color: var(--md-on-primary);">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              Open on GitHub
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        `;
+        modal.classList.remove('hidden');
+        document.getElementById('close-modal-x').addEventListener('click', closeModal);
+        document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+        refreshIcons();
+      }
+
+      function closeModal() {
+        document.getElementById('project-modal').classList.add('hidden');
+      }
+
+      function renderNavState() {
+        document.querySelectorAll('.nav-pill').forEach((el) => {
+          const active = el.getAttribute('data-nav') === state.activeSection;
+          el.style.backgroundColor = active ? 'var(--md-secondary-container)' : 'transparent';
+          el.style.color = active ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
+        });
+        document.querySelectorAll('.mobile-nav-pill').forEach((el) => {
+          const active = el.getAttribute('data-mobile-nav') === state.activeSection;
+          el.style.backgroundColor = active ? 'var(--md-secondary-container)' : 'transparent';
+          el.style.color = active ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
+        });
+        const drawerInner = document.getElementById('mobile-drawer-inner');
+        drawerInner.innerHTML = NAV_ITEMS.map((item, idx) => {
+          const active = state.activeSection === item.id;
+          return `<a href="#${item.id}" data-drawer-nav="${item.id}" class="md3-state-layer w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${state.mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}" style="background-color: ${active ? 'var(--md-secondary-container)' : 'transparent'}; color: ${active ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface)'}; transition-delay: ${state.mobileMenuOpen ? idx * 35 : 0}ms;">
+            <span>${item.label}</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 ${active ? 'opacity-100' : 'opacity-40'}"></i>
+          </a>`;
+        }).join('');
+        drawerInner.querySelectorAll('a[data-drawer-nav]').forEach((a) => {
+          a.addEventListener('click', () => {
+            state.mobileMenuOpen = false;
+            updateMobileMenuUI();
+          });
+        });
+        refreshIcons();
+      }
+
+      function updateMobileMenuUI() {
+        const btn = document.getElementById('mobile-menu-btn');
+        const drawer = document.getElementById('mobile-drawer');
+        const h1 = document.getElementById('ham-1');
+        const h2 = document.getElementById('ham-2');
+        const h3 = document.getElementById('ham-3');
+        btn.setAttribute('aria-expanded', String(state.mobileMenuOpen));
+        btn.style.backgroundColor = state.mobileMenuOpen ? 'var(--md-primary-container)' : 'var(--md-surface-container-high)';
+        btn.style.color = state.mobileMenuOpen ? 'var(--md-on-primary-container)' : 'var(--md-on-surface)';
+        h1.className = `block h-[2px] w-4 rounded-full transition-all duration-300 ${state.mobileMenuOpen ? 'translate-y-[6.5px] rotate-45' : ''}`;
+        h2.className = `block h-[2px] w-4 rounded-full transition-all duration-200 ${state.mobileMenuOpen ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'}`;
+        h3.className = `block h-[2px] w-4 rounded-full transition-all duration-300 ${state.mobileMenuOpen ? '-translate-y-[6.5px] -rotate-45' : ''}`;
+        drawer.className = `md:hidden grid transition-all duration-300 ${state.mobileMenuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`;
+        renderNavState();
+      }
+
+      // Event Listeners
+      document.getElementById('palette-btn').addEventListener('click', () => {
+        state.paletteMenuOpen = !state.paletteMenuOpen;
+        document.getElementById('palette-menu').classList.toggle('hidden', !state.paletteMenuOpen);
+      });
+      document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+        state.manualDarkOverride = true;
+        state.isDark = !state.isDark;
+        applyTheme();
+      });
+      document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+        state.mobileMenuOpen = !state.mobileMenuOpen;
+        updateMobileMenuUI();
+      });
+      document.getElementById('project-search').addEventListener('input', (e) => {
+        state.searchQuery = e.target.value;
+        document.getElementById('clear-search-btn').classList.toggle('hidden', !state.searchQuery);
+        renderProjects();
+      });
+      document.getElementById('clear-search-btn').addEventListener('click', () => {
+        state.searchQuery = '';
+        document.getElementById('project-search').value = '';
+        document.getElementById('clear-search-btn').classList.add('hidden');
+        renderProjects();
+      });
+      document.getElementById('view-grid-btn').addEventListener('click', () => { state.viewMode = 'grid'; renderProjects(); });
+      document.getElementById('view-list-btn').addEventListener('click', () => { state.viewMode = 'list'; renderProjects(); });
+      document.getElementById('project-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'project-modal') closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          state.paletteMenuOpen = false;
+          document.getElementById('palette-menu').classList.add('hidden');
+          if (state.mobileMenuOpen) {
+            state.mobileMenuOpen = false;
+            updateMobileMenuUI();
+          }
+        }
+      });
+
+      window.addEventListener('scroll', () => {
+        const isSc = window.scrollY > 16;
+        if (isSc !== state.scrolled) {
+          state.scrolled = isSc;
+          const bar = document.getElementById('top-app-bar');
+          bar.style.backgroundColor = isSc ? 'var(--md-surface-container)' : 'var(--md-surface)';
+          bar.style.borderColor = isSc ? 'var(--md-outline-variant)' : 'transparent';
+          bar.classList.toggle('shadow-sm', isSc);
+        }
+        for (const id of [...NAV_ITEMS.map((n) => n.id)].reverse()) {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= 140) {
+            if (state.activeSection !== id) {
+              state.activeSection = id;
+              renderNavState();
+            }
+            break;
+          }
+        }
+      }, { passive: true });
+
+      // Scroll Reveal Observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.06 });
+      document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+
+      // Initial Render
+      applyTheme();
+      renderPaletteMenu();
+      renderStats();
+      renderToolbox();
+      renderProjects();
+      renderSocials();
+      renderNavState();
+      refreshIcons();
+    })();
+  </script>
 </body>
 </html>
